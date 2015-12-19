@@ -1,0 +1,28 @@
+<div class="clear"></div>
+<footer>
+  <div class="footer-clueline"></div>
+  <div class="footer-menu">
+    <div class="footer-menu-left">
+      <p>Clueについて</p>
+      <ul>
+        <li><%= link_to '> Clueとは', about_path %></li>
+        <li><%= link_to '> 利用規約', terms_path %></li>
+        <li><%= link_to '> プライバシーポリシー', privacy_path %></li>
+        <li><%= link_to '> 特定商取引法に基づく表記', legal_path %></li>
+        <li><%= link_to '> お問い合わせ', contact_path %></li>
+      </ul>
+    </div>
+    <div class="footer-menu-center">
+      <p><%= link_to '会社概要', about_path %></p>
+      <p>公式アカウントをフォロー</p>
+      <p><%= link_to image_tag('top/asset.f.logo.lg.png') %> <%= link_to 'Facebook' %></p>
+      <p><%= link_to image_tag('top/t.png') %> <%= link_to 'Twitter' %></p>
+    </div>
+    <div class="footer-menu-right">
+      <h3>Our Vision</h3>
+      <p>「学校に行けなくなった子たちに縦の社会をつくる」</p>
+      <p>未来に生きる希望が欲しいけど、希望が持てない。同じ境遇を経験した先輩、カウンセラーなどを繋ぐサイトを目指しています。</p>
+    </div>
+  </div>
+  <p class="copyright">© <%= Date.today.year %> Mariannne Inc.</p>
+</footer>

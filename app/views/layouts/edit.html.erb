@@ -1,0 +1,41 @@
+<div class="nav">
+    <%= link_to 'TOP', root_path %> > <%= link_to 'マイページ', user_path(current_user.id) %> > <%= link_to 'プロフィール情報の編集' , edit_user_path(current_user.id) %>
+</div>
+<%= form_for @user do |f| %>
+  <%= f.label :avatar, 'プロフィール画像' %>
+  <%= f.file_field :avatar %><br />
+
+  <%= f.label :family_name, '姓' %> <%= f.text_field :family_name %>
+  <%= f.label :first_name, '名' %> <%= f.text_field :first_name %><br />
+  <%= f.label :family_name_kana, 'セイ' %> <%= f.text_field :family_name_kana %>
+  <%= f.label :first_name_kana, 'メイ' %> <%= f.text_field :first_name_kana %><br />
+
+  <%= f.label :job, '職業' %><br />
+  <%= f.select :job, @job %><br />
+  
+  <%= f.label :area, '居住地域' %><br />
+  <%= f.select :area, @area %><br />
+  
+  <%= f.label :address, '住所' %>
+  <%= f.text_field :address %><br />
+  
+  <%= f.label :tel, '電話番号' %>
+  <%= f.text_field :tel %><br />
+
+  <%= f.label :line_id, 'LINE ID' %>
+  <%= f.text_field :line_id %><br />
+
+  <%= f.label :price, '時間単価' %>
+  <%= f.number_field :price %><br />
+
+  <%= f.label :about, '一言PR（一覧表示用、14文字以内）' %>
+  <%= f.text_field :about %><br />
+
+  <%= f.label :profile, 'プロフィール' %><br />
+  <%= f.text_area :profile %><br />
+
+  <%= f.label :search_permit, '検索許可' %><br />
+  <%= f.select :search_permit, [['検索画面での表示を許可', 1], ['検索画面での表示を禁止', 0]] %><br />
+
+  <%= f.submit '更新' %>
+<% end %>

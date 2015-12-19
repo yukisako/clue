@@ -1,0 +1,23 @@
+<div class="nav">
+    <%= link_to 'TOP', root_path %> > <%= link_to 'ダイアリーを読む', diaries_path %>
+</div>
+<div class="diary-index">
+    <h1>不登校生活ダイアリー</h1>
+    <p>不登校児や不登校経験者のダイアリーです。</p>
+    <% @diaries.each do |diary| %>
+    <hr />
+    <div class="diary-index-item">
+        <div class="diary-index-image">
+            <%= image_tag(diary.user.avatar(:thumb)) %>
+        </div>
+        <div class="diary-index-title">
+            <p><%= diary.post_date %> <%= diary.category %></p>
+            <h2><%= link_to diary.title, diary_path(diary.id) %></h2>
+            <p>by <%= diary.user.name %> Comment (<%= diary.comments.count %>)</p>
+        </div>
+        <div class="clear"></div>
+    </div>
+    <% end %>
+    <hr />
+</div>
+

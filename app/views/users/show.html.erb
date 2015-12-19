@@ -1,0 +1,33 @@
+<div class="nav">
+    <%= link_to 'TOP', root_path %> > <%= link_to 'マイページ', user_path(current_user.id) %>
+</div>
+<div class="user-show-profile">
+    <h1>現在の登録情報</h1>
+    <ul>
+        <li>User ID: <%= current_user.id %></li>
+        <li>氏名: <%= current_user.name %></li>
+        <li>性別: <%= current_user.sex %></li>
+        <li>年齢: <%= current_user.age %>歳</li>
+        <li>職業: <%= current_user.job %></li>
+        <li>地域: <%= current_user.area %></li>
+        <li>住所: <%= current_user.address %></li>
+        <li>電話番号: <%= current_user.tel %></li>
+        <li>LINE ID: <%= current_user.line_id %></li>
+        <li>単価: <%= number_to_currency(current_user.price) %></li>
+        <li>一言: <%= current_user.about %></li>
+        <li>プロフィール: <p><%= simple_format(current_user.profile) %></p></li>
+    </ul>
+</div>
+<div class="user-show-edit-btn">
+    <ul>
+        <li><%= link_to 'メッセージボックス', messages_path %></li>
+        <li><%= link_to 'ダイアリーを書く', new_diary_path %></li>
+        <li><%= link_to 'チケットを発行', new_ticket_path %></li>
+    </ul>
+    <ul>
+        <li><%= link_to 'アカウント情報を編集', edit_user_registration_path %></li>
+        <li><%= link_to 'プロフィールを編集', edit_user_path(current_user.id) %></li>
+        <li><%= link_to '見え方を確認する', supporter_path(params[:id]) %></li>
+    </ul>
+</div>
+<div class="clear" style="padding-bottom: 20px"></div>

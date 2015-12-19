@@ -1,0 +1,54 @@
+<div class="nav">
+    <%= link_to 'TOP', root_path %> > <%= link_to 'ダイアリーを読む', diaries_path %> > <%= @diary.title %>
+</div>
+
+<div class="diary-show">
+    <h1><%= @diary.title %></h1>
+    <p><%= @diary.post_date %> <%= @diary.category %></p>
+    <p><%= @author.name %></p>
+    <p><%= simple_format(h(@diary.content)) %></p>
+    <div class="user-show-edit-btn">
+        <ul>
+        <% if @diary.id == current_user.id %>
+            <li><%= link_to '削除する', diary_path, method: :delete %></li>
+            <li><%= link_to '編集する', edit_diary_path %></li>
+        <% else %>
+            <li><%= link_to '著者にメッセージを送る', new_message_path(receiver_id: @diary.user_id) %></li>
+        <% end %>
+            <li><%= link_to '一覧に戻る', diaries_path %></li>
+        </ul>
+    </div>
+    <div class="clear"></div>
+
+    <div class="diary-show-comments">
+        <h2>Comments (<%= @comments.count %>件)</h2>
+        <% @comments.each do |com| %>
+        <hr />
+        <div class="diary-show-comment-image">
+            <% if com.user.avatar.present? %>
+            <%= image_tag(com.user.avatar(:thumb)) %>
+            <% else %>
+            <p>No Image</p>
+            <% end %>
+        </div>
+        <div class="diary-show-comment">
+            <p><%= com.post_date %> by <%= com.user.name %></p>
+            <%= simple_format(h(com.comment)) %>
+            <% if com.user_id == current_user.id %>
+            <p class="delete-btn"><%= link_to "[×]", comment_path(com.id), method: :delete %></p>
+            <% end %>
+        </div>
+        <% end %>
+        <hr />
+    </div>
+
+    <div class="diary-new-comment">
+        <%= form_for(@comment) do |f| %>
+        <%= f.label :comment, 'コメント' %><br />
+        <%= f.text_area :comment, size: "80x10" %><br />
+        <%= f.hidden_field :diary_id, value: params[:id] %>
+        <%= f.hidden_field :user_id, value: current_user.id %>
+        <%= f.submit('投稿') %>
+        <% end %>
+    </div>
+</div>

@@ -1,0 +1,23 @@
+<div class="nav">
+    <%= link_to 'TOP', root_path %> > <%= link_to '生徒を探す', students_path %> > <%= link_to @student.name , students_path %>
+</div>
+
+<div class="user-show-profile">
+    <h1>サポーター情報</h1>
+    <ul>
+        <li>student ID: <%= @student.id %></li>
+        <li>氏名: <%= @student.name %></li>
+        <li>地域: <%= @student.area %></li>
+        <li>性別: <%= @student.sex %></li>
+        <li>年齢: <%= @student.age %>歳</li>
+        <li>プロフィール: <p><%= simple_format(@student.profile) %></p></li>
+    </ul>
+</div>
+<div class="user-show-edit-btn">
+    <ul>
+        <li><%= link_to 'メッセージを送る', new_message_path(receiver_id: @student.id) %></li>
+        <li><%= link_to 'メッセージボックス', messages_path %></li>
+        <li><%= link_to 'チケット', search_tickets_path(user_id: @student.id) %></li>
+    </ul>
+</div>
+<div class="clear"></div>

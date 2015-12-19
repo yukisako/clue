@@ -1,0 +1,44 @@
+<h2>Edit <%= resource_name.to_s.humanize %></h2>
+
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+  <%= devise_error_messages! %>
+
+  <div class="field">
+    <%= f.label :user_type, '種別' %><br />
+    <%= f.select :user_type, [['生徒', 1], ['保護者', 2], ['経験者', 3]], autofocus: true %>
+  </div>
+
+  <div class="field">
+    <%= f.label :email, 'メールアドレス' %><br />
+    <%= f.email_field :email, autofocus: true %>
+  </div>
+
+  <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+    <div>認証待ち: <%= resource.unconfirmed_email %></div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :password, 'パスワード' %> <i>（変更しない場合は何も入力しないでください。）</i><br />
+    <%= f.password_field :password, autocomplete: "off" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :password_confirmation, 'パスワード（確認用）' %><br />
+    <%= f.password_field :password_confirmation, autocomplete: "off" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :current_password, '現在のパスワード' %> <i>(確認のため現在のパスワードを入力してください。)</i><br />
+    <%= f.password_field :current_password, autocomplete: "off" %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "更新" %>
+  </div>
+<% end %>
+
+<h3>退会</h3>
+
+<p>Clueを退会しますか？ <%= button_to "退会", registration_path(resource_name), data: { confirm: "本当に退会してよろしいですか？" }, method: :delete %></p>
+
+<%= link_to "戻る", :back %>

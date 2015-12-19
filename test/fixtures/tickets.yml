@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user_id: 1
+  price: 1
+  hour: 9.99
+  rate: 1
+  area: MyString
+  place: MyString
+  message: MyText
+
+two:
+  user_id: 1
+  price: 1
+  hour: 9.99
+  rate: 1
+  area: MyString
+  place: MyString
+  message: MyText

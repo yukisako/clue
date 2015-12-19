@@ -1,0 +1,70 @@
+<div class="nav">
+    <%= link_to 'TOP', root_path %> > <%= link_to 'マイページ', user_path(current_user.id) %> > <%= link_to 'メッセージボックス' , messages_path %>
+</div>
+<h1>メッセージ一覧</h1>
+<p>やりとりしたメッセージです。</p>
+
+<table class="mailbox">
+  <caption>受信箱（<%= @inbox.count %>件）</caption>
+  <thead>
+    <tr>
+      <th class="mailbox-no">No</th>
+      <th class="mailbox-title">件名</th>
+      <th class="mailbox-user">送信者</th>
+      <th class="mailbox-opened">既読</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @inbox.each.with_index do |msg, i| %>
+      <tr>
+        <td><%= link_to @inbox.count-i, message_path(msg.id) %></td>
+        <% if msg.title.present? %>
+        <td><%= link_to msg.title, message_path(msg.id), class: 'title' %></td>
+        <% else %>
+        <td><%= link_to '無題', message_path(msg.id), class: 'title' %></td>
+        <% end %>
+
+        <% if @user.find(msg.sender_id).name.present? %>
+        <td><%= link_to @user.find(msg.sender_id).name, supporter_path(msg.sender_id) %></td>
+        <% else %>
+        <td><%= link_to "匿名（ID: #{msg.sender_id}）", supporter_path(msg.sender_id) %></td>
+        <% end %>
+        <% if msg.opened.present? %>
+        <td>|W|</td>
+        <% else %>
+        <td>|M|</td>
+        <% end %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<table class="mailbox">
+  <caption>送信箱（<%= @outbox.count %>件）</caption>
+  <thead>
+    <tr>
+      <th class="mailbox-no">No</th>
+      <th class="mailbox-title">件名</th>
+      <th class="mailbox-user">宛先</th>
+      <th class="mailbox-opened">既読</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @outbox.each.with_index do |msg, i| %>
+      <tr>
+        <td><%= link_to @outbox.count-i, message_path(msg.id) %></td>
+        <td><%= link_to msg.title, message_path(msg.id), class: 'title' %></td>
+        <% if @user.find(msg.receiver_id).name.present? %>
+        <td><%= link_to @user.find(msg.receiver_id).name, supporter_path(msg.receiver_id) %></td>
+        <% else %>
+        <td><%= link_to "匿名（ID: #{msg.receiver_id}）", supporter_path(msg.receiver_id) %></td>
+        <% end %>
+        <% if msg.opened.present? %>
+        <td>|W|</td>
+        <% else %>
+        <td>|M|</td>
+        <% end %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

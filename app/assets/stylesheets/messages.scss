@@ -1,0 +1,104 @@
+// Place all the styles related to the messages controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+/* Mailbox */
+.mailbox {
+  width: 600px;
+  margin: 20px auto;
+}
+
+.mailbox-no {
+  width: 50px;
+}
+
+.mailbox-title {
+  width: 350px;
+}
+
+.mailbox-user {
+  width: 150px;
+}
+
+.mailbox-opened {
+  width: 50px;
+}
+
+.mailbox th,
+.mailbox td {
+  text-align: center;
+  border: 1px solid #4CAF50;
+  overflow: hidden;
+}
+
+.mailbox th {
+  background: #E8F5E9;
+}
+
+.mailbox a.title {
+  text-align: left;
+  padding-left: 10px;
+}
+
+.mailbox a:hover {
+  background: #43A047;
+  color: #FFF;
+}
+
+/* Message Show */
+.message-show {
+  width: 600px;
+  margin: 20px auto;
+  table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 1px 0px;
+  }
+  th {
+    text-align: left;
+    padding: 5px;
+    border: 1px solid #000;
+  }
+  td {
+    padding: 5px;
+    border: 1px solid #000;
+  }
+}
+
+.message-show-btn {
+  width: 64px;
+  float: right;
+  margin: 10px 0px;
+  a {
+    padding: 5px;
+    border: 2px solid #4CAF50;
+    background: #E8F5E9;
+    color: #000;
+    text-align: center;
+  }
+  a:hover {
+    background: #4CAF50;
+    color: #FFF;
+  }
+}
+
+.message-show-btn:not(:first-child) {
+  margin-left: 20px;
+}
+
+/* Message New */
+.past-message {
+  width: 580px;
+  margin: 20px auto;
+  padding: 10px;
+  border: 1px dotted #000;
+  background: #DFD;
+}
+
+.past-message:not(:first-child) {
+  margin-top: 20px;
+}
+
+.marked {
+  background: #FFF3E0;
+}

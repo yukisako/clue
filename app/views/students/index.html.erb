@@ -1,0 +1,45 @@
+<div class="nav">
+    <%= link_to 'TOP', root_path %> > <%= link_to '生徒を探す', students_path %>
+</div>
+
+<div class="students-index">
+  <h1>生徒を探す</h1>
+  <%= form_tag search_students_path, method: :get do %>
+    <input type="text" name="keyword" placeholder="プロフィール">
+    <%= select_tag :area, options_for_select(@area), include_blank: true %><br />
+    <%= select_tag :sex, options_for_select(["男", "女", "他"]), include_blank: true %>
+    <%= number_field_tag :min_age %>歳〜<%= number_field_tag :max_age %>歳
+    <button type="submit">検索</button>
+  <% end %>
+  <% if @param_keyword.present? || @param_min_age.present? || @param_max_age.present? || @param_area.present? || @param_sex.present? %>
+    <h2>検索条件</h2>
+    <%= @param_area %> <%= @param_min_age %> <%= @param_max_age %> <%= @param_sex %> <%= @param_keyword %>
+  <% end %>
+</div>
+
+<div class="students-index-profiles">
+  <% @students.each do |st| %>
+  <div class="students-index-profile">
+    <div class="students-index-image">
+      <% if st.avatar.present? %>
+      <%= link_to image_tag(st.avatar(:thumb)), student_path(st.id) %>
+      <% else %>
+      <%= link_to image_tag('top/clue.png', class: "no-image"), student_path(st.id) %>
+      <% end %>
+      <p class="price"><%= number_to_currency(st.price) %></p>
+      <p class="area"><%= st.area %></p>
+    </div>
+    <div class="students-index-data">
+      <% if st.name.present? %>
+      <p><%= link_to st.name, student_path(st.id) %></p>
+      <% else %>
+      <p><%= link_to "匿名(ID: #{st.id})", student_path(st.id) %></p>
+      <% end %>
+      <p><%= st.job %></p>
+      <p><%= link_to '|M| メッセージ', new_message_path(receiver_id: st.id) %></p>
+      <p><%= st.about %></p>
+    </div>
+  </div>
+  <% end %>
+<div class="clear"></div>
+</div>

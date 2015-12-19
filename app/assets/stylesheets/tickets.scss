@@ -1,0 +1,75 @@
+/* Ticket Index */
+.ticket-index {
+    width: 600px;
+    margin: 20px auto;
+}
+
+.ticket-index-item {
+    width: 185px;
+    float: left;
+    background: #e3e3e3;
+    border-radius: 10px;
+    margin: 7px 0px;
+}
+
+.ticket-index-item:not(:nth-child(3n)) {
+    margin-left: 15px;
+}
+
+.ticket-index-image {
+    width: 185px;
+    padding-top: 10px;
+    text-align: center;
+    p {
+        height: 20px;
+        padding: 45px 0px;
+    }
+    img {
+        border-radius: 50%;
+        margin-top: 5px;
+    }
+}
+
+.ticket-index-data {
+    width: 165px;
+    height: 50px;
+    padding: 10px;
+    text-align: center;
+}
+
+/* Ticket Show */
+.ticket-show {
+    width: 600px;
+    margin: 20px auto;
+    li {
+        padding: 5px;
+        border-bottom: 1px dashed #e3e3e3;
+    }
+    li:first-child {
+        border-top: 1px dashed #e3e3e3;
+    }
+    li:nth-child(2n) {
+        background: #C8E6C9;
+    }
+    li:nth-child(2n-1) {
+        background: #E8F5E9;
+    }
+    a {
+        display: inline;
+    }
+}
+
+/* Ticket Edit */
+.ticket-edit {
+    width: 600px;
+    margin: 20px auto;
+    .field {
+        padding: 5px;
+    }
+    div:nth-child(2n) {
+        background: #C8E6C9;
+    }
+    div:nth-child(2n-1) {
+        background: #E8F5E9;
+    }
+}

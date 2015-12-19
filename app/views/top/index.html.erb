@@ -1,0 +1,29 @@
+<div class="top-index-image" style="background: url('<%= asset_path 'top/cluehome1.png' %>'); background-size: 650px 500px; background-position: bottom; background-repeat: no-repeat;">
+  <h1><strong>Clue</strong><br />不登校生・親＝元不登校生を繋ぐマッチングサイト</h1>
+  <div>
+    <ul>
+      <li class="futoukou"><%= link_to '不登校生', student_user_path %></li>
+      <li class="oyagosama"><%= link_to '親御様', parent_path %></li>
+      <li class="motofutoukousei"><%= link_to '元不登校生', support_path %></li>
+      <li class="counselor"><%= link_to 'カウンセラー', support_path %></li>
+    </ul>
+  </div>
+</div>
+
+<div class="top-index-search">
+  <% if user_signed_in? %>
+    <% if current_user.user_type == 1 || current_user.user_type == 2 %>
+      <%= link_to 'サポーター検索', supporters_path %>
+    <% elsif current_user.user_type == 3 %>
+      <%= link_to '生徒検索', students_path %>
+    <% end %>
+      <%= link_to 'ダイアリーを読む', diaries_path %>
+  <% end %>
+</div>
+
+<div
+  class="fb-like"
+  data-share="true"
+  data-width="400"
+  data-show-faces="true">
+</div>

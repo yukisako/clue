@@ -1,0 +1,83 @@
+/* Top Index */
+.top-index-image {
+  width: 100%;
+  height: 500px;
+  position: relative;
+  h1 {
+      position: absolute;
+      top: 0px;
+      width: 100%;
+      background: rgba(0,255,0,.3);
+      color: #FFF;
+      font-family: YuGothic, "游ゴシック", "メイリオ", Meiryo, "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", sans-serif; 
+      font-size: 1.5em;
+      text-align: center;
+      strong {
+          font-size: 2em;
+      }
+  }
+  div {
+      position: absolute;
+      bottom: 20px;
+      right: 0px;
+      left: 0px;
+      width: 1000px;
+      margin: auto;
+  }
+  li {
+      width: 190px;
+      float: left;
+      text-align: center;
+  }
+  .futoukou{
+      background:#00a0e9;
+      -webkit-border-radius: 10px;    /* Safari,Google Chrome用 */  
+    　-moz-border-radius: 10px;   /* Firefox用 */ 
+  }
+  .oyagosama{
+      background:#ffff00;
+      -webkit-border-radius: 10px;    /* Safari,Google Chrome用 */  
+    　-moz-border-radius: 10px;   /* Firefox用 */ 
+  }
+  .motofutoukousei{
+     background:#13b5b1;
+     -webkit-border-radius: 10px;    /* Safari,Google Chrome用 */  
+     -moz-border-radius: 10px;   /* Firefox用 */ 
+  }
+  .counselor{
+     background:#4a4a4a;
+     -webkit-border-radius: 10px;    /* Safari,Google Chrome用 */  
+     -moz-border-radius: 10px;   /* Firefox用 */ 
+  }
+  
+  li:hover {
+      background: rgba(0,255,0,.7);
+  }
+  li:not(:first-child) {
+      margin-left: 15px;
+  }
+  .futoukou{
+   background:#00a0e9; 
+  }
+  a {
+      color: #FFF;
+      padding: 15px 0px;
+      font-size: 1.25em;
+  }
+}
+
+.top-index-search {
+  width: 600px;
+  margin: 20px auto;
+  a {
+      background: #E3F2FD;
+      border: 2px solid #2196F3;
+      margin-bottom: 10px;
+      padding: 5px;
+      text-align: center;
+  }
+  a:hover {
+      background: #2196F3;
+      color: #FFF;
+  }
+}

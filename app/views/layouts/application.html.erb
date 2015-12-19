@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="keywords" content="不登校,clue,不登校支援,引きこもり,不登校マッチング,元不登校">
+  <meta name="description" content="clueは不登校生・親＝元不登校生を繋ぐマッチングするサイトです。">
+  <title>Clue| 不登校生・親＝元不登校生を繋ぐマッチングサイト</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+
+<body>
+<header>
+  <div style="background-image: url(<%= asset_path 'top/clueline.png' %>); background-repeat:repeat-x; cover; background-position: top;">
+    <a href="/" class="clue-logo">
+      <%= image_tag('top/clue1.png') %>
+    </a>
+     <p>不登校生・親と元不登校生を繋ぐマッチングサイト</p>
+    <ul>
+      <% unless user_signed_in? %>
+        <li class="right"><%= link_to '会員登録', new_user_registration_path, class: "header-menu" %></li>
+        <li class="right"><%= link_to 'ログイン', new_user_session_path, class: "header-menu" %></li>
+      <% else %>
+        <li class="right"><%= link_to 'ログアウト', destroy_user_session_path, method: :delete, class: "header-menu" %></li>
+        <li class="right"><%= link_to 'マイページ', user_path(current_user.id), class: "header-menu" %></li>
+        <li class="right"><%= link_to '先輩を探す', supporters_path, class: "header-menu" %></li>
+      <% end %>
+      <%= form_tag search_supporters_path, method: :get do %>
+        <input type="text" name="keyword" placeholder="先輩を検索">
+      <% end %>
+    </ul>
+<div class="clear"></div>
+</div>
+</header><!-- /header -->
+
+<p class="notice"><%= notice %></p>
+<p class="alert"><%= alert %></p>
+
+<%= yield %>
+<%= render partial: "layouts/footer" %>
+</body>
+</html>

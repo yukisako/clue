@@ -1,0 +1,39 @@
+<div class="nav">
+    <%= link_to 'TOP', root_path %> > <%= link_to 'マイページ', user_path(current_user.id) %> > <%= link_to 'メッセージボックス' , messages_path %> > <%= link_to @message.title, message_path(@message.id) %>
+</div>
+
+<div class="message-show">
+  <h1>メッセージ</h1>
+  <p class="message-show-btn"><%= link_to '戻る', messages_path %></p>
+  <% if @message.sender_id != current_user.id %>
+  <p class="message-show-btn"><%= link_to '返信', new_message_path(receiver_id: @message.sender_id) %></p>
+  <% end %>
+  <div class="clear"></div>
+
+  <% @messages.each do |msg| %>
+    <% if msg.id.to_i == params[:id].to_i %>
+    <div class="past-message marked">
+    <% else %>
+    <div class="past-message">
+    <% end %>
+    <% if @message.sender_id != current_user.id %>
+      <% if msg.sender_id == current_user.id %>
+      <p>From <%= current_user.name %> To <%= @sender.name %></p>
+      <p><%= link_to '削除', message_path(msg.id), method: :delete %></p>
+      <% else %>
+      <p>From <%= @sender.name %> To <%= current_user.name %></p>
+      <% end %>
+    <% else %>
+      <% if msg.sender_id == current_user.id %>
+      <p>From <%= current_user.name %> To <%= @receiver.name %></p>
+      <p><%= link_to '削除', message_path(msg.id), method: :delete %></p>
+      <% else %>
+      <p>From <%= @receiver.name %> To <%= current_user.name %></p>
+      <% end %>
+    <% end %>
+      <p>送信日時： <%= msg.created_at.strftime("%Y年%m月%d日 %H時%M分") %></p>
+      <p>件名： <%= msg.title %></p>
+      <p><%= simple_format(msg.message) %></p>
+    </div>
+  <% end %>
+</div>

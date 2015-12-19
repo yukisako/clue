@@ -1,0 +1,78 @@
+/*
+ *= require_tree .
+ *= require_self
+*/
+
+/* General Tag */
+a {
+  color: #2196F3;
+  text-decoration: none;
+  display: block;
+}
+
+strong {
+  font-weight: bold;
+}
+
+.right {
+  float: right;
+}
+
+.left {
+  float: left;
+}
+
+.clear {
+  clear: both;
+}
+
+html,body {
+  height: 100%;
+  min-height: 100%;
+}
+
+.menu-btn-3 {
+  width: 600px;
+  margin: 20px auto;
+}
+
+.menu-btn-3 li {
+  width: 190px;
+  float: left;
+}
+
+.menu-btn-3 li:not(:first-child) {
+  margin-left: 15px;
+}
+
+.menu-btn-3 li a {
+  padding: 5px;
+  border: 2px solid #4CAF50;
+  background: #E8F5E9;
+  color: #000;
+  text-align: center;
+  display: block;
+}
+
+.menu-btn-3 li a:hover {
+  background: #4CAF50;
+  color: #FFF;
+}
+
+body {
+  background: #fff;
+  color: #333;
+  font-size: 12px;
+  font-family: "メイリオ","Meiryo",verdana,"ヒラギノ角ゴ Pro W3","Hiragino Kaku Gothic Pro",Osaka,"ＭＳ Ｐゴシック","MS PGothic",Sans-Serif;
+  line-height: 1.5;
+  min-width: 950px;
+  word-wrap: break-word;
+}
+
+.nav {
+  margin-left: 10px;
+}
+
+.nav a {
+  display: inline;
+}

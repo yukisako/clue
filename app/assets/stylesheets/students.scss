@@ -1,0 +1,52 @@
+h1 {
+  font-size: 32px;
+  padding: 5px;
+}
+
+.students-index {
+  width: 600px;
+  margin: 20px auto;
+}
+
+.students-index-profiles {
+  width: 960px;
+  margin: 20px auto;
+  text-align: center;
+  .students-index-profile {
+    width: 195px;
+    float: left;
+  }
+  .students-index-profile:not(:first-child) {
+    margin-left: 60px;
+  }
+  .students-index-image {
+    width: 175px;
+    padding: 10px;
+    background: #FF0;
+    position: relative;
+    img {
+      width: 80px;
+      border-radius: 50%;
+    }
+    .no-image {
+      height: 80px;
+      background: #FFF;
+    }
+    .area {
+      position: absolute;
+      top: 0px;
+      right: 0px;
+    }
+    .price {
+      position: absolute;
+      top: 0px;
+      left: 0px;
+    }
+  }
+  .students-index-data {
+    height: 80px;
+    padding: 10px;
+    background: #FFD;
+    overflow: scroll;
+  }
+}
