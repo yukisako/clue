@@ -15,18 +15,33 @@ Rails.application.routes.draw do
   get '/legal' => 'top#legal'
   get '/contact' => 'top#contact'
 
-  resources :users, only: [:show, :edit, :update]
+  resources :users do
+    collection do
+      get 'register'
+      post 'confirm_register'
+      post 'add_info'
+      post 'update_add_info'
+      post 'report'
+      post 'reported'
+      get 'account'
+      post 'confirm_account'
+      get 'search_bank'
+      get 'select_bank'
+      get 'search_store'
+      get 'select_store'
+      get 'reset_account'
+    end
+  end
 
   resources :tickets do
     collection do
-      get 'search'
-      get 'parchase'
+      post 'purchase'
     end
   end
 
   resources :supporters do
     collection do
-      get 'search'
+      post 'search'
     end
   end
 
@@ -38,11 +53,21 @@ Rails.application.routes.draw do
 
   resources :diaries do
     collection do
-      get 'search'
+      post 'search'
     end
   end
 
-  resources :comments, only: [:create, :update, :destroy]
+  namespace :managers do
+    get :index
+    get :users
+    get :report
+    get :account
+  end
 
+  resources :offers
+  resources :accounts, except: [:index, :show]
+  resources :payments, only: [:index, :new, :create]
   resources :messages, except: [:edit, :update]
+  resources :reviews, only: [:create, :update, :destroy]
+  resources :comments, only: [:create, :update, :destroy]
 end

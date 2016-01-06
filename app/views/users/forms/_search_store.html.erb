@@ -1,0 +1,9 @@
+<% if @stores.present? %>
+<ul class="search-bank">
+    <% @stores.each do |store| %>
+    <li><%= link_to store.store_name+'支店', select_store_users_path(q: store.id), remote: true %></li>
+    <% end %>
+</ul>
+<% else %>
+<p>該当支店はありません</p>
+<% end %>

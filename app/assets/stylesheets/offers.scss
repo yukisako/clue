@@ -1,0 +1,57 @@
+.offer-index {
+    width: 600px;
+    min-height: 600px;
+    margin: 0px auto;
+    padding-bottom: 20px;
+    h2 {
+        width: 480px;
+        font-size: 20px;
+        padding: 10px;
+        border-left: 4px solid #3e3e3e;
+        border-bottom: 1px solid #3e3e3e;
+        margin: 10px;
+    }
+    h3 {
+        font-size: 18px;
+        font-weight: bold;
+    }
+    ul.offer-index-tab {
+        margin: 20px 0px;
+        li {
+            width: 190px;
+            float: left;
+            padding: 5px;
+            border: 1px solid #000;
+            text-align: center;
+            &:not(:first-child) {
+                margin-left: 15px;
+            }
+        }
+    }
+    div.offer-index-tab {
+        width: 600px;
+        height: 100px;
+        margin: 0px auto;
+        img {
+            width: 100px;
+            height: 100px;
+            float: left;
+            border-radius: 50%;
+            background: #FFF;
+        }
+        span.offer-index-infobox {
+            width: 480px;
+            height: 80px;
+            margin-left: 100px;
+            padding: 10px;
+            display: block;
+            p {
+                margin: 5px 0px;
+            }
+            a {
+                display: inline;
+            }
+        }
+        display: none;
+   }
+}

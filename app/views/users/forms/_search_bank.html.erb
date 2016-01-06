@@ -1,0 +1,5 @@
+<ul class="search-bank">
+    <% @banks.each do |bank| %>
+    <li><%= link_to bank.name, select_bank_users_path(q: bank.id), remote: true %></li>
+    <% end %>
+</ul>

@@ -1,14 +1,17 @@
 class DiariesController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_user!, :full_profile
 
   def index
-    @diaries = Diary.all.includes(:user)
+    @diaries = Diary.order(updated_at: :desc).includes(:user)
     @comments = Comment.all
+    @categories = category_params
   end
 
   def search
-    @diaries = Diary.search_params("category_id", params[:category_id]).includes(:user)
+    @diaries = Diary.search_params("category", params[:category]).search_params("user_id", params[:user_id]).order(updated_at: :desc).includes(:user)
     @comments = Comment.all
+    @categories = category_params
+    render action: :index
   end
 
   def show

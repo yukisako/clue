@@ -5,7 +5,7 @@
 <div class="diary-show">
     <h1><%= @diary.title %></h1>
     <p><%= @diary.post_date %> <%= @diary.category %></p>
-    <p><%= @author.name %></p>
+    <p><%= @author.username %></p>
     <p><%= simple_format(h(@diary.content)) %></p>
     <div class="user-show-edit-btn">
         <ul>
@@ -28,11 +28,11 @@
             <% if com.user.avatar.present? %>
             <%= image_tag(com.user.avatar(:thumb)) %>
             <% else %>
-            <p>No Image</p>
+            <%= image_tag('top/clue.png') %>
             <% end %>
         </div>
         <div class="diary-show-comment">
-            <p><%= com.post_date %> by <%= com.user.name %></p>
+            <p><%= com.post_date %> by <%= com.user.username %></p>
             <%= simple_format(h(com.comment)) %>
             <% if com.user_id == current_user.id %>
             <p class="delete-btn"><%= link_to "[×]", comment_path(com.id), method: :delete %></p>

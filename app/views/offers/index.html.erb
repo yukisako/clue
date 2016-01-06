@@ -1,0 +1,49 @@
+<div class="nav">
+    <%= link_to 'TOP', root_path %> > <%= link_to 'マイページ', user_path(current_user.id) %> > <%= link_to '申込管理', offers_path %>
+</div>
+
+<div class="offer-index">
+<h1>申込管理</h1>
+
+<ul class="offer-index-tab">
+    <% @offers_list.each.with_index do |list, i| %>
+    <li class="tab<%= i %>"><%= @offers_name[i] %>（<%= list.count %>件）</li>
+    <% end %>
+</ul>
+
+<p class="clear"></p>
+
+<% @offers_list.each.with_index do |list, i| %>
+    <% if list.present? %>
+    <h2 class="tab<%= i %>" style="clear: both;"><%= @offers_name[i] %>（<%= list.count %>件）</h2>
+        <div class="offer-index-tab tab<%= i %>">
+        <p><%= @status_message[i] %></p>
+        <ul>
+        <% list.each do |offer| %>
+            <li>
+            <% if offer.ticket.user.avatar? %>
+                <p><%= image_tag(offer.ticket.user.avatar(:thumb)) %></p>
+            <% else %>
+                <p><%= image_tag('top/clue.png') %></p>
+            <% end %>
+            <span class="offer-index-infobox">
+                <h3><%= link_to offer.ticket.title, offer_path(offer.id) %></h3>
+            <% if current_user.user_type != 3 %>
+                <p>サポーター：<%= link_to offer.ticket.user.username, supporter_path(offer.ticket.user.id) %></p>
+            <% else %>
+                <p>申込者：<%= link_to offer.user.username, student_path(offer.user.id) %></p>
+            <% end %>
+                <p>申込日時：<%= offer.created_at.strftime("%Y年%m月%d日 %H時%M分") %></p>
+            <% if current_user.user_type != 3 && offer.updated == 1 %>
+                <p>更新あり</p>
+            <% end %>
+            </span>
+            </li>
+            <hr style="clear: both;" />
+        <% end %>
+        </ul>
+        <span class="clear"></span>
+        </div>
+    <% end %>
+<% end %>
+</div>

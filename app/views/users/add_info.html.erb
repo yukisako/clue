@@ -1,0 +1,43 @@
+<p class="notice"><%= @notice if @notice.present? %></p>
+<p><%= @full %></p>
+<div class="content600">
+<h1>プロフィールの登録</h1>
+<ul class="hyou1 hyou2">
+    <%= form_tag update_add_info_users_path, multipart: true do %>
+    <li><dl><dt><%= label :user, :family_name, '姓*' %></dt><dd> <%= text_field :user, :family_name, autofocus: true, placeholder: "姓" %></dd></dl></li>
+    <li><dl><dt> <%= label :user, :first_name, '名*' %></dt><dd>  <%= text_field :user, :first_name, placeholder: "名" %></dd></dl></li>
+    <li><dl><dt><%= label :user, :family_name_kana, 'メイ*' %></dt><dd> <%= text_field :user, :family_name_kana, placeholder: "セイ" %></dd></dl></li>
+    <li><dl><dt><%= label :user, :family_name_kana, 'セイ*' %></dt><dd> <%= text_field :user, :first_name_kana, placeholder: "メイ" %></dd></dl></li>
+    <li><dl><dt><%= label :user, :post_number, '郵便番号' %></dt><dd> <%= text_field :user, :post_number %></dd></dl></li>
+    <li><dl><dt><%= label :user, :area, '地域*' %></dt><dd> <%= select :user, :area, @area %></dd></dl></li>
+    <li><dl><dt><%= label :user, :address, '住所' %></dt><dd> <%= text_field :user, :address %></dd></dl></li>
+    <li><dl><dt><%= label :user, :tel, '電話番号' %></dt><dd> <%= text_field :user, :tel %></dd></dl></li>
+    <li><dl><dt><%= label :user, :line_id, 'LINE ID' %></dt><dd> <%= text_field :user, :line_id %></dd></dl></li>
+    <li><dl><dt><%= label :user, :permit_info_mail, 'お知らせメール*' %> </dt><dd><%= select :user, :permit_info_mail, [['Clueの情報をメールで受け取る', 1], ['お知らせメールを受けとらない', 0]] %></dd></dl></li>
+    <% if current_user.user_type == 1 %>
+    <li><dl><dt><%= label :user, :grade, '学年*' %></dt><dd> <%= select :user, :grade, @grade, include_blank: true %></dd></dl></li>
+    <% elsif current_user.user_type == 3 %>
+    <li><dl><dt><%= label :user, :job, '職業*' %> </dt><dd><%= select :user, :job, @job %></dd></dl></li>
+    <% end %>
+    <li><dl><dt><%= label :user, :absent_span, '学校に行かなくなった時期*' %></dt><dd> <%= select :user, :absent_span, @grade, include_blank: true %></dd></dl></li>
+    <li><dl><dt><%= label :user, :school, '学校名' %></dt><dd> <%= text_field :user, :school %></dd></dl></li>
+    <li><dl><dd>
+    <%= check_box :absence_trigger, :classroom, {}, true, false %> <%= label :absence_trigger, :classroom, '学級崩壊' %>
+    <%= check_box :absence_trigger, :harm, {}, true, false %> <%= label :absence_trigger, :harm, 'いじめ' %>
+    <%= check_box :absence_trigger, :antipathy, {}, true, false %> <%= label :absence_trigger, :antipathy, '学校への苦手意識' %>
+    <%= check_box :absence_trigger, :teacher, {}, true, false %> <%= label :absence_trigger, :teacher, '先生との関係' %>
+    <%= check_box :absence_trigger, :friendship, {}, true, false %> <%= label :absence_trigger, :friendship, '友人関係' %>
+    <%= check_box :absence_trigger, :study, {}, true, false %> <%= label :absence_trigger, :study, '勉強' %>
+    <%= check_box :absence_trigger, :change_school, {}, true, false %> <%= label :absence_trigger, :change_school, '転校・転勤' %>
+    <%= check_box :absence_trigger, :neglect, {}, true, false %> <%= label :absence_trigger, :neglect, '育児放棄' %>
+    <%= check_box :absence_trigger, :dv, {}, true, false %> <%= label :absence_trigger, :dv, '家庭内暴力' %>
+    <%= check_box :absence_trigger, :poverty, {}, true, false %> <%= label :absence_trigger, :poverty, '経済的理由' %>
+    <%= check_box :absence_trigger, :parents, {}, true, false %> <%= label :absence_trigger, :parents, '離婚などの親同士の関係' %>
+    <%= check_box :absence_trigger, :no_reason, {}, true, false %> <%= label :absence_trigger, :no_reason, 'なんとなく' %>
+    </dd></dl></li>
+    <li><dl><dt><%= label :user, :profile, 'コメント' %> </dt><dd><%= text_area :user, :profile %></dd></dl></li>
+    <li><dl><dt><%= label :user, :avatar, 'プロフィール画像' %></dt><dd> <%= file_field :user, :avatar %></dd></dl></li>
+    <%= submit_tag('登録') %>
+    <% end %>
+</ul>
+</div>

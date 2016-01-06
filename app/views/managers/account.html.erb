@@ -1,0 +1,123 @@
+<div class="manager-account">
+    <h1>収支情報</h1>
+    <h2>集計情報</h2>
+    <table>
+            <tr>
+                <th>仮払額残高</th>
+                <td><%= number_to_currency(@sales.sum(:price) - @offers.sum(:price)) %></td>
+            </tr>
+            <tr>
+                <th>累計販売額</th>
+                <td><%= number_to_currency(@sales.sum(:price)) %></td>
+            </tr>
+            <tr>
+                <th>手数料収入額</th>
+                <td><%= number_to_currency(@sales.sum(:price) * 0.3) %></td>
+            </tr>
+            <tr>
+                <th>累計出金額</th>
+                <td><%= number_to_currency(@payed) %></td>
+            </tr>
+            <tr>
+                <th>出金手数料</th>
+                <td><%= number_to_currency(@payments.count * 500) %></td>
+            </tr>
+        <tr>
+            <th>出金可能残高</th>
+            <td><%= number_to_currency(@offers.payed.sum(:price) * 0.7 - @payments.sum(:amount)) %></td>
+        </tr>
+    </table>
+
+    <h2>チケット販売情報</h2>
+    <table>
+        <tr>
+            <th>累計販売枚数</th>
+            <td><%= @sales.count %>枚</td>
+        </tr>
+        <tr>
+            <th>累計販売時間</th>
+            <td><%= @sales.sum(:length) %>時間</td>
+        </tr>
+        <tr>
+            <th>平均単価</th>
+            <td><%= number_to_currency(@sales.sum(:price) / @sales.count) %>／枚</td>
+        </tr>
+        <tr>
+            <th>平均単価</th>
+            <td><%= number_to_currency(@sales.sum(:price) / @sales.sum(:length)) %>／時間</td>
+        </tr>
+    </table>
+
+    <h2>チケット販売履歴</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>確定日</th>
+                <th>申込日</th>
+                <th>販売額</th>
+                <th>地域</th>
+                <th>販売者</th>
+                <th>購入者</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% @offers.each do |offer| %>
+            <tr>
+                <td><%= offer.meet_at.strftime("%Y年%m月%d日 %H時%M分") %></td>
+                <td><%= offer.created_at.strftime("%Y年%m月%d日 %H時%M分") %></td>
+                <td><%= offer.price %></td>
+                <td><%= offer.area %></td>
+                <% if offer.ticket.user.avatar? %>
+                <td><%= link_to image_tag(offer.ticket.user.avatar(:thumb)), supporter_path(offer.ticket.user_id) %></td>
+                <% else %>
+                <td><%= link_to image_tag('top/clue.png'), supporter_path(offer.ticket.user_id) %></td>
+                <% end %>
+                <% if offer.user.avatar? %>
+                <td><%= link_to image_tag(offer.user.avatar(:thumb)), student_path(offer.user_id) %></td>
+                <% else %>
+                <td><%= link_to image_tag('top/clue.png'), student_path(offer.user_id) %></td>
+                <% end %>
+            </tr>
+            <% end %>
+        </tbody>
+    </table>
+
+    <h2>出金情報</h2>
+    <table>
+        <tr>
+            <th>累計出金回数</th>
+            <td><%= @payments.count %>回</td>
+        </tr>
+        <tr>
+            <th>累計出金回数</th>
+            <td><%= @payments.count %>回</td>
+        </tr>
+        <tr>
+            <th>累計手数料</th>
+            <td><%= number_to_currency(@payments.count * 500) %></td>
+        </tr>
+    </table>
+    <h2>出金履歴</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>出金申請日</th>
+                <th>出金者</th>
+                <th>出金額</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% @payments.each do |pay| %>
+            <tr>
+                <td><%= pay.created_at.strftime("%Y年%m月%d日 %H時%M分") %></td>
+                <% if pay.user.avatar? %>
+                <td><%= link_to image_tag(pay.user.avatar(:thumb)), supporter_path(pay.user_id) %></td>
+                <% else %>
+                <td><%= link_to image_tag('top/clue.png'), supporter_path(pay.user_id) %></td>
+                <% end %>
+                <td><%= pay.amount %></td>
+            </tr>
+            <% end %>
+        </tbody>
+    </table>
+</div>

@@ -13,11 +13,7 @@
   </ul>
 <% end %>
 
-<% if @receiver.name.present? %>
-  <p>宛先：<%= @receiver.name %></p>
-<% else %>
-  <p>宛先：匿名（ID: <%= params[:receiver_id] %>）</p>
-<% end %>
+  <p>宛先：<%= @receiver.username %></p>
 
 <%= form_for @message do |f| %>
   <%= f.label :title, '件名' %>
@@ -33,7 +29,7 @@
 <% if @messages.present? %>
   <% @messages.each do |msg| %>
     <div class="past-message">
-      <p>From <%= @receiver.name %> To <%= current_user.name %></p> 
+      <p>From <%= @receiver.username %> To <%= current_user.username %></p> 
       <p>受信日時： <%= msg.created_at.strftime("%Y年%m月%d日 %H時%M分") %></p>
       <p><%= simple_format(msg.message) %></p>
      </div>

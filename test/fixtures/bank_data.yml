@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  bank_id: MyString
+  store_id: 1
+  bank_name: MyString
+  bank_name_kana: MyString
+  store_name: MyString
+  store_name_kana: MyString
+
+two:
+  bank_id: MyString
+  store_id: 1
+  bank_name: MyString
+  bank_name_kana: MyString
+  store_name: MyString
+  store_name_kana: MyString

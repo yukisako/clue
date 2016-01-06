@@ -5,7 +5,6 @@
 
 /* General Tag */
 a {
-  color: #2196F3;
   text-decoration: none;
   display: block;
 }
@@ -14,65 +13,37 @@ strong {
   font-weight: bold;
 }
 
-.right {
-  float: right;
-}
-
-.left {
-  float: left;
-}
-
-.clear {
-  clear: both;
-}
-
-html,body {
-  height: 100%;
-  min-height: 100%;
-}
-
-.menu-btn-3 {
-  width: 600px;
-  margin: 20px auto;
-}
-
-.menu-btn-3 li {
-  width: 190px;
-  float: left;
-}
-
-.menu-btn-3 li:not(:first-child) {
-  margin-left: 15px;
-}
-
-.menu-btn-3 li a {
-  padding: 5px;
-  border: 2px solid #4CAF50;
-  background: #E8F5E9;
-  color: #000;
-  text-align: center;
-  display: block;
-}
-
-.menu-btn-3 li a:hover {
-  background: #4CAF50;
-  color: #FFF;
-}
-
-body {
-  background: #fff;
-  color: #333;
-  font-size: 12px;
-  font-family: "メイリオ","Meiryo",verdana,"ヒラギノ角ゴ Pro W3","Hiragino Kaku Gothic Pro",Osaka,"ＭＳ Ｐゴシック","MS PGothic",Sans-Serif;
-  line-height: 1.5;
-  min-width: 950px;
-  word-wrap: break-word;
-}
-
 .nav {
   margin-left: 10px;
 }
 
 .nav a {
-  display: inline;
+  display: inline
 }
+
+.container1 a {
+  color: #FFF;
+}
+
+html,
+body {
+  height: 100%;
+  /* html と body 要素はパディングやマージンを持てません。*/
+}
+
+/* フッターを下部へ押しやるための、コンテンツのラッパー */
+#wrap {
+  position:relative;
+  min-height: 100%;
+  height: auto;
+  /* フッターの高さ分だけ、ネガティブインデントを指定
+  margin: 0 auto -90px; */
+  /* フッターの高さ分だけ、パディングを指定 
+  padding: 0 0 220px;*/
+}
+
+/* ここでフッターの高さを指定
+#footer {
+  height: 90px;
+}
+ */

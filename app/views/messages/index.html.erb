@@ -24,11 +24,7 @@
         <td><%= link_to '無題', message_path(msg.id), class: 'title' %></td>
         <% end %>
 
-        <% if @user.find(msg.sender_id).name.present? %>
-        <td><%= link_to @user.find(msg.sender_id).name, supporter_path(msg.sender_id) %></td>
-        <% else %>
-        <td><%= link_to "匿名（ID: #{msg.sender_id}）", supporter_path(msg.sender_id) %></td>
-        <% end %>
+        <td><%= link_to msg.sender.username, supporter_path(msg.sender_id) %></td>
         <% if msg.opened.present? %>
         <td>|W|</td>
         <% else %>
@@ -54,11 +50,7 @@
       <tr>
         <td><%= link_to @outbox.count-i, message_path(msg.id) %></td>
         <td><%= link_to msg.title, message_path(msg.id), class: 'title' %></td>
-        <% if @user.find(msg.receiver_id).name.present? %>
-        <td><%= link_to @user.find(msg.receiver_id).name, supporter_path(msg.receiver_id) %></td>
-        <% else %>
-        <td><%= link_to "匿名（ID: #{msg.receiver_id}）", supporter_path(msg.receiver_id) %></td>
-        <% end %>
+        <td><%= link_to msg.receiver.username, supporter_path(msg.receiver_id) %></td>
         <% if msg.opened.present? %>
         <td>|W|</td>
         <% else %>

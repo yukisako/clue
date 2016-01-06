@@ -1,0 +1,37 @@
+<div class="nav">
+    <%= link_to 'TOP', root_path %> > <%= link_to '管理者', managers_index_path %> > 通報アカウント管理
+</div>
+<div class="manager-report">
+    <h1>通報アカウント管理</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>画像</th>
+                <th>ユーザー名</th>
+                <th>年齢</th>
+                <th>性別</th>
+                <th>地域</th>
+                <th>通報回数</th>
+                <th>通報理由</th>
+            </tr>
+        </thead>
+        <tbody>
+        <% @users.each.with_index(1) do |user| %>
+            <tr>
+                <% if user.avatar? %>
+                <td><%= link_to image_tag(user.avatar(:thumb)), supporter_path(user.id) %></td>
+                <% else %>
+                <td><%= link_to image_tag('top/clue.png'), supporter_path(user.id) %></td>
+                <% end %>
+                <td><%= link_to user.username, supporter_path(user.id) %></td>
+                <td><%= user.age %></td>
+                <td><%= user.sex %></td>
+                <td><%= user.area %></td>
+                <td><%= user.reported %>回</td>
+                <td>通報理由</td>
+            </tr>
+        <% end %>
+        </tbody>
+    </table>
+    <p><%= link_to '戻る', :back %></p>
+</div>

@@ -1,11 +1,20 @@
 class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable, :confirmable,
          :recoverable, :rememberable, :trackable, :validatable
-  has_many :messages
-  has_many :tickets
-  has_many :diaries
-  has_many :comments
-  
+  has_many :offers
+  has_many :payments
+  has_many :accounts, dependent: :destroy
+  has_many :reviews, dependent: :destroy
+  has_many :diaries, dependent: :destroy
+  has_many :comments, dependent: :destroy
+  has_many :reported_accounts, dependent: :destroy
+  has_many :send_messages, class_name: 'Message', foreign_key: 'sender_id', dependent: :destroy
+  has_many :receive_messages, class_name: 'Message', foreign_key: 'receiver_id', dependent: :destroy
+  has_one :ticket, dependent: :destroy
+  has_one :absence_trigger, dependent: :destroy
+
+  accepts_nested_attributes_for :absence_trigger
+
   has_attached_file :avatar,
     styles: { medium: "300x300#", thumb: "100x100#" }
 
@@ -27,7 +36,7 @@ class User < ActiveRecord::Base
       order(updated_at: :desc)
     end
   end
-  
+
   def self.search_age(min, max)
     min_age = Date.today << (min.to_i*12)
     max_age = Date.today << (max.to_i*12)
@@ -37,6 +46,14 @@ class User < ActiveRecord::Base
       where('birth <= ?', min_age >> 12)
     elsif max.present?
       where('birth >= ?', max_age << 12)
+    else
+      order(updated_at: :desc)
+    end
+  end
+
+  def self.search_trigger(trigger)
+    if trigger.present?
+      joins(:absence_trigger).where("#{trigger} = ?", true)
     else
       order(updated_at: :desc)
     end

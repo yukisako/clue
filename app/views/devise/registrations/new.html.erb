@@ -1,64 +1,44 @@
-<h2>新規会員登録</h2>
+<div id="wrap">
+<div class="touroku" style="background-color:#f5f6d9;">
+<div class="container">
+<div class="low">
+   <div class="col-ms-6 col-ms-offset-3">
+<center><h2 style="font-size:1.5em;">新規会員登録</h2></br></center>
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
   <%= devise_error_messages! %>
 
-  <div class="field">
-    <%= f.label :user_type, '種別' %><br />
-    <%= f.select :user_type, [['生徒', 1], ['保護者', 2], ['経験者', 3]], autofocus: true %>
-  </div>
-
-  <div class="field">
+<div class="form-group" style="padding: 30px;">
     <%= f.label :email, 'メールアドレス' %><br />
-    <%= f.email_field :email %>
-  </div>
-
-  <div class="field">
+    <%= f.email_field :email, class: 'form-control'%>
     <%= f.label :password, 'パスワード' %>
     <% if @minimum_password_length %>
     <em>(<%= @minimum_password_length %>文字以上)</em>
     <% end %><br />
-    <%= f.password_field :password, autocomplete: "off" %>
-  </div>
-
-  <div class="field">
+    <%= f.password_field :password, autocomplete: "off", class: "form-control" %>
     <%= f.label :password_confirmation, 'パスワード（確認）' %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "off" %>
-  </div>
+    <%= f.password_field :password_confirmation, autocomplete: "off", class: "form-control" %>
+</div>
+<select multiple class="form-control" style="padding: 30px;">
+  <option>利用規約</option>
+  <option>本利用規約（以下「本規約」といいます。）には、株式会社Marianne（以下「当社」といいます。）の提供するサービスのご利用にあたり、 登録メンバーの皆様に遵守していただかなければならない事項及び当社と登録メンバーの皆様との間の権利義務関係が定められております。
+当該サービスを登録メンバーとしてご利用になる方は、本規約に同意する前に、必ず全文お読み下さいますようお願い致します。</option>
+  <option>3</option>
+  <option>4</option>
+  <option>5</option>
+</select></br>
 
-  <div class="field">
-    <%= f.label :area, '居住地域' %><br />
-    <%= f.select :area, [
-    '北海道', '青森県', '岩手県', '宮城県', '秋田県',
-    '山形県', '福島県', '茨城県', '栃木県', '群馬県',
-    '埼玉県', '千葉県', '東京都', '神奈川県', '新潟県',
-    '富山県', '石川県', '福井県', '山梨県', '長野県',
-    '岐阜県', '静岡県', '愛知県', '三重県', '滋賀県',
-    '京都府', '大阪府', '兵庫県', '奈良県', '和歌山県',
-    '鳥取県', '島根県', '岡山県', '広島県', '山口県',
-    '徳島県', '香川県', '愛媛県', '高知県', '福岡県',
-    '佐賀県', '長崎県', '熊本県', '大分県', '宮崎県',
-    '鹿児島県', '沖縄県'] %>
-  </div>
+<div class="col-sm-offset-5 col-sm-7">
+    <%= f.submit "規定に同意して登録する",class: "btn btn-primary"  %>
 
-  <div class="field">
-    <%= f.label :sex, '性別' %><br />
-    <%= f.select :sex, ['男', '女', '他'] %>
-  </div>
+    </div>
+</div>
 
-  <div class="field">
-    <%= f.label :birth, '生年月日' %><br />
-    <%= f.date_field :birth %>
-  </div>
-
-  <div class="field">
-    <%= f.label :job, '職業' %><br />
-    <%= f.select :job, ['会社員', '公務員', '自営業', '経営者', 'アルバイト', '学生', '無職'] %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "登録" %>
-  </div>
+  
 <% end %>
 
 <%= render "devise/shared/links" %>
+</div>
+</div>
+</div>
+</div>

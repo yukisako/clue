@@ -1,33 +1,32 @@
 class TicketsController < ApplicationController
-  before_action :authenticate_user!
-
-  def index
-    @tickets = Ticket.order(updated_at: :desc).includes(:user)
-  end
-
-  def search
-    @tickets = Ticket.where(user_id: params[:user_id])
-    render :index
-  end
-
-  def show
-    @ticket = Ticket.find(params[:id])
-    @seller = User.find(@ticket.user_id)
-  end
+  before_action :authenticate_user!, :full_profile
 
   def new
-    @ticket = Ticket.new
+    @price = price_params
     @area = area_params
+    unless Ticket.find_by(user_id: current_user.id).present?
+      @ticket = Ticket.new
+    else
+      @ticket = Ticket.find_by(user_id: current_user.id)
+      render action: :edit and return
+    end
   end
 
   def create
-    @ticket = Ticket.create(submit_params)
+    Ticket.create(submit_params)
     redirect_to action: :index
   end
 
   def edit
-    @ticket = Ticket.find(params[:id])
     @area = area_params
+    @hour = hour_params
+    @price = price_params
+    if Ticket.find_by(user_id: current_user.id).present?
+      @ticket = Ticket.find_by(user_id: current_user.id)
+    else
+      @ticket = Ticket.new
+      render action: :new and return
+    end
   end
 
   def update
@@ -35,16 +34,23 @@ class TicketsController < ApplicationController
     redirect_to action: :show
   end
 
-  def destroy
-    Ticket.find(params[:id]).destroy
-    redirect_to action: :index
+  def purchase
   end
-
-    def parchase
-    end
 
   private
   def submit_params
-    params.require('ticket').permit(:user_id, :title, :price, :length, :rate, :area, :place, :message)
+    params.require(:ticket).permit(:user_id, :title, :price, :length, :rate, :area, :place, :message)
+  end
+
+  def reputation_params
+    reputation = 0
+    if @reviews.present?
+      @reviews.each do |rev|
+        reputation = reputation + rev.reputation
+      end
+      return reputation / @reviews.count
+    else
+      return 0
+    end
   end
 end

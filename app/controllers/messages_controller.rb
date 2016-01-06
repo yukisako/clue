@@ -1,21 +1,26 @@
 class MessagesController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_user!, :full_profile
+  before_action :redirect_to_index, only: :show
 
   def index
-    @messages = Message.order(created_at: :desc)
+    @messages = Message.order(updated_at: :desc).includes(:sender, :receiver)
     @inbox = @messages.where(receiver_id: current_user.id, sent: 1)
     @outbox = @messages.where(sender_id: current_user.id)
-    @user = User.all
   end
 
   def show
     @message = Message.find(params[:id])
-    @users = User.all
-    @sender = @users.find(@message.sender_id)
-    @receiver = @users.find(@message.receiver_id)
-    @opened = @message.update(opened: 1)
-    @name = name(@sender.name, @sender.id)
+    @sender = @message.sender
+    @receiver = @message.receiver
+    @offer = @message.offer
+    @ticket = @offer.ticket
+    @user = @ticket.user
+    @status = ['調整中','確定待ち','確定済み']
     @messages = show_past_messages
+    # 既読つける
+    if @message.receiver_id == current_user.id
+      @message.update(opened: 1)
+    end
   end
 
   def new
@@ -36,27 +41,26 @@ class MessagesController < ApplicationController
 
   private
   def submit_params
-    params.require('message').permit(:sender_id, :receiver_id, :title, :message, :sent)
+    params.require('message').permit(:sender_id, :receiver_id, :title, :message, :sent, :offer_id)
   end
-  
-  def name(nm, id)
-    if nm.present?
-      name = nm
-    else
-      name = "ID: #{id}"
-    end
-  end
-  
+
   def new_past_messages
     Message.where("receiver_id = ? or sender_id = ?", current_user.id, current_user.id).where("receiver_id = ? or sender_id = ?", params[:receiver_id], params[:receiver_id]).order(id: :desc)
   end
 
   def show_past_messages
     messages = Message.all
-    if messages.find(params[:id]).receiver_id == current_user.id
+    if @message.receiver_id == current_user.id
       messages.where("receiver_id = ? or sender_id = ?", current_user.id, current_user.id).where("receiver_id = ? or sender_id = ?", messages.find(params[:id]).sender_id, messages.find(params[:id]).sender_id).order(id: :desc)
     else
       messages.where("receiver_id = ? or sender_id = ?", current_user.id, current_user.id).where("receiver_id = ? or sender_id = ?", messages.find(params[:id]).receiver_id, messages.find(params[:id]).receiver_id).order(id: :desc)
+    end
+  end
+
+  def redirect_to_index
+    @message = Message.find(params[:id])
+    unless current_user.id == @message.sender_id || current_user.id == @message.receiver_id
+      redirect_to action: :index
     end
   end
 end

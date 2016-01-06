@@ -1,0 +1,81 @@
+<div class="nav">
+    <%= link_to 'TOP', root_path %> > <%= link_to '管理者', managers_index_path %> > ユーザー管理
+</div>
+
+<div class="manager-users">
+<h1>ユーザー管理画面</h1>
+<h2>登録者数集計</h2>
+<table>
+    <tr>
+        <th></th>
+        <th>登録者数</th>
+        <th>男性／女性</th>
+        <th>東京都在住</th>
+        <th>メール許可</th>
+    </tr>
+    <tr>
+        <th>生徒</th>
+        <td><%= @students.count %>名</td>
+        <td><%= @students.where(sex: '男').count %>名／<%= @students.where(sex: '女').count %>名</td>
+        <td><%= @students.where(area: '東京都').count %>名</td>
+        <td><%= @students.where(permit_info_mail: 1).count %>名</td>
+    </tr>
+    <tr>
+        <th>保護者</th>
+        <td><%= @parents.count %>名</td>
+        <td><%= @parents.where(sex: '男性').count %>名／<%= @parents.where(sex: '女性').count %>名</td>
+        <td><%= @parents.where(area: '東京都').count %>名</td>
+        <td><%= @parents.where(permit_info_mail: 1).count %>名</td>
+    </tr>
+    <tr>
+        <th>サポーター</th>
+        <td><%= @supporters.count %>名</td>
+        <td><%= @supporters.where(sex: '男性').count %>名／<%= @supporters.where(sex: '女性').count %>名</td>
+        <td><%= @supporters.where(area: '東京都').count %>名</td>
+        <td><%= @supporters.where(permit_info_mail: 1).count %>名</td>
+    </tr>
+    <tr>
+        <th>合計</th>
+        <td><%= @users.count %>名</td>
+        <td><%= @users.where(sex: '男性').count %>名／<%= @users.where(sex: '女性').count %>名</td>
+        <td><%= @users.where(area: '東京都').count %>名</td>
+        <td><%= @users.where(permit_info_mail: 1).count %>名</td>
+    </tr>
+    <tr>
+        <th>比率</th>
+        <td><%= number_to_percentage(100, precision: 1) %></td>
+        <td><%= number_to_percentage(100 * @users.where(sex: '男性').count / @users.count, precision: 1) %>／<%= number_to_percentage(100 * @users.where(sex: '女性').count / @users.count, precision: 1) %></td>
+        <td><%= number_to_percentage(100 * @users.where(area: '東京都').count / @users.count, precision: 1) %></td>
+        <td><%= number_to_percentage(100 * @users.where(permit_info_mail: 1).count / @users.count, precision: 1) %></td>
+    </tr>
+</table>
+
+<h2>登録者情報</h2>
+<% @types.each.with_index do |type, j| %>
+    <table>
+        <caption><%= @caption[j] %>（<%= type.count %>件）</caption>
+        <thead>
+            <tr>
+                <th>No</th>
+                <th>ユーザー名</th>
+                <th>氏名</th>
+                <th>地域</th>
+                <th>年齢</th>
+                <th>登録日時</th>
+            </tr>
+        </thead>
+        <tbody>
+        <% type.each.with_index(1) do |user, i| %>
+                <tr>
+                    <td><%= i %></td>
+                    <td><%= user.username %></td>
+                    <td><%= user.name %></td>
+                    <td><%= user.area %></td>
+                    <td><%= user.age %></td>
+                    <td><%= user.created_at.strftime("%Y年%m月%d日 %H時%M分") %></td>
+                </tr>
+        <% end %>
+        </tbody>
+    </table>
+<% end %>
+</div>

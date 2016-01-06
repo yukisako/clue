@@ -1,0 +1,33 @@
+<div class="content600">
+<h1>登録情報の確認</h1>
+<table>
+    <tr>
+        <th>メールアドレス</th>
+        <td><%= current_user.email %></td>
+    </tr>
+    <tr>
+        <th>ニックネーム</th>
+        <td><%= params[:user][:username] %></td>
+    </tr>
+    <tr>
+        <th>性別</th>
+        <td><%= params[:user][:sex] %></td>
+    </tr>
+    <tr>
+        <th>生年月日</th>
+        <td><%= params[:user][:birth] %></td>
+    </tr>
+    <tr>
+        <th>登録形態</th>
+        <td><%= @user_type %></td>
+    </tr>
+</table>
+
+    <%= form_tag add_info_users_path do %>
+        <%= hidden_field :user, :username, value: params[:user][:username] %>
+        <%= hidden_field :user, :sex, value: params[:user][:sex] %>
+        <%= hidden_field :user, :birth, value: params[:user][:birth] %>
+        <%= hidden_field :user, :user_type, value: params[:user][:user_type] %>
+        <%= submit_tag('確認') %> <%= submit_tag('戻る') %>
+    <% end %>
+</div>

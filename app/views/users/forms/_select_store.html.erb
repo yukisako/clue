@@ -1,0 +1,5 @@
+<ul class="search-bank">
+    <% @stores.each do |store| %>
+    <li><%= link_to store.store_name, confirm_account_users_path(q: store.id), remote: true %></li>
+    <% end %>
+</ul>

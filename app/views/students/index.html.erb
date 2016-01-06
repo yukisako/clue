@@ -26,18 +26,12 @@
       <% else %>
       <%= link_to image_tag('top/clue.png', class: "no-image"), student_path(st.id) %>
       <% end %>
-      <p class="price"><%= number_to_currency(st.price) %></p>
       <p class="area"><%= st.area %></p>
     </div>
     <div class="students-index-data">
-      <% if st.name.present? %>
-      <p><%= link_to st.name, student_path(st.id) %></p>
-      <% else %>
-      <p><%= link_to "匿名(ID: #{st.id})", student_path(st.id) %></p>
-      <% end %>
-      <p><%= st.job %></p>
-      <p><%= link_to '|M| メッセージ', new_message_path(receiver_id: st.id) %></p>
-      <p><%= st.about %></p>
+      <p><%= link_to st.username, student_path(st.id) %></p>
+      <p><%= st.grade %></p>
+      <p><%= link_to 'ダイアリー', search_diaries_path(user_id: st.id), method: :post %></p>
     </div>
   </div>
   <% end %>

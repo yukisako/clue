@@ -1,0 +1,44 @@
+<div class="nav">
+    <%= link_to 'TOP', root_path %> > <%= link_to 'マイページ', user_path(current_user.id) %>
+</div>
+<div class="payment-index">
+    <h1>出金履歴</h1>
+    <% if @payments.present? %>
+    <table>
+        <thead>
+            <tr>
+                <th>申請日時</th>
+                <th>出金額</th>
+                <th>金融機関名</th>
+                <th>支店名</th>
+                <th>口座番号</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% @payments.each do |pay| %>
+            <tr>
+                <td><%= pay.created_at.strftime("%Y年%m月%d日 %H時%M分") %></td>
+                <td><%= number_to_currency(pay.amount) %></td>
+                <td><%= pay.bank_name %>銀行</td>
+                <td><%= pay.store_name %>支店</td>
+                <td><%= pay.account_id %></td>
+            </tr>
+            <% end %>
+            <tr>
+                <td>総売上額</td>
+                <td colspan="4"><%= number_to_currency(@sales) %></td>
+            </tr>
+            <tr>
+                <td>総出金額</td>
+                <td colspan="4"><%= number_to_currency(@payed) %>（うち手数料<%= number_to_currency(@payments.count * 500) %>）</td>
+            </tr>
+            <tr>
+                <td>残高</td>
+                <td colspan="4"><%= number_to_currency(@balance) %></td>
+            </tr>
+        </tbody>
+    </table>
+    <% else %>
+    <p>出金履歴はありません。</p>
+    <% end %>
+</div>

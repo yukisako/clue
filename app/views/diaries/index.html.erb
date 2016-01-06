@@ -2,18 +2,28 @@
     <%= link_to 'TOP', root_path %> > <%= link_to 'ダイアリーを読む', diaries_path %>
 </div>
 <div class="diary-index">
+    <div class="diary-search-panel">
+        <%= form_tag search_diaries_path do %>
+        <%= select_tag :category, options_for_select(@categories) %>
+        <%= submit_tag('検索') %>
+        <% end %>
+    </div>
     <h1>不登校生活ダイアリー</h1>
     <p>不登校児や不登校経験者のダイアリーです。</p>
     <% @diaries.each do |diary| %>
     <hr />
     <div class="diary-index-item">
         <div class="diary-index-image">
-            <%= image_tag(diary.user.avatar(:thumb)) %>
+            <% if diary.user.avatar? %>
+                <%= image_tag(diary.user.avatar(:thumb)) %>
+            <% else %>
+                <%= image_tag('top/clue.png') %>
+            <% end %>
         </div>
         <div class="diary-index-title">
             <p><%= diary.post_date %> <%= diary.category %></p>
             <h2><%= link_to diary.title, diary_path(diary.id) %></h2>
-            <p>by <%= diary.user.name %> Comment (<%= diary.comments.count %>)</p>
+            <p>by <%= diary.user.username %> Comment (<%= diary.comments.count %>)</p>
         </div>
         <div class="clear"></div>
     </div>

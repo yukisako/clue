@@ -1,0 +1,10 @@
+<h2>支店名の頭文字を選択</h2>
+<div class="clear"></div>
+<% @letters.each.with_index do |letter, row| %>
+<ul class="kana-field">
+    <% letter.each.with_index do |lt, col| %>
+    <li><%= link_to lt, search_store_users_path(q: @kanas[row][col], bank_id: @bank.bank_id), remote: true %></li>
+    <% end %>
+</ul>
+<% end %>
+<div class="clear"></div>

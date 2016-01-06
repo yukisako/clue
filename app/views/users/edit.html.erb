@@ -5,17 +5,44 @@
     <h1>登録情報の編集</h1>
     <ul>
         <%= form_for(@user) do |f| %>
-        <li><%= f.label :name, '氏名' %>: （姓）<%= f.text_field :family_name %> （名）<%= f.text_field :first_name %></li>
-        <li><%= f.label :name_kana, 'フリガナ' %>: （姓）<%= f.text_field :family_name_kana %> （名）<%= f.text_field :first_name_kana %></li>
-        <li><%= f.label :job, '職業' %>: <%= f.select :job, @job %></li>
-        <li><%= f.label :area, '住所' %>: <%= f.select :area, @area %> <%= f.text_field :address %></li>
-        <li><%= f.label :tel, '電話番号' %>: <%= f.text_field :tel %></li>
-        <li><%= f.label :line_id, 'LINE ID' %>: <%= f.text_field :line_id %></li>
-        <li><%= f.label :price, '単価' %>: <%= f.number_field :price %>円</li>
-        <li><%= f.label :about, '一言' %>: <%= f.text_field :about, size: 80, maxlength: 80 %></li>
-        <li><%= f.label :profile, 'プロフィール' %>:<br />
-        <%= f.text_area :profile, size: "80x10" %></li>
-        <%= f.submit('編集')%>
+          <li><%= f.label :avatar, 'プロフィール画像' %> <%= f.file_field :avatar %></li>
+          <li><%= f.label :username, 'ニックネーム' %> <%= f.text_field :username %></li>
+          <li><%= f.label :profile, 'プロフィール' %> <%= f.text_area :profile, size: "80x10" %></li>
+
+          <li><%= f.label :school, '学校' %> <%= f.text_field :school %></li>
+        <% if current_user.user_type == 1 %>
+          <li><%= f.label :grade, '学年' %> <%= f.select :grade, @grade %></li>
+        <% else %>
+          <li><%= f.label :job, '職業' %> <%= f.select :job, @job %></li>
         <% end %>
+          <li><%= f.label :absent_span, '学校に行かなかった時期' %> <%= f.select :absent_span, @grade %></li>
+
+          <li><%= f.label :email, 'メールアドレス' %> <%= f.text_field :email %></li>
+          <li><%= f.label :post_number, '郵便番号' %> <%= f.text_field :post_number %></li>
+          <li><%= f.label :area, '都道府県' %> <%= f.select :area, @area %></li>
+          <li><%= f.label :address, '住所' %> <%= f.text_field :address %></li>
+          <li><%= f.label :tel, '電話番号' %> <%= f.text_field :tel %></li>
+          <li><%= f.label :line_id, 'LINE ID' %> <%= f.text_field :line_id %></li>
+
+          <li><%= f.label :permit_info_mail, 'お知らせ' %> <%= f.select :permit_info_mail, [['Clueの情報をメールで受け取る', 1], ['お知らせメールを受けとらない', 0]] %></li>
+
+        <%= f.label :absence_triggers, '不登校になったキッカケ' %><br />
+        <%= f.fields_for :absence_triggers do |tri| %>
+          <li><%= tri.check_box :classroom, {}, true, false %> <%= tri.label :classroom, '学級崩壊' %></li>
+          <li><%= tri.check_box :harm, {}, true, false %> <%= tri.label :harm, 'いじめ' %></li>
+          <li><%= tri.check_box :antipathy, {}, true, false %> <%= tri.label :antipathy, '学校への苦手意識' %></li>
+          <li><%= tri.check_box :teacher, {}, true, false %> <%= tri.label :teacher, '先生との関係' %></li>
+          <li><%= tri.check_box :friendship, {}, true, false %> <%= tri.label :friendship, '友人関係' %></li>
+          <li><%= tri.check_box :study, {}, true, false %> <%= tri.label :study, '勉強' %></li>
+          <li><%= tri.check_box :change_school, {}, true, false %> <%= tri.label :change_school, '転校・転勤' %></li>
+          <li><%= tri.check_box :neglect, {}, true, false %> <%= tri.label :neglect, '育児放棄' %></li>
+          <li><%= tri.check_box :dv, {}, true, false %> <%= tri.label :dv, '家庭内暴力' %></li>
+          <li><%= tri.check_box :poverty, {}, true, false %> <%= tri.label :poverty, '経済的理由' %></li>
+          <li><%= tri.check_box :parents, {}, true, false %> <%= tri.label :parents, '離婚などの親同士の関係' %></li>
+          <li><%= tri.check_box :no_reason, {}, true, false %> <%= tri.label :no_reason, 'なんとなく' %></li>
+        <% end %>
+        <%= f.submit('編集')%>
+        <%= f.submit('キャンセル') %>
+      <% end %>
     </ul>
 </div>

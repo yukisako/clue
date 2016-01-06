@@ -24,6 +24,7 @@ h1 {
     padding: 10px;
     background: #FF0;
     position: relative;
+    border-radius:10px;
     img {
       width: 80px;
       border-radius: 50%;
@@ -44,9 +45,22 @@ h1 {
     }
   }
   .supporters-index-data {
+    width: 175px;
     height: 80px;
     padding: 10px;
     background: #FFD;
     overflow: scroll;
+  }
+}
+.clear{
+  clear: both;
+}
+
+.supporter-show {
+  img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background: #FFF;
   }
 }

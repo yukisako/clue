@@ -1,0 +1,4 @@
+$('div.kana-field').text('');
+$('#display-store-id').html('<%= @store.store_id %>');
+$('#display-store-name').html('<%= @store.store_name %>支店');
+$('#account_user_id').before('<%= hidden_field_tag :q, @store.id %>')

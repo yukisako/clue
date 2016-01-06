@@ -10,30 +10,47 @@
   <% end %>
   <div class="clear"></div>
 
+  <% if @message.offer_id.present? %>
+  <div class="offer-info-in-message">
+    <% if @user.avatar? %>
+    <p><%= link_to image_tag(@user.avatar(:thumb)), supporter_path(@ticket.user_id) %></p>
+    <% else %>
+    <p><%= link_to image_tag('top/clue.png'), supporter_path(@ticket.user_id) %></p>
+    <% end %>
+    <p><%= link_to @user.username, supporter_path(@ticket.user_id) %></p>
+    <p><%= @user.age %>歳 <%= @user.job %>（<%= @user.sex %>）</p>
+    <p><%= @status[@offer.status - 1] %></p>
+    <p><%= link_to @offer.ticket.title, offer_path(@offer.id) %></p>
+    <p><%= @offer.area %> <%= @offer.place %></p>
+    <p><%= @offer.meet_at.strftime("%Y年%m月%d日 %H時%M分") %>から<%= @offer.length %>時間</p>
+    <p><%= number_to_currency(@offer.price) %></p>
+  </div>
+  <% end %>
+
   <% @messages.each do |msg| %>
-    <% if msg.id.to_i == params[:id].to_i %>
+    <% if msg.id == params[:id].to_i %>
     <div class="past-message marked">
     <% else %>
     <div class="past-message">
     <% end %>
     <% if @message.sender_id != current_user.id %>
       <% if msg.sender_id == current_user.id %>
-      <p>From <%= current_user.name %> To <%= @sender.name %></p>
+      <p>From <%= current_user.username %> To <%= @sender.username %></p>
       <p><%= link_to '削除', message_path(msg.id), method: :delete %></p>
       <% else %>
-      <p>From <%= @sender.name %> To <%= current_user.name %></p>
+      <p>From <%= @sender.username %> To <%= current_user.username %></p>
       <% end %>
     <% else %>
       <% if msg.sender_id == current_user.id %>
-      <p>From <%= current_user.name %> To <%= @receiver.name %></p>
+      <p>From <%= current_user.username %> To <%= @receiver.username %></p>
       <p><%= link_to '削除', message_path(msg.id), method: :delete %></p>
       <% else %>
-      <p>From <%= @receiver.name %> To <%= current_user.name %></p>
+      <p>From <%= @receiver.username %> To <%= current_user.username %></p>
       <% end %>
     <% end %>
       <p>送信日時： <%= msg.created_at.strftime("%Y年%m月%d日 %H時%M分") %></p>
       <p>件名： <%= msg.title %></p>
-      <p><%= simple_format(msg.message) %></p>
+      <p><%= simple_format(h(msg.message)) %></p>
     </div>
   <% end %>
 </div>

@@ -11,7 +11,58 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151205085007) do
+ActiveRecord::Schema.define(version: 20160105131154) do
+
+  create_table "absence_triggers", force: :cascade do |t|
+    t.boolean  "classroom"
+    t.boolean  "harm"
+    t.boolean  "antipathy"
+    t.boolean  "teacher"
+    t.boolean  "friendship"
+    t.boolean  "study"
+    t.boolean  "change_school"
+    t.boolean  "neglect"
+    t.boolean  "dv"
+    t.boolean  "poverty"
+    t.boolean  "parents"
+    t.boolean  "no_reason"
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
+    t.integer  "user_id",       limit: 4
+  end
+
+  create_table "accounts", force: :cascade do |t|
+    t.string   "bank_id",    limit: 255
+    t.integer  "store_id",   limit: 4
+    t.string   "bank_name",  limit: 255
+    t.string   "store_name", limit: 255
+    t.string   "account_id", limit: 255
+    t.string   "user_name",  limit: 255
+    t.integer  "user_id",    limit: 4
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
+
+  create_table "bank_data", force: :cascade do |t|
+    t.string   "bank_id",         limit: 255
+    t.integer  "store_id",        limit: 4
+    t.string   "bank_name",       limit: 255
+    t.string   "bank_name_kana",  limit: 255
+    t.string   "store_name",      limit: 255
+    t.string   "store_name_kana", limit: 255
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
+  end
+
+  create_table "banks", force: :cascade do |t|
+    t.integer  "bank_id",    limit: 4
+    t.string   "store_id",   limit: 255
+    t.string   "name",       limit: 255
+    t.string   "name_kana",  limit: 255
+    t.integer  "bank_flag",  limit: 4
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
 
   create_table "comments", force: :cascade do |t|
     t.integer  "diary_id",   limit: 4
@@ -40,6 +91,51 @@ ActiveRecord::Schema.define(version: 20151205085007) do
     t.integer  "opened",      limit: 4
     t.datetime "created_at",                null: false
     t.datetime "updated_at",                null: false
+    t.integer  "offer_id",    limit: 4
+  end
+
+  create_table "offers", force: :cascade do |t|
+    t.integer  "ticket_id",  limit: 4
+    t.integer  "user_id",    limit: 4
+    t.integer  "price",      limit: 4
+    t.decimal  "length",                   precision: 10
+    t.datetime "meet_at"
+    t.string   "area",       limit: 255
+    t.string   "place",      limit: 255
+    t.text     "message",    limit: 65535
+    t.integer  "status",     limit: 4
+    t.datetime "created_at",                              null: false
+    t.datetime "updated_at",                              null: false
+    t.integer  "updated",    limit: 4
+    t.integer  "rate",       limit: 4
+  end
+
+  create_table "payments", force: :cascade do |t|
+    t.integer  "user_id",    limit: 4
+    t.integer  "amount",     limit: 4
+    t.string   "bank_name",  limit: 255
+    t.string   "store_name", limit: 255
+    t.string   "account_id", limit: 255
+    t.string   "user_name",  limit: 255
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
+
+  create_table "reported_accounts", force: :cascade do |t|
+    t.integer  "user_id",     limit: 4
+    t.integer  "reporter_id", limit: 4
+    t.text     "reason",      limit: 65535
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+  end
+
+  create_table "reviews", force: :cascade do |t|
+    t.integer  "ticket_id",  limit: 4
+    t.integer  "user_id",    limit: 4
+    t.text     "review",     limit: 65535
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+    t.integer  "reputation", limit: 4
   end
 
   create_table "social_profiles", force: :cascade do |t|
@@ -108,13 +204,19 @@ ActiveRecord::Schema.define(version: 20151205085007) do
     t.string   "tel",                    limit: 255
     t.string   "job",                    limit: 255
     t.string   "line_id",                limit: 255
-    t.string   "about",                  limit: 255
-    t.integer  "price",                  limit: 4
     t.string   "avatar_file_name",       limit: 255
     t.string   "avatar_content_type",    limit: 255
     t.integer  "avatar_file_size",       limit: 4
     t.datetime "avatar_updated_at"
     t.integer  "search_permit",          limit: 4
+    t.string   "username",               limit: 255
+    t.string   "post_number",            limit: 255
+    t.integer  "permit_info_mail",       limit: 4
+    t.string   "absent_span",            limit: 255
+    t.text     "school",                 limit: 65535
+    t.text     "grade",                  limit: 65535
+    t.integer  "block",                  limit: 4
+    t.integer  "reported",               limit: 4
   end
 
   add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true, using: :btree

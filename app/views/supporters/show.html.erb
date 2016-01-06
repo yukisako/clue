@@ -1,23 +1,91 @@
 <div class="nav">
-    <%= link_to 'TOP', root_path %> > <%= link_to 'サポーターを探す', supporters_path %> > <%= link_to @supporter.name , supporters_path %>
+    <%= link_to 'TOP', root_path %> > <%= link_to 'サポーターを探す', supporters_path %> > <%= link_to @supporter.username , supporters_path %>
 </div>
+
+<% if @report #通報済み判定 %>
+    <p class="reported-user-flag">通報済み</p>
+<% end %>
 
 <div class="user-show-profile">
     <h1>サポーター情報</h1>
+    <% if @supporter.avatar? %>
+        <p><%= image_tag(@supporter.avatar(:thumb)) %></p>
+    <% else %>
+        <p><%= image_tag('top/clue.png') %></p>
+    <% end %>
     <ul>
         <li>Supporter ID: <%= @supporter.id %></li>
-        <li>氏名: <%= @supporter.name %></li>
+        <li>ニックネーム: <%= @supporter.username %></li>
         <li>地域: <%= @supporter.area %></li>
         <li>性別: <%= @supporter.sex %></li>
         <li>年齢: <%= @supporter.age %>歳</li>
         <li>プロフィール: <p><%= simple_format(@supporter.profile) %></p></li>
     </ul>
+    <br /><br /><br />
+    <h2>不登校になったキッカケ</h2>
+    <ul>
+        <% if @triggers.present? %>
+            <% @triggers.each do |trigger|%>
+            <li><%= trigger %></li>
+            <% end %>
+        <% else %>
+            <li>なし</li>
+        <% end %>
+    </ul>
+    <br /><br /><br />
+    <h2>チケット情報</h2>
+    <ul>
+      <li>発行日：<%= @ticket.created_at.strftime("%Y年%m月%d日 %H時%M分") %></li>
+      <li>チケット名：<%= @ticket.title %></li>
+      <li>都道府県：<%= @ticket.area %></li>
+      <li>場所：<%= @ticket.place %></li>
+      <li>価格：<%= number_to_currency(@ticket.price) %></li>
+      <li>時間：<%= @ticket.length %>時間</li>
+      <li>評価：☆<%= @reputation %></li>
+      <li>メッセージ：<br /><%= simple_format(h(@ticket.message)) %></li>
+    </ul>
+    <% if current_user.user_type == 1 || current_user.user_type == 2 %>
+    <div class="review-new">
+        <%= form_for @review do |f| %>
+            <%= f.label :review, 'レビュー' %><br />
+            <%= f.label :reputation, '満足度' %> <%= f.select :reputation, [['☆5',5],['☆4',4],['☆3',3],['☆2',2],['☆1',1]] %>
+            <%= f.text_area :review, size: '80x10' %>
+            <%= f.hidden_field :user_id, value: current_user.id %>
+            <%= f.hidden_field :ticket_id, value: params[:id] %>
+            <%= submit_tag('投稿') %>
+        <% end %>
+    <% end %>
+    </div>
+    <div class="reviews">
+    <% @reviews.each do |rev| %>
+        <hr />
+        <div class="review">
+            ☆<%= rev.reputation %>
+        <% if rev.user.user_type == 1 %>
+            <%= link_to rev.user.username, student_path(rev.user.id) %> <%= rev.created_at.strftime("%Y年%m月%d日 %H時%M分") %><br />
+        <% elsif rev.user.user_type == 2 %>
+            <%= rev.user.username %> <%= rev.created_at.strftime("%Y年%m月%d日 %H時%M分") %><br />
+        <% end %>
+            <%= simple_format(h(rev.review)) %>
+        <% if current_user.id == rev.user.id %>
+            <%= link_to '削除', review_path(rev.id), method: :delete %>
+        <% end %>
+        </div>
+    <% end %>
+    </div>
 </div>
 <div class="user-show-edit-btn">
+    <% if current_user.user_type != 3 %>
+    <ul>
+        <li><%= link_to 'チケット購入', new_offer_path(ticket_id: @ticket.id) %></li>
+        <li><%= link_to 'ブロック' %></li>
+        <li><%= link_to '通報', report_users_path(user_id: params[:id]), method: :post %></li>
+    </ul>
+    <% end %>
     <ul>
         <li><%= link_to 'メッセージを送る', new_message_path(receiver_id: @supporter.id) %></li>
         <li><%= link_to 'メッセージボックス', messages_path %></li>
-        <li><%= link_to 'チケット', search_tickets_path(user_id: @supporter.id) %></li>
+        <li><%= link_to 'ダイアリーを読む', search_diaries_path(user_id: params[:id]), method: :post %></li>
     </ul>
 </div>
 <div class="clear"></div>

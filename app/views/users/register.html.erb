@@ -1,0 +1,13 @@
+<div class="user-show-profile">
+    <h1>登録情報の編集</h1>
+    <ul class="hyou1">
+        <%= form_tag confirm_register_users_path do %>
+            <li><dl><dt><label>メールアドレス</label></dt><dd> <%= current_user.email %></dd></dl></li>
+            <li><dl><dt><%= label :user, :username, 'ニックネーム' %> </dt><dd><%= text_field :user, :username, autofocus: true %><p>※名前を公開したくない方はニックネームを入力して下さい</p></dd></dl></li>
+            <li><dl><dt><%= label :user, :sex, '性別' %></dt><dd> <%= select :user, :sex, @sex %></dd></dl></li>
+            <li><dl><dt><%= label :user, :birth, '生年月日' %></dt><dd> <%= date_field :user, :birth, min: "1900-01-01", max: Date.today %></dd></dl></li>
+            <li><dl><dt><%= label :user, :user_type, '登録形態' %></dt><dd> <%= select :user, :user_type, [['生徒', 1], ['保護者', 2], ['不登校経験者', 3]] %></dd></dl></li>
+        <%= submit_tag('確認') %>
+        <% end %>
+    </ul>
+</div>
