@@ -73,7 +73,9 @@ class UsersController < ApplicationController
     if complete_registration_info
       # 正常な処理
       User.find(current_user.id).update(name: "#{params[:user][:family_name]} #{params[:user][:first_name]}", name_kana: "#{params[:user][:family_name_kana]} #{params[:user][:first_name_kana]}", first_name: params[:user][:first_name], family_name: params[:user][:family_name], first_name_kana: params[:user][:first_name_kana], family_name_kana: params[:user][:family_name_kana], post_number: params[:user][:post_number], area: params[:user][:area], address: params[:user][:address], tel: params[:user][:tel], line_id: params[:user][:line_id], grade: params[:user][:grade], job: params[:user][:job], school: params[:user][:school], absent_span: params[:user][:absent_span], avatar: params[:user][:avatar])
-      AbsenceTrigger.where(user_id: current_user.id).first_or_create(initial_trigger_params)
+      if params[:absence_trigger].present?
+        AbsenceTrigger.where(user_id: current_user.id).first_or_create(initial_trigger_params)
+      end
     else
       # 前ページで入力情報が不足していた場合
       @notice = '必須登録情報が入力されていません。'

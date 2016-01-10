@@ -21,8 +21,8 @@ Rails.application.configure do
     :address => "smtp.gmail.com",
     :port => 587,
     :domain => 'smtp.gmail.com',
-    :user_name => "midwhite.development@gmail.com", #gmailアドレス
-    :password => "wboujvowajqygdee", #gmailパスワード
+    :user_name => ENV['GMAIL'], #gmailアドレス
+    :password => ENV['GMAIL_PASS'], #gmailパスワード
     :authentication => 'login',
   }
 

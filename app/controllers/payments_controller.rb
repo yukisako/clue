@@ -15,7 +15,7 @@ class PaymentsController < ApplicationController
       @payments = Payment.where(user_id: current_user.id)
       @accounts = current_user.accounts
       @offers = current_user.ticket.offers.where(status: 3).payed
-      @sales = @offers.sum(:price) * (100 - current_user.ticket.rate) / 100
+      @sales = sales_params(@offers)
       @balance = @sales - @payments.sum(:amount) - 500 * (@payments.count + 1)
       if @balance < 0
         @balance = 0
@@ -47,5 +47,13 @@ class PaymentsController < ApplicationController
   private
   def submit_params
     params.require(:payment).permit(:user_id, :amount).merge(account_id: @account.account_id, bank_name: @account.bank_name, store_name: @account.store_name, user_name: @account.user_name)
+  end
+
+  def sales_params(offers)
+    sales = 0
+    offers.each do |offer|
+      sales = sales + offer.price * (100 - offer.rate) / 100
+    end
+    return sales
   end
 end

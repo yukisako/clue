@@ -67,7 +67,7 @@
         <li>日程：<%= @offer.meet_at.strftime("%Y年%m月%d日 %H時%M分") %>から<%= @offer.length %>時間</li>
         <li>支払額：<%= number_to_currency(@offer.price) %></li>
         <% if current_user.user_type == 3 %>
-        <li>手数料割合：<%= number_to_percentage(@ticket.rate, precision: 0) %></li>
+        <li>手数料割合：<%= number_to_percentage(@offer.rate, precision: 0) %></li>
         <% end %>
         <li>メッセージ：<br /><%= simple_format(h(@offer.message)) %></li>
     </ul>

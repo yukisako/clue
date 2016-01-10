@@ -10,6 +10,8 @@ class TopController < ApplicationController
         @students = User.where(user_type: 1, search_permit: 1)
         @area = area_params
         render template: 'students/index'
+      elsif current_user.user_type == 0
+        render templete: 'managers/index'
       end
     end
   end
