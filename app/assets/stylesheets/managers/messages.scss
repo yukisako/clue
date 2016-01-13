@@ -1,0 +1,31 @@
+.managers-message-index {
+    width: 600px;
+    margin: 0px auto;
+    table {
+        width: 100%;
+        margin: 20px 0px;
+        th, td {
+            padding: 0px;
+            text-align: center;
+        }
+        .avatar {
+            width: 30px;
+        }
+        img {
+            width: 30px;
+            height: 30px;
+        }
+    }
+}
+
+.managers-message-show {
+    width: 600px;
+    margin: 0px auto;
+    a {
+        display: inline;
+    }
+    img {
+        width: 30px;
+        height: 30px;
+    }
+}

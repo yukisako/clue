@@ -7,6 +7,7 @@ class User < ActiveRecord::Base
   has_many :reviews, dependent: :destroy
   has_many :diaries, dependent: :destroy
   has_many :comments, dependent: :destroy
+  has_many :participants, dependent: :destroy
   has_many :reported_accounts, dependent: :destroy
   has_many :send_messages, class_name: 'Message', foreign_key: 'sender_id', dependent: :destroy
   has_many :receive_messages, class_name: 'Message', foreign_key: 'receiver_id', dependent: :destroy

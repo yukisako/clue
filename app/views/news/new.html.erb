@@ -1,0 +1,10 @@
+<h1>新着情報投稿</h1>
+<%= form_for @news, url: news_index_path do |f| %>
+  <%= f.label :title, 'タイトル' %> <%= f.text_field :title, size: 80 %><br />
+  <%= f.label :content, '内容' %><br />
+  <%= f.text_area :content, size: '80x10' %><br />
+  <%= f.label :held_at, '開催日時' %> <%= f.datetime_select :held_at, minute_step: 15 %><br />
+  <%= f.label :image, '画像' %> <%= f.file_field :image %><br />
+  <%= f.label :price, '参加費' %> <%= f.number_field :price %>円<br />
+  <%= f.submit('投稿') %>
+<% end %>

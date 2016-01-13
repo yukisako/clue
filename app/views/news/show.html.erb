@@ -1,0 +1,17 @@
+<div class="nav">
+  <%= link_to 'TOP', root_path %> > <%= link_to '新着情報一覧', news_index_path %> > <%= @news.title %>
+</div>
+<h1><%= @news.title %></h1>
+
+<% ['参加する', '興味あり'].each do |st| %>
+    <h2><%= st %></h2>
+    <% @participants.where(status: st).each do |pt| %>
+        <%= pt.user.name %><br />
+    <% end %>
+<% end %>
+
+<%= form_for @participant do |f| %>
+  <%= f.hidden_field :event_id, value: params[:id] %>
+  <%= f.hidden_field :user_id, value: current_user.id %>
+<%= f.submit('参加する') %> <%= f.submit('興味あり') %>
+<% end %>

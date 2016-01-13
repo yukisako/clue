@@ -35,7 +35,7 @@ class ApplicationController < ActionController::Base
   end
   
   def grade_params
-    absent_span_params = [
+    grade_params = [
         '小学校低学年','小学4年生','小学5年生','小学6年生','中学1年生','中学2年生','中学3年生','高校生'
       ]
   end

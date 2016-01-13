@@ -67,16 +67,8 @@
                 <td><%= offer.created_at.strftime("%Y年%m月%d日 %H時%M分") %></td>
                 <td><%= offer.price %></td>
                 <td><%= offer.area %></td>
-                <% if offer.ticket.user.avatar? %>
-                <td><%= link_to image_tag(offer.ticket.user.avatar(:thumb)), supporter_path(offer.ticket.user_id) %></td>
-                <% else %>
-                <td><%= link_to image_tag('top/clue.png'), supporter_path(offer.ticket.user_id) %></td>
-                <% end %>
-                <% if offer.user.avatar? %>
-                <td><%= link_to image_tag(offer.user.avatar(:thumb)), student_path(offer.user_id) %></td>
-                <% else %>
-                <td><%= link_to image_tag('top/clue.png'), student_path(offer.user_id) %></td>
-                <% end %>
+                <td><%= link_to offer.ticket.user.username, managers_user_path(offer.ticket.user_id) %></td>
+                <td><%= link_to offer.user.username, managers_user_path(offer.user_id) %></td>
             </tr>
             <% end %>
         </tbody>
@@ -110,11 +102,7 @@
             <% @payments.each do |pay| %>
             <tr>
                 <td><%= pay.created_at.strftime("%Y年%m月%d日 %H時%M分") %></td>
-                <% if pay.user.avatar? %>
-                <td><%= link_to image_tag(pay.user.avatar(:thumb)), supporter_path(pay.user_id) %></td>
-                <% else %>
-                <td><%= link_to image_tag('top/clue.png'), supporter_path(pay.user_id) %></td>
-                <% end %>
+                <td><%= link_to pay.user.username, managers_user_path(pay.user_id) %></td>
                 <td><%= pay.amount %></td>
             </tr>
             <% end %>

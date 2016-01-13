@@ -1,0 +1,23 @@
+<div class="nav">
+    <%= link_to 'TOP', root_path %> > <%= link_to '管理者', managers_index_path %> > <%= link_to 'メッセージ管理', managers_messages_path %> > メッセージ詳細
+</div>
+
+<div class="managers-message-show">
+
+<h1>メッセージ詳細</h1>
+<% if @sender.avatar? %>
+<p>From <%= link_to image_tag(@sender.avatar(:thumb)), managers_user_path(@message.sender_id) %> <%= link_to @sender.name, managers_user_path(@message.sender_id) %></p>
+<% else %>
+<p>From <%= link_to image_tag('top/clue.png'), managers_user_path(@message.sender_id) %> <%= link_to @sender.name, managers_user_path(@message.sender_id) %></p>
+<% end %>
+
+<% if @receiver.avatar? %>
+<p>From <%= link_to image_tag(@receiver.avatar(:thumb)), managers_user_path(@message.receiver_id) %> <%= link_to @receiver.name, managers_user_path(@message.receiver_id) %></p>
+<% else %>
+<p>From <%= link_to image_tag('top/clue.png'), managers_user_path(@message.receiver_id) %> <%= link_to @receiver.name, managers_user_path(@message.receiver_id) %></p>
+<% end %>
+
+<p>Sub: <%= @message.title %></p>
+<div><%= simple_format(h(@message.message)) %></div>
+
+</div>

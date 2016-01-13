@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160105131154) do
+ActiveRecord::Schema.define(version: 20160112230635) do
 
   create_table "absence_triggers", force: :cascade do |t|
     t.boolean  "classroom"
@@ -94,6 +94,19 @@ ActiveRecord::Schema.define(version: 20160105131154) do
     t.integer  "offer_id",    limit: 4
   end
 
+  create_table "new_infos", force: :cascade do |t|
+    t.string   "title",              limit: 255
+    t.text     "content",            limit: 65535
+    t.datetime "held_at"
+    t.string   "price",              limit: 255
+    t.datetime "created_at",                       null: false
+    t.datetime "updated_at",                       null: false
+    t.string   "image_file_name",    limit: 255
+    t.string   "image_content_type", limit: 255
+    t.integer  "image_file_size",    limit: 4
+    t.datetime "image_updated_at"
+  end
+
   create_table "offers", force: :cascade do |t|
     t.integer  "ticket_id",  limit: 4
     t.integer  "user_id",    limit: 4
@@ -108,6 +121,14 @@ ActiveRecord::Schema.define(version: 20160105131154) do
     t.datetime "updated_at",                              null: false
     t.integer  "updated",    limit: 4
     t.integer  "rate",       limit: 4
+  end
+
+  create_table "participants", force: :cascade do |t|
+    t.integer  "event_id",   limit: 4
+    t.integer  "user_id",    limit: 4
+    t.string   "status",     limit: 255
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
   end
 
   create_table "payments", force: :cascade do |t|

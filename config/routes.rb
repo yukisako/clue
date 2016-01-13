@@ -59,15 +59,18 @@ Rails.application.routes.draw do
 
   namespace :managers do
     get :index
-    get :users
+    resources :users, only: [:index, :show, :edit, :update, :destroy]
+    resources :messages, only: [:index, :show]
     get :report
     get :account
   end
 
   resources :offers
+  resources :news
+  resources :messages, except: [:edit, :update]
   resources :accounts, except: [:index, :show]
   resources :payments, only: [:index, :new, :create]
-  resources :messages, except: [:edit, :update]
+  resources :participants, only: [:create, :update, :destroy]
   resources :reviews, only: [:create, :update, :destroy]
   resources :comments, only: [:create, :update, :destroy]
 end

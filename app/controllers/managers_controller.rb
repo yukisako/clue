@@ -2,15 +2,6 @@ class ManagersController < ApplicationController
   def index
   end
 
-  def users
-    @users = User.all
-    @students = @users.where(user_type: 1)
-    @parents = @users.where(user_type: 2)
-    @supporters = @users.where(user_type: 3)
-    @types = [@students, @parents, @supporters]
-    @caption = ['生徒情報', '保護者情報', 'サポーター情報']
-  end
-
   def account
     @offers = Offer.where(status: 3).order(meet_at: :desc)
     @payments = Payment.all

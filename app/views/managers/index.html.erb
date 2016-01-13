@@ -1,6 +1,9 @@
 <h1>Clue管理画面</h1>
 <ul>
+    <li><%= link_to '新着情報投稿', new_news_path %></li>
+    <li><%= link_to '新着情報管理', news_index_path %></li>
     <li><%= link_to 'ユーザー管理', managers_users_path %></li>
+    <li><%= link_to 'メッセージ管理', managers_messages_path %></li>
     <li><%= link_to '収支管理', managers_account_path %></li>
     <li><%= link_to '通報アカウント管理', managers_report_path %></li>
 </ul>

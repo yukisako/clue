@@ -68,7 +68,7 @@
         <% type.each.with_index(1) do |user, i| %>
                 <tr>
                     <td><%= i %></td>
-                    <td><%= user.username %></td>
+                    <td><%= link_to user.username, managers_user_path(user.id) %></td>
                     <td><%= user.name %></td>
                     <td><%= user.area %></td>
                     <td><%= user.age %></td>
