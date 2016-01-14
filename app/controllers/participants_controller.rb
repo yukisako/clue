@@ -5,6 +5,8 @@ class ParticipantsController < ApplicationController
   end
 
   def update
+    Participant.find_by(user_id: current_user.id, event_id: params[:participant][:event_id]).update(status: params[:commit])
+    redirect_to :back
   end
 
   def destroy

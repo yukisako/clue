@@ -66,7 +66,7 @@ Rails.application.routes.draw do
   end
 
   resources :offers
-  resources :news
+  resources :events
   resources :messages, except: [:edit, :update]
   resources :accounts, except: [:index, :show]
   resources :payments, only: [:index, :new, :create]

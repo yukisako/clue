@@ -1,4 +1,4 @@
 class Participant < ActiveRecord::Base
   belongs_to :user
-  belongs_to :new_info
+  belongs_to :event
 end

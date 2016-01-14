@@ -1,0 +1,8 @@
+<div class="nav">
+  <%= link_to 'TOP', root_path %> > <%= link_to '新着情報一覧', events_path %>
+</div>
+
+<h1>新着情報一覧</h1>
+<% @events.each do |ev| %>
+  <%= link_to ev.title, event_path(ev.id) %><br />
+<% end %>

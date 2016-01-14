@@ -1,4 +1,4 @@
-class NewInfo < ActiveRecord::Base
+class Event < ActiveRecord::Base
   has_many :participants
 
   has_attached_file :image,

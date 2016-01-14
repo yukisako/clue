@@ -50,6 +50,7 @@ ss">
         <li style="color: #00a0e9 !important;"><%= link_to '>>ログイン', new_user_session_path, class: "header-menu" %></li>
         <li style="color: #00a0e9 !important;"><%= link_to '>>初めての方へ', new_user_registration_path, class: "header-menu" %></li>
       <% else %>
+        <li><%= link_to '|E|', events_path %></li>
         <li><%= link_to '|M|', messages_path %></li>
         <li><%= link_to 'マイページ', user_path(current_user.id), class: "header-menu" %></li>
         <li><%= link_to 'ログアウト', destroy_user_session_path, method: :delete, class: "header-menu" %></li>

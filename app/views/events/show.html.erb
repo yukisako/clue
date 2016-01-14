@@ -1,0 +1,43 @@
+<div class="nav">
+  <%= link_to 'TOP', root_path %> > <%= link_to '新着情報一覧', events_path %> > <%= @event.title %>
+</div>
+<h1><%= @event.title %></h1>
+<% if @event.image.present? %>
+  <p><%= image_tag(@event.image(:thumb)) %></p>
+<% else %>
+  <p><%= image_tag('top/clue.png') %></p>
+<% end %>
+<p><%=@event.held_at.strftime("%Y年%m月%d日 %H時%M分") %></p>
+<p><%= simple_format(h(@event.content)) %></p>
+<p>参加費：<%= number_to_currency(@event.price) %></p>
+
+<% ['参加する', '興味あり'].each do |st| %>
+    <h2><%= st %></h2>
+    <ul>
+    <% unless @participants.where(status: st).present? %>
+      <li>なし</li>
+    <% else %>
+      <% @participants.where(status: st).each do |pt| %>
+        <% if pt.user.user_type == 1 %>
+          <li><%= link_to pt.user.name, student_path(pt.user_id) %></li>
+        <% elsif pt.user.user_type == 3 %>
+          <li><%= link_to pt.user.name, supporter_path(pt.user_id) %></li>
+        <% end %>
+      <% end %>
+    <% end %>
+    </ul>
+<% end %>
+
+<%= form_for @participant do |f| %>
+  <%= f.hidden_field :event_id, value: params[:id] %>
+  <%= f.hidden_field :user_id, value: current_user.id %>
+  <% unless @participant.status == '参加する' %>
+    <%= f.submit('参加する') %>
+  <% end %>
+  <% unless @participant.status == '興味あり' %>
+    <%= f.submit('興味あり') %>
+  <% end %>
+  <%= f.submit('不参加') %>
+<% end %>
+
+<%= link_to 'イベント編集', edit_event_path(params[:id]) %>
