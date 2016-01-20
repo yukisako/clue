@@ -3,7 +3,7 @@
 </div>
 <h1><%= @event.title %></h1>
 <% if @event.image.present? %>
-  <p><%= image_tag(@event.image(:thumb)) %></p>
+  <p><%= image_tag(@event.image(:medium)) %></p>
 <% else %>
   <p><%= image_tag('top/clue.png') %></p>
 <% end %>
@@ -40,4 +40,4 @@
   <%= f.submit('不参加') %>
 <% end %>
 
-<%= link_to 'イベント編集', edit_event_path(params[:id]) %>
+<p><%= link_to 'イベント編集', edit_event_path(params[:id]) %></p>

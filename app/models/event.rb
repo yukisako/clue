@@ -2,7 +2,7 @@ class Event < ActiveRecord::Base
   has_many :participants
 
   has_attached_file :image,
-    styles: { medium: "300x300#", thumb: "100x100#" }
+    styles: { medium: "600x200#" }
 
   validates_attachment :image,
     content_type: {
