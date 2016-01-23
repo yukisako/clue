@@ -1,0 +1,2 @@
+module SpikeProcessesHelper
+end
