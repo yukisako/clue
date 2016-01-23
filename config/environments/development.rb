@@ -15,7 +15,12 @@ Rails.application.configure do
 
   # Don't care if the mailer can't send.
   config.action_mailer.raise_delivery_errors = true
-  config.action_mailer.default_url_options = { host: 'https://clue-midwhite-1.c9users.io' }
+<<<<<<< HEAD
+  # config.action_mailer.default_url_options = { host: 'https://clue-midwhite-1.c9users.io'}
+=======
+  # config.action_mailer.default_url_options = { host: 'https://clue-midwhite-1.c9users.io'}
+  config.action_mailer.default_url_options = { host: ENV['APP_DOMAIN']}
+>>>>>>> 560aebd4decfab995c03c6587c8afa6602ff0d78
   config.action_mailer.smtp_settings = {
     :enable_starttls_auto => true,
     :address => "smtp.gmail.com",

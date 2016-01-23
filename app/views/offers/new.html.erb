@@ -20,5 +20,39 @@
     <%= f.hidden_field :place, value: @ticket.place %>
     <%= f.hidden_field :rate, value: @ticket.rate %>
     <%= f.hidden_field :status, value: 1 %>
-    <%= f.submit('申し込み') %>
+    <%= f.submit '申し込み', :id=>"customButton" %>
 <% end %>
+
+<script src="https://checkout.spike.cc/v1/checkout.js"></script>
+<script>
+$(function(){
+
+    // SPIKE Checkoutのインスタンスを生成する
+    var handler = SpikeCheckout.configure({
+      key: "pk_test_TYrS1YPKszJQMAYbJs5MofLS",
+      token: function(token) {
+        $('<input>')
+        .attr('type', 'hidden')
+        .attr('name', 'card_token')
+        .val(token.id)
+        .appendTo($('#new_offer'));
+        $('#new_offer').submit();
+      },
+      opened: function() {
+      },
+      closed: function() {
+      }
+    });
+
+    // カード情報を入力するオーバーレイを開く処理
+    $('#customButton').on('click',function(e){
+        handler.open({
+          name: "Clue Ticket Payment",
+          currency: "JPY",
+          email: "<%=current_user.email%>",
+          amount: "<%=@ticket.price%>"
+        });
+        e.preventDefault();
+    });
+});
+</script>

@@ -29,4 +29,10 @@ gem 'kaminari'
 gem 'therubyracer'
 gem 'twitter-bootstrap-rails'
 gem 'bootstrap-material-design', '0.1.4'
+<<<<<<< HEAD
 gem 'spike_pay'
+=======
+
+gem 'dotenv-rails'
+gem 'spike_pay'
+>>>>>>> 560aebd4decfab995c03c6587c8afa6602ff0d78

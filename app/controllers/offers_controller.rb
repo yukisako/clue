@@ -1,3 +1,4 @@
+require 'spike_pay'
 class OffersController < ApplicationController
   before_action :authenticate_user!, :full_profile
 
@@ -42,9 +43,54 @@ class OffersController < ApplicationController
   end
 
   def create
-    @offer = Offer.create(submit_params)
-    @offer.message = Message.create(message_params)
+
+    spike = SpikePay.new('sk_test_JeypnVxWDIbQWVbLh54oN57R')
+
+    #TODO: title?,description?
+
+    param = {
+       currency: 'JPY',
+       amount: submit_params[:price],
+       card: params[:card_token],
+       products: [{
+           id: '00001',
+           title: 'item',
+           description: 'item description',
+           language: 'JA',
+           price: submit_params[:price],
+           currency: 'JPY',
+           count: 1,
+           stock: 1
+       }]
+    }
+
+    # Charge
+    @response = spike.charge.create(param)
+    
+    # @response attributes:
+    # id: 20160122-100745-qs7oc6
+    # object: charge
+    # created: 1453457265
+    # livemode: false
+    # paid: true
+    # amount: 2000
+    # currency: JPY
+    # refunded: false
+    # card: {}
+    # source: {}
+    # captured: true
+    # refunds: []
+    # metadata: {}
+    # please check
+    # https://spike.cc/dashboard/developer/docs/api_reference
+    # for more info.
+    
+    if @response.paid == true
+      @offer = Offer.create(submit_params)
+      @offer.message = Message.create(message_params)
+    end
     redirect_to action: :index
+    
   end
 
   def edit
@@ -84,7 +130,7 @@ class OffersController < ApplicationController
 
   private
   def submit_params
-    params.require(:offer).permit(:ticket_id, :user_id, :meet_at, :length, :price, :area, :place, :message, :rate, :status)
+    params.require(:offer).permit(:ticket_id, :user_id, :meet_at, :length, :price, :area, :place, :message, :rate, :status, :card_token)
   end
 
   def message_params
