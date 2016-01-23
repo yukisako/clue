@@ -1,6 +1,6 @@
 class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable, :confirmable,
-         :recoverable, :rememberable, :trackable, :validatable
+         :recoverable, :rememberable, :trackable, :validatable, :omniauthable
   has_many :offers
   has_many :payments
   has_many :accounts, dependent: :destroy
@@ -59,5 +59,32 @@ class User < ActiveRecord::Base
     else
       order(updated_at: :desc)
     end
+  end
+
+  def self.find_for_oauth(auth, signed_in_resource = nil)
+
+    # DBのユーザーをauth情報から取得
+    db_auth_user = User.find_by(uid: auth.uid, provider: auth.provider)
+
+    # ユーザーを特定
+    user = signed_in_resource ? signed_in_resource : db_auth_user
+
+    if user.nil?
+      email = auth.info.email
+      # ユーザーを作成
+      user = User.new(
+        name: auth.extra.raw_info.name,
+        first_name: auth.extra.raw_info.first_name,
+        family_name: auth.extra.raw_info.last_name,
+        email: email ? email : "change@me-#{auth.uid}-#{auth.provider}.com",
+        password: Devise.friendly_token[0,20],
+        uid: auth.uid,
+        provider: auth.provider
+      )
+      user.skip_confirmation!
+      user.save!
+    end
+
+    user
   end
 end

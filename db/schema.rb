@@ -172,25 +172,6 @@ ActiveRecord::Schema.define(version: 20160114215714) do
     t.integer  "reputation", limit: 4
   end
 
-  create_table "social_profiles", force: :cascade do |t|
-    t.integer  "user_id",       limit: 4
-    t.string   "provider",      limit: 255
-    t.string   "uid",           limit: 255
-    t.string   "access_token",  limit: 255
-    t.string   "access_secret", limit: 255
-    t.string   "name",          limit: 255
-    t.string   "nickname",      limit: 255
-    t.string   "email",         limit: 255
-    t.string   "url",           limit: 255
-    t.string   "image_url",     limit: 255
-    t.string   "description",   limit: 255
-    t.text     "other",         limit: 65535
-    t.text     "credentials",   limit: 65535
-    t.text     "raw_info",      limit: 65535
-    t.datetime "created_at",                  null: false
-    t.datetime "updated_at",                  null: false
-  end
-
   create_table "tickets", force: :cascade do |t|
     t.integer  "user_id",    limit: 4
     t.string   "title",      limit: 255
