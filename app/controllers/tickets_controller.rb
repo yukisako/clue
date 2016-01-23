@@ -3,9 +3,11 @@ class TicketsController < ApplicationController
 
   def new
     @price = price_params
+    @hour = hour_params
     @area = area_params
     unless Ticket.find_by(user_id: current_user.id).present?
       @ticket = Ticket.new
+      @ticket.area = current_user.area
     else
       @ticket = Ticket.find_by(user_id: current_user.id)
       render action: :edit and return
@@ -14,7 +16,7 @@ class TicketsController < ApplicationController
 
   def create
     Ticket.create(submit_params)
-    redirect_to action: :index
+    redirect_to root_path
   end
 
   def edit

@@ -238,7 +238,11 @@ class UsersController < ApplicationController
   end
 
   def complete_registration_info
-    params[:user][:family_name].present? && params[:user][:first_name].present? && params[:user][:family_name_kana].present? && params[:user][:first_name_kana].present? && params[:user][:area].present? && params[:user][:grade].present? && params[:user][:absent_span].present?
+    if current_user.user_type != 3
+      params[:user][:family_name].present? && params[:user][:first_name].present? && params[:user][:family_name_kana].present? && params[:user][:first_name_kana].present? && params[:user][:grade].present?
+    else
+      params[:user][:family_name].present? && params[:user][:first_name].present? && params[:user][:family_name_kana].present? && params[:user][:first_name_kana].present? && params[:user][:job].present?
+    end
   end
 
   def reputation_params

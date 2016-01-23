@@ -2,6 +2,15 @@
 <p><%= @full %></p>
 <div class="content600">
 <h1>プロフィールの登録</h1>
+
+<p>
+<%= params[:user][:family_name] %>
+<%= params[:user][:first_name] %>
+<%= params[:user][:family_name_kana] %>
+<%= params[:user][:first_name_kana] %>
+<%= params[:user][:grade] %>
+</p>
+
 <ul class="hyou1 hyou2">
     <%= form_tag update_add_info_users_path, multipart: true do %>
     <li><dl><dt><%= label :user, :family_name, '姓*' %></dt><dd> <%= text_field :user, :family_name, autofocus: true, placeholder: "姓" %></dd></dl></li>

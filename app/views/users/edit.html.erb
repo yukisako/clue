@@ -41,6 +41,9 @@
           <li><%= tri.check_box :parents, {}, true, false %> <%= tri.label :parents, '離婚などの親同士の関係' %></li>
           <li><%= tri.check_box :no_reason, {}, true, false %> <%= tri.label :no_reason, 'なんとなく' %></li>
         <% end %>
+        <% if current_user.user_type != 3 %>
+          <li><%= f.label :search_permit, '検索表示許可' %> <%= f.select :search_permit, [['許可する', 1],['許可しない', 0]] %></li>
+        <% end %>
         <%= f.submit('編集')%>
         <%= f.submit('キャンセル') %>
       <% end %>

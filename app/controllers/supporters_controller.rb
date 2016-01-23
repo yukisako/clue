@@ -23,7 +23,8 @@ class SupportersController < ApplicationController
     @review = Review.new
     @reviews = Review.where(ticket_id: @ticket.id).order(created_at: :desc).includes(:user)
     @reputation = reputation_params
-    @triggers = true_triggers(AbsenceTrigger.find_by(user_id: @supporter.id))
+    @trigger = @supporter.absence_trigger
+    @triggers = true_triggers(@trigger) if @trigger.present?
     @report = ReportedAccount.find_by(user_id: params[:id], reporter_id: current_user.id).present?
   end
 

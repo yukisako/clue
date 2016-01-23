@@ -21,6 +21,7 @@
         <ul>
         <% list.each do |offer| %>
             <li>
+          <% if offer.ticket.present? %>
             <% if offer.ticket.user.avatar? %>
                 <p><%= image_tag(offer.ticket.user.avatar(:thumb)) %></p>
             <% else %>
@@ -40,6 +41,20 @@
             </span>
             </li>
             <hr style="clear: both;" />
+          <% else %>
+            <p><%= image_tag('top/clue.png') %></p>
+            <span class="offer-index-infobox">
+                <h3><%= link_to '退会済みユーザーのチケット', offer_path(offer.id) %></h3>
+            <% if current_user.user_type != 3 %>
+                <p>サポーター：退会済み</p>
+            <% else %>
+                <p>申込者：退会済み</p>
+            <% end %>
+                <p>申込日時：<%= offer.created_at.strftime("%Y年%m月%d日 %H時%M分") %></p>
+            </span>
+            </li>
+            <hr style="clear: both;" />
+          <% end %>
         <% end %>
         </ul>
         <span class="clear"></span>

@@ -68,7 +68,6 @@ Rails.application.routes.draw do
 
   resources :offers
   resources :events
-  resources :spike_processes
   resources :messages, except: [:edit, :update]
   resources :accounts, except: [:index, :show]
   resources :payments, only: [:index, :new, :create]

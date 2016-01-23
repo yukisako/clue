@@ -2,9 +2,12 @@
 
 <% if @offer.status == 1 %>
     <% if current_user.user_type != 3 %>
+    <!-- 申込者から見た場合 -->
 
     <ul>
+        <% if @ticket.present? %>
         <li>タイトル：<%= @ticket.title %></li>
+        <% end %>
         <li>申込日時：<%= @offer.created_at.strftime("%Y年%m月%d日 %H時%M分") %></li>
         <li>場所：<%= @offer.area %> <%= @offer.place %></li>
         <li>日程：<%= @offer.meet_at.strftime("%Y年%m月%d日 %H時%M分") %>から<%= @offer.length %>時間</li>
@@ -34,7 +37,10 @@
     <% end %>
 
 <% elsif @offer.status == 2 %>
-
+  <% if @ticket.blank? %>
+    <p>サポーターが退会済みです。</p>
+    <%= link_to '戻る', :back %>
+  <% else %>
     <ul>
         <li>タイトル：<%= @ticket.title %></li>
         <li>申込日時：<%= @offer.created_at.strftime("%Y年%m月%d日 %H時%M分") %></li>
@@ -56,11 +62,15 @@
         <p>申込者の確認待ちです。</p>
     <% end %>
 
+  <% end %>
+
 <% else %>
 
     <h2>過去の申込履歴</h2>
     <ul>
+        <% if @ticket.present? %>
         <li>タイトル：<%= @ticket.title %></li>
+        <% end %>
         <li>申込日時：<%= @offer.created_at.strftime("%Y年%m月%d日 %H時%M分") %></li>
         <li>成立日時：<%= @offer.updated_at.strftime("%Y年%m月%d日 %H時%M分") %></li>
         <li>場所：<%= @offer.area %> <%= @offer.place %></li>

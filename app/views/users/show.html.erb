@@ -64,9 +64,11 @@
         <li><%= link_to 'アカウント情報を編集', edit_user_registration_path %></li>
         <li><%= link_to 'プロフィールを編集', edit_user_path(current_user.id) %></li>
     </ul>
+    <% if current_user.user_type == 3 %>
     <ul>
         <li><%= link_to '出金履歴', payments_path %></li>
         <li><%= link_to '売上を出金', new_payment_path %></li>
     </ul>
+    <% end %>
 </div>
 <div class="clear" style="padding-bottom: 20px"></div>
