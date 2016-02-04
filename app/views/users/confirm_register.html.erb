@@ -28,6 +28,8 @@
         <%= hidden_field :user, :sex, value: params[:user][:sex] %>
         <%= hidden_field :user, :birth, value: params[:user][:birth] %>
         <%= hidden_field :user, :user_type, value: params[:user][:user_type] %>
-        <%= submit_tag('確認') %> <%= submit_tag('戻る') %>
+       <div class="btn-touroku">
+           <%= submit_tag('確認') %> <%= submit_tag('戻る') %>
+        </div>
     <% end %>
 </div>

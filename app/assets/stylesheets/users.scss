@@ -9,11 +9,63 @@
             border-radius:10px;
             
         }   
+/*new 新規登録画面*/        
+#new_user{
+    .new-touroku{
+       /* width:400px;*/
+        margin-left:auto;
+        margin-right:auto;
+        padding-bottom:0 !important;
+        label{
+           margin:10px 0;
+            float:left;
+        }
+        .form-control{
+            width:60%;
+           float:right;
+           margin-bottom:10px;
+        }
         
+        br{
+            clear:both;
+        }
+        p{
+           margin:10px 0;
+           float:left;
+        }
+    }
+    .btn-mar-left{/*ボタンを真ん中に*/
+        margin-left:216px;
+    }
+}
+
+/*users/sign_in ログイン画面*/
+.new-rogin{
+    br{
+        clear:both;
+    }
+     .form-group{
+        clear:both;
+            label{
+               width:30%;
+               margin:10px 0;
+               float:left;
+            }
+            .col-sm-10{
+                width:70%;
+            }
+            .form-control{
+                width:100%;
+                margin-bottom:10px;
+            }
+    }
+}
+
 /*register　登録画面*/
 .user-show-profile {
     width: 600px;
     margin: 20px auto;
+                   
     img {
         width: 100px;
         height: 100px;
@@ -21,6 +73,7 @@
         background: #FFF;
     }
     ul.hyou1{
+       
         dl{
             dt{
                 padding:13px 0 0 75px;
@@ -49,6 +102,7 @@
         width:600px;
         height:100%;
         padding:0;
+        
     
         li{
             margin:0;
@@ -87,7 +141,9 @@
                     
                     margin-left:250px;
                    padding:13px 0 0 70px;
+                  
                 }
+                /*フォームの外装*/
          input, select{
              border-radius:5px;
              border:solid 2px #5bc0de;
@@ -114,12 +170,20 @@
         background: #C8E6C9;
     }*/
 }
+
+
+ 
+  
 .user-show-edit-btn {
     width: 600px;
     margin: 20px auto;
     ul {
         width: 600px;
         margin: 0px auto;
+        /*送信ボタンの位置を右に寄せる*/
+            form .btn-touroku{
+                    margin-left:250px;
+                }
     }
     li {
         width: 190px;
@@ -147,6 +211,12 @@
 .content600{
     width:600px;
     margin:20px auto;
+    
+    /*送信ボタンの位置を右に寄せる*/
+    form .btn-touroku{
+            margin-left:200px;
+        }
+
 }
 table{
     margin-top:20px;
@@ -176,17 +246,30 @@ table{
 }
 
 /*プロフィールの登録　add_info*/
-ul.hyou2{
-         dl{
-             dt{
-                 label{
-                padding:13px 0 0 30px;
-                 }
-             }
-         }
-    
-     }
- 
+.hyou3 {
+     input,select{
+        border-radius: 5px;
+        border: 2px solid #5BC0DE;
+        height: 30px;
+        
+    }
+}
+    /*送信ボタンの位置を右に寄せる*/
+    .btn-touroku{
+        margin-left:250px;
+    }
+/*コメントのボックスのサイズ*/
+    #user_profile{
+        height:100%;
+        min-height:100px;
+        max-width:270px;
+        max-height:300px;
+        margin:5px;
+
+    }
+    #user_avatar{
+        margin-left:-20px;
+    }
 /* 口座登録 */
 .user-account {
     width: 600px;
