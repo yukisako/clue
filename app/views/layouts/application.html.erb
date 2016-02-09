@@ -1,83 +1,92 @@
 <!DOCTYPE html>
 <html lang="ja">
-<head>
-<meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<!-- BootstrapのCSS読み込み -->
-<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.c
-ss">
-<!-- jQuery読み込み -->
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-<!-- BootstrapのJS読み込み -->
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- BootstrapのCSS読み込み -->
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+    <!-- jQuery読み込み -->
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <!-- BootstrapのJS読み込み -->
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+    
+    <meta name="keywords" content="不登校,clue,不登校支援,引きこもり,不登校マッチング,元不登校">
+    <meta name="description" content="clueは不登校生・親＝元不登校生を繋ぐマッチングするサイトです。">
+    <title>Clue| 不登校生のためのマッチングサイト</title>
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+    <%= csrf_meta_tags %>
+  </head>
+  <body>
+    <div id="wrap">
+      <header>
+        <nav class="navbar navbar-default">
+          <div style="background-image: url(<%= asset_path 'top/clueline.png' %>); background-repeat:repeat-x; cover; background-position: top; !important;">
+            <div class="container-fluid">
+              <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" datatarget="#site-menu">
+                  <span class="sr-only">Toggle navigation</span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+                </button>
+                <div class="clue-logo">
+                  <a class="navbar-brand" href="/"></a>
+                </div>
+              </div>
 
-<meta name="keywords" content="不登校,clue,不登校支援,引きこもり,不登校マッチング,元不登校">
-  <meta name="description" content="clueは不登校生・親＝元不登校生を繋ぐマッチングするサイトです。">
-  <title>Clue| 不登校生のためのマッチングサイト</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-  <%= csrf_meta_tags %>
-</head>
-<body>
-  <div id="wrap">
-  <header>
-  <nav class="navbar navbar-default">
-    <div style="background-image: url(<%= asset_path 'top/clueline.png' %>); background-repeat:repeat-x; cover; background-position: top; !important;">
-  <div class="container-fluid">
-  <div class="navbar-header">
-    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" datatarget="#site-menu">
-    <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <div class="clue-logo">
-    <a class="navbar-brand" href="/"></a>
-    </div>
-    </div>
-    <div>
-      <%= form_tag search_supporters_path, class: "navbar-form navbar-left" do %>
-        <div class="form-group">
+              <div class="collapse navbar-collapse" id="site-menu">
+                <ul class="nav navbar-nav navbar-right">
+                  <li>
+                    <%= link_to "#search_supporters", class: "fancybox" do %>
+                      先輩を探す
+                      <span class="caret"></span>
+                    <% end %>
+                  </li>
+                  <li>
+                    <%= form_tag search_supporters_path, class: "navbar-form" do %>
+                      <div class="form-group">
+                        <input type="text" name="keyword" placeholder="先輩を検索" class="form-control">
+                        <button type="submit" class="btn btn-default">検索</button>
+                      </div>
+                    <% end %>
+                  </li>
+  
+                  <% unless user_signed_in? %>
+                    <li style="color: #00a0e9 !important;"><%= link_to '>>ログイン', new_user_session_path, class: "header-menu" %></li>
+                    <li style="color: #00a0e9 !important;"><%= link_to '>>初めての方へ', new_user_registration_path, class: "header-menu" %></li>
+                  <% else %>
+                    <li><%= link_to '|E|', events_path %></li>
+                    <li><%= link_to '|M|', messages_path %></li>
+                    <li><%= link_to 'マイページ', user_path(current_user.id), class: "header-menu" %></li>
+                    <li><%= link_to 'ログアウト', destroy_user_session_path, method: :delete, class: "header-menu" %></li>
+                  <% end %>
+                </ul>
+              </div><!-- /.navbar-collapse -->
+            </div><!-- /.container-fluid -->
+          </div><!-- /style="background-image -->
+        </nav>
+      </header>
+      <%= render partial: "layouts/search_supporters_lightbox" %>
       
-        <input type="text" name="keyword" placeholder="先輩を探す" class="form-control">
-        <button type="submit" class="btn btn-default">検索</button>
-        </div>
+      <div class="notice"><%= notice %></div>
+      <div class="alert"><%= alert %></div>
+      <%= yield %>
 
-      <% end %>
+      <%= render partial: "layouts/footer" %>
     </div>
-    <div class="collapse navbar-collapse" id="site-menu">
-    <ul class="nav navbar-nav navbar-right">
-      <% unless user_signed_in? %>
-        <li style="color: #00a0e9 !important;"><%= link_to '>>ログイン', new_user_session_path, class: "header-menu" %></li>
-        <li style="color: #00a0e9 !important;"><%= link_to '>>初めての方へ', new_user_registration_path, class: "header-menu" %></li>
-      <% else %>
-        <li><%= link_to '|E|', events_path %></li>
-        <li><%= link_to '|M|', messages_path %></li>
-        <li><%= link_to 'マイページ', user_path(current_user.id), class: "header-menu" %></li>
-        <li><%= link_to 'ログアウト', destroy_user_session_path, method: :delete, class: "header-menu" %></li>
-      <% end %>
-      </ul>
-    </div><!-- /.navbar-collapse -->
-  </div><!-- /.container-fluid -->
-</nav>
-</header><!-- /header -->
-<div class="notice"><%= notice %></div>
-<div class="alert"><%= alert %></div>
-<%= yield %>
-<%= render partial: "layouts/footer" %>
-</div>
-
-<script>
-//表示されているフッターの高さの分、本文の下をあける
-$(document).ready(function () {
-  hsize = $("footer").height();
- $("#wrap").css("padding-bottom", hsize );
-});
-$(window).resize(function () {
-  hsize = $("footer").height();
- $("#wrap").css("padding-bottom", hsize);
-});
-</script>
-</body>
+  
+    <script>
+    //表示されているフッターの高さの分、本文の下をあける
+    // $(document).ready(function () {
+    //   hsize = $("footer").height();
+    //   $("#wrap").css("padding-bottom", hsize );
+    // });
+    // $(window).resize(function () {
+    //   hsize = $("footer").height();
+    //   $("#wrap").css("padding-bottom", hsize);
+    // });
+    </script>
+  </body>
 </html>

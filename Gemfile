@@ -33,3 +33,5 @@ gem 'jquery-turbolinks'
 
 gem 'dotenv-rails'
 gem 'spike_pay'
+
+gem 'fancybox2-rails'

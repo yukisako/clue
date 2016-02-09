@@ -15,3 +15,16 @@
 //= require jquery.turbolinks
 //= require turbolinks
 //= require_tree .
+//= require fancybox
+
+$(document).ready(function() {
+  $("a.fancybox").fancybox({
+    'width': 560,
+    'height': 340,
+    'margin': 20,
+    'padding': 10,
+    'topRatio': 0.2,
+    'scrolling': 'auto',
+    'autoSize': false
+    });
+});
