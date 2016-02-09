@@ -36,6 +36,7 @@
   <% end %>
 </div>
 
+<%# TODO:あとで削除  ここから（「先輩を探す」メニューからのみサポーター検索を行うので） %>
 <p>先輩に会うメニュー</p>
 <ul>
     <li><%= link_to '男性', search_supporters_path(sex: "男"), method: :post %></li>
@@ -55,6 +56,7 @@
     <%= select_tag :absence_trigger, options_for_select({"学級崩壊" => "classroom", "いじめ" => "harm", "学校への苦手意識" => "antipathy", "先生との関係" => "teacher", "友人関係" => "friendship", "勉強" => "study", "転校・転勤" => "change_school", "育児放棄" => "neglect", "家庭内暴力" => "dv", "経済的理由" => "poverty", "離婚などの親同士の関係" => "parents", "なんとなく" => "no_reason"}), include_blank: true %>
     <%= submit_tag('検索') %>
 <% end %>
+<%# TODO:あとで削除 ここまで %>
 
 <script>
 //背景色の変更
