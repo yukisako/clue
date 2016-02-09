@@ -108,3 +108,18 @@
 .marked {
   background: #FFF3E0;
 }
+
+.space{
+  margin-top:10px;
+}
+#new_message{
+  label{
+      vertical-align:top;
+  }
+}
+@media screen and (max-width:767px) { 
+    /*　画面サイズが767px以下の場合読み込む　*/
+   .past-message {
+       width:90%;
+   }
+}

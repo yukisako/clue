@@ -46,16 +46,16 @@
     }
      .form-group{
         clear:both;
-            label{
-               width:30%;
-               margin:10px 0;
-               float:left;
+             label{
+                   margin:10px 0;
+             /* width:30%;
+             float:left;*/
             }
             .col-sm-10{
                 width:70%;
             }
             .form-control{
-                width:100%;
+               /* width:100%;*/
                 margin-bottom:10px;
             }
     }
@@ -63,7 +63,7 @@
 
 /*register　登録画面*/
 .user-show-profile {
-    width: 600px;
+    max-width: 600px;
     margin: 20px auto;
                    
     img {
@@ -209,7 +209,7 @@
 
 /*confirm_register 登録情報の確認*/
 .content600{
-    width:600px;
+    max-width:600px;
     margin:20px auto;
     
     /*送信ボタンの位置を右に寄せる*/
@@ -217,6 +217,12 @@
             margin-left:200px;
         }
 
+}
+@media screen and (max-width:767px) { 
+    /*　画面サイズが767px以下の場合読み込む　*/
+   .content600{
+       width:90%;
+   }
 }
 table{
     margin-top:20px;

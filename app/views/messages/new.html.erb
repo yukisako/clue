@@ -1,7 +1,7 @@
 <div class="nav">
     <%= link_to 'TOP', root_path %> > <%= link_to 'マイページ', user_path(current_user.id) %> > <%= link_to 'メッセージボックス' , messages_path %> > <%= link_to '新規作成', new_message_path %>
 </div>
-
+<div class="content600">
 <h1>メッセージを送る</h1>
 
 <% if @message.errors.any? %>
@@ -12,20 +12,25 @@
     <% end %>
   </ul>
 <% end %>
-
+ <div class="space">
   <p>宛先：<%= @receiver.username %></p>
-
+</div>
 <%= form_for @message do |f| %>
+<div class="space">
   <%= f.label :title, '件名' %>
-  <%= f.text_field :title %><br />
+  <%= f.text_field :title %>
+  </div>
+  <div class="space">
   <%= f.label :title, '本文' %>
   <%= f.text_area :message, rows: 15, cols: 60 %><br />
   <%= f.hidden_field :sender_id, value: current_user.id %><br />
   <%= f.hidden_field :receiver_id, value: params[:receiver_id] %>
   <%= f.hidden_field :sent, value: 1 %>
+  
   <%= f.submit '送信' %>
 <% end %>
-
+</div>
+</div>
 <% if @messages.present? %>
   <% @messages.each do |msg| %>
     <div class="past-message">

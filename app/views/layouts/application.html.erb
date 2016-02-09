@@ -39,9 +39,11 @@ ss">
     <div>
       <%= form_tag search_supporters_path, class: "navbar-form navbar-left" do %>
         <div class="form-group">
+      
         <input type="text" name="keyword" placeholder="先輩を探す" class="form-control">
         <button type="submit" class="btn btn-default">検索</button>
         </div>
+
       <% end %>
     </div>
     <div class="collapse navbar-collapse" id="site-menu">
@@ -68,14 +70,14 @@ ss">
 
 <script>
 //表示されているフッターの高さの分、本文の下をあける
-// $(document).ready(function () {
-//   hsize = $("footer").height();
-//   $("#wrap").css("padding-bottom", hsize );
-// });
-// $(window).resize(function () {
-//   hsize = $("footer").height();
-//   $("#wrap").css("padding-bottom", hsize);
-// });
+$(document).ready(function () {
+  hsize = $("footer").height();
+ $("#wrap").css("padding-bottom", hsize );
+});
+$(window).resize(function () {
+  hsize = $("footer").height();
+ $("#wrap").css("padding-bottom", hsize);
+});
 </script>
 </body>
 </html>

@@ -36,6 +36,9 @@ body {
   position:relative;
   min-height: 100%;
   height: auto;
+   height: auto !important; /* IE6じゃmin-height使えないからIE6専用にこの行と次の行をこう書くよ */
+    height: 100%
+
   /* フッターの高さ分だけ、ネガティブインデントを指定
   margin: 0 auto -90px; */
   /* フッターの高さ分だけ、パディングを指定 

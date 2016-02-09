@@ -7,7 +7,9 @@
 <% end %>
 
 <div class="user-show-profile">
+    <div class="senpaibox1">
     <h1>サポーター情報</h1>
+    
     <% if @supporter.avatar? %>
         <p><%= image_tag(@supporter.avatar(:thumb)) %></p>
     <% else %>
@@ -32,7 +34,10 @@
             <li>なし</li>
         <% end %>
     </ul>
+    </div><!--senpaibox1-->
     <br /><br /><br />
+    
+    <div class="senpaibox1">
     <h2>チケット情報</h2>
     <ul>
       <li>発行日：<%= @ticket.created_at.strftime("%Y年%m月%d日 %H時%M分") %></li>
@@ -44,6 +49,9 @@
       <li>評価：☆<%= @reputation %></li>
       <li>メッセージ：<br /><%= simple_format(h(@ticket.message)) %></li>
     </ul>
+    </div><!--senpaibox1-->
+    
+    <div class="senpaibox1">
     <% if current_user.user_type == 1 || current_user.user_type == 2 %>
     <div class="review-new">
         <%= form_for @review do |f| %>
@@ -55,6 +63,7 @@
             <%= submit_tag('投稿') %>
         <% end %>
     <% end %>
+    
     </div>
     <div class="reviews">
     <% @reviews.each do |rev| %>
@@ -75,6 +84,8 @@
     </div>
 </div>
 <div class="user-show-edit-btn">
+    
+    </div><!--senpaibox1-->
     <% if current_user.user_type != 3 %>
     <ul>
         <li><%= link_to 'チケット購入', new_offer_path(ticket_id: @ticket.id) %></li>
