@@ -4,12 +4,38 @@
 
 <div class="students-index">
   <h1>生徒を探す</h1>
-  <%= form_tag search_students_path, method: :get do %>
-    <input type="text" name="keyword" placeholder="プロフィール">
-    <%= select_tag :area, options_for_select(@area), include_blank: true %><br />
-    <%= select_tag :sex, options_for_select(["男", "女", "他"]), include_blank: true %>
-    <%= number_field_tag :min_age %>歳〜<%= number_field_tag :max_age %>歳
-    <button type="submit">検索</button>
+  <%= form_tag search_students_path, class:"form-inline", method: :get do %>
+  <div class="form-group">
+    <div class="col-xs-2">
+      <input type="text" class="form-control" name="keyword" placeholder="プロフィール">
+    </div>
+  </div>
+  <div class="form-group">
+    <%= select_tag :area, options_for_select(@area), include_blank: true, class:"form-control" %>
+  </div>
+  <br />
+  <div class="form-group">
+    <div class="col-xs-1">
+      <%= select_tag :sex, options_for_select(["男", "女", "他"]), include_blank: true, class:"form-control" %>
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="input-group">
+      <%= number_field_tag :min_age, nil, class:"form-control", within: 1...100 %>
+    	<span class="input-group-addon" id="basic-addon2">歳</span>
+    </div>
+  </div>
+    〜
+  <div class="form-group">
+    <div class="input-group">
+      <%= number_field_tag :max_age, nil, class:"form-control", within: 1...100 %>
+    	<span class="input-group-addon" id="basic-addon2">歳</span>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <button type="submit" class="btn btn-primary">検索</button>
+  </div>
   <% end %>
   <% if @param_keyword.present? || @param_min_age.present? || @param_max_age.present? || @param_area.present? || @param_sex.present? %>
     <h2>検索条件</h2>
