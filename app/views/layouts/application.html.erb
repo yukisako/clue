@@ -4,13 +4,6 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- BootstrapのCSS読み込み -->
-    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
-    <!-- jQuery読み込み -->
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-    <!-- BootstrapのJS読み込み -->
-    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
-    
     <meta name="keywords" content="不登校,clue,不登校支援,引きこもり,不登校マッチング,元不登校">
     <meta name="description" content="clueは不登校生・親＝元不登校生を繋ぐマッチングするサイトです。">
     <title>Clue| 不登校生のためのマッチングサイト</title>
@@ -60,7 +53,7 @@
                     <li><%= link_to '|E|', events_path %></li>
                     <li><%= link_to '|M|', messages_path %></li>
                     <li><%= link_to 'マイページ', user_path(current_user.id), class: "header-menu" %></li>
-                    <li><%= link_to 'ログアウト', destroy_user_session_path, method: :delete, class: "header-menu" %></li>
+                    <li><%= link_to 'ログアウト', destroy_user_session_path, method: :delete, class: "glyphicon glyphicon-log-out header-menu" %></li>
                   <% end %>
                 </ul>
               </div><!-- /.navbar-collapse -->
