@@ -27,11 +27,12 @@ gem 'devise'
 gem 'paperclip'
 gem 'kaminari'
 gem 'therubyracer'
-gem 'twitter-bootstrap-rails'
-gem 'bootstrap-material-design', '0.1.4'
 gem 'jquery-turbolinks'
 
 gem 'dotenv-rails'
 gem 'spike_pay'
 
-gem 'fancybox2-rails'
+gem 'fancybox2-rails', '0.2.8'
+
+gem 'bootstrap-sass'
+gem 'font-awesome-rails', '~> 4.2'
