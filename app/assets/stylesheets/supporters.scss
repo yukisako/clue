@@ -64,8 +64,42 @@ h1 {
     background: #FFF;
   }
 }
+.content900{
+  max-width:900px;
+  margin:10px auto;
+  
+.supporter-box{
+  background-color:#FFF;
+  padding:20px;
+  margin-bottom:10px;
+  
+}
+    p{
+     text-align: center;
+    }
+    .img-box{
+      background-color:#FF0;
+      width:100%;
+      
+      img{
+        margin:0 auto;
+        margin:20px;
+      }
+    }
+    ul{
 
-.senpaibox1{
-  width:300px;
-  background-color:#555;
+    }
+    h2{
+      font-weight:bold;
+      margin-bottom:20px;
+    }
+    .supporter-kikkake{
+      li{
+        width:auto;
+        background-color:#5BC0DE;
+        display: inline-block;
+        padding:5px;
+        margin-bottom:10px;
+         }
+    }
 }

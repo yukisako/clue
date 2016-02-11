@@ -62,15 +62,10 @@
 }
 
 /*register　登録画面*/
-.user-show-profile {
+.content600-1{
     max-width: 600px;
     margin: 20px auto;
-                   
-    img {
-        width: 100px;
-        height: 100px;
-        border-radius: 50%;
-        background: #FFF;
+   
     }
     ul.hyou1{
        
@@ -93,9 +88,19 @@
                     font-size:12px;
                 }
             }
-        }
     }
+ 
+
     
+    /*写真を丸くする*/
+  .user-show-profile{
+    img {
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        background: #FFF;
+    }
+  }
 /*表のデザイン*/
     ul.hyou1{
         margin-top:20px;
@@ -151,24 +156,7 @@
          }
 }
   
-  /*  li {
-        
-        width: 590px;
-        border-bottom: 1px dotted #000;
-        padding: 5px;
-        p {
-            padding: 0px 5px 5px 5px;
-        }
-    }
-    li:first-child {
-        border-top: 1px dotted #000;
-    }
-    li:nth-child(2n) {
-        background: #E8F5E9;
-    }
-    li:nth-child(2n-1) {
-        background: #C8E6C9;
-    }*/
+ 
 }
 
 

@@ -5,39 +5,47 @@
 <% if @report #通報済み判定 %>
     <p class="reported-user-flag">通報済み</p>
 <% end %>
+<section class="container">
+ 
+    <div class="row">
+<div class="user-show-profile content900">
 
-<div class="user-show-profile">
-    <div class="senpaibox1">
     <h1>サポーター情報</h1>
     
-    <% if @supporter.avatar? %>
-        <p><%= image_tag(@supporter.avatar(:thumb)) %></p>
-    <% else %>
-        <p><%= image_tag('top/clue.png') %></p>
-    <% end %>
-    <ul>
-        <li>Supporter ID: <%= @supporter.id %></li>
-        <li>ニックネーム: <%= @supporter.username %></li>
-        <li>地域: <%= @supporter.area %></li>
-        <li>性別: <%= @supporter.sex %></li>
-        <li>年齢: <%= @supporter.age %>歳</li>
-        <li>プロフィール: <p><%= simple_format(@supporter.profile) %></p></li>
-    </ul>
-    <br /><br /><br />
-    <h2>不登校になったキッカケ</h2>
-    <ul>
-        <% if @triggers.present? %>
-            <% @triggers.each do |trigger|%>
-            <li><%= trigger %></li>
-            <% end %>
+    <div class="col-md-6 col-sm-12">
+        
+         <div class="img-box">
+        <% if @supporter.avatar? %>
+            <p><%= image_tag(@supporter.avatar(:thumb)) %></p>
         <% else %>
-            <li>なし</li>
+            <p><%= image_tag('top/clue.png') %></p>
         <% end %>
-    </ul>
-    </div><!--senpaibox1-->
-    <br /><br /><br />
-    
-    <div class="senpaibox1">
+        </div> 
+        <div class="supporter-box">
+        <ul>
+            <li>Supporter ID: <%= @supporter.id %></li>
+            <li>ニックネーム: <%= @supporter.username %></li>
+            <li>地域: <%= @supporter.area %></li>
+            <li>性別: <%= @supporter.sex %></li>
+            <li>年齢: <%= @supporter.age %>歳</li>
+            <li>プロフィール: <p><%= simple_format(@supporter.profile) %></p></li>
+        </ul>
+        <br /><br /><br />
+        <h2>不登校になったキッカケ</h2>
+        <ul class="supporter-kikkake">
+            <% if @triggers.present? %>
+                <% @triggers.each do |trigger|%>
+                <li><%= trigger %></li>
+                <% end %>
+            <% else %>
+                <li>なし</li>
+            <% end %>
+        </ul>
+        </div><!--supporter-box-->
+      </div>
+        
+    <div class="col-md-6 col-sm-12">
+        <div class="supporter-box">
     <h2>チケット情報</h2>
     <ul>
       <li>発行日：<%= @ticket.created_at.strftime("%Y年%m月%d日 %H時%M分") %></li>
@@ -49,17 +57,22 @@
       <li>評価：☆<%= @reputation %></li>
       <li>メッセージ：<br /><%= simple_format(h(@ticket.message)) %></li>
     </ul>
-    </div><!--senpaibox1-->
+    </div><!--supporter-box-->
+    </div>
     
-    <div class="senpaibox1">
+    
+   <div class="col-md-6 col-sm-12">
+        <div class="supporter-box">
     <% if current_user.user_type == 1 || current_user.user_type == 2 %>
     <div class="review-new">
         <%= form_for @review do |f| %>
             <%= f.label :review, 'レビュー' %><br />
             <%= f.label :reputation, '満足度' %> <%= f.select :reputation, [['☆5',5],['☆4',4],['☆3',3],['☆2',2],['☆1',1]] %>
-            <%= f.text_area :review, size: '80x10' %>
+            <br />
+            <%= f.text_area :review, size: '45x6' %>
             <%= f.hidden_field :user_id, value: current_user.id %>
             <%= f.hidden_field :ticket_id, value: params[:id] %>
+            <br />
             <%= submit_tag('投稿') %>
         <% end %>
     <% end %>
@@ -83,9 +96,12 @@
     <% end %>
     </div>
 </div>
+ </div><!--supporter-box-->
+ </div>
+ 
 <div class="user-show-edit-btn">
     
-    </div><!--senpaibox1-->
+    
     <% if current_user.user_type != 3 %>
     <ul>
         <li><%= link_to 'チケット購入', new_offer_path(ticket_id: @ticket.id) %></li>
@@ -98,5 +114,7 @@
         <li><%= link_to 'メッセージボックス', messages_path %></li>
         <li><%= link_to 'ダイアリーを読む', search_diaries_path(user_id: params[:id]), method: :post %></li>
     </ul>
+ </div>   
 </div>
 <div class="clear"></div>
+</section >

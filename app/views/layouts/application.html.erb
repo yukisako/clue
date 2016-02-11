@@ -78,15 +78,15 @@
     </div>
   
     <script>
-    //表示されているフッターの高さの分、本文の下をあける
-    // $(document).ready(function () {
-    //   hsize = $("footer").height();
-    //   $("#wrap").css("padding-bottom", hsize );
-    // });
-    // $(window).resize(function () {
-    //   hsize = $("footer").height();
-    //   $("#wrap").css("padding-bottom", hsize);
-    // });
+    //フッター下固定の際、表示されているフッターの高さの分、本文の下をあける
+    $(document).ready(function () {
+      hsize = $("footer").height();
+     $("#wrap").css("padding-bottom", hsize );
+     });
+     $(window).resize(function () {
+      hsize = $("footer").height();
+      $("#wrap").css("padding-bottom", hsize);
+     });
     </script>
   </body>
 </html>
