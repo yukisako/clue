@@ -8,17 +8,30 @@
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
   <%= devise_error_messages! %>
 
-<div class="form-group new-touroku" style="padding: 30px;">
+<div class="form-group new-touroku">
+  <div class="col-xs-10 col-sm-10 col-md-4">
     <%= f.label :email, 'メールアドレス' %>
-    <%= f.email_field :email, class: 'form-control'%><br />
+  </div>
+  <div class="col-xs-10 col-sm-10 col-md-8">
+      <%= f.email_field :email, class: 'form-control'%><br />
+  </div>
+  <div class="col-xs-10 col-sm-10 col-md-4">
     <%= f.label :password, 'パスワード' %>
     <% if @minimum_password_length %>
     <p><em>(<%= @minimum_password_length %>文字以上)</em></p>
     <% end %>
-    <%= f.password_field :password, autocomplete: "off", class: "form-control" %><br />
+  </div>
+  <div class="col-xs-10 col-sm-10 col-md-8">
+    <%= f.password_field :password, autocomplete: "off", class: "form-control" %>
+  </div><br />
+  <div class="col-xs-10 col-sm-10 col-md-4">
     <%= f.label :password_confirmation, 'パスワード（確認）' %>
-    <%= f.password_field :password_confirmation, autocomplete: "off", class: "form-control" %><br />
+  </div>
+  <div class="col-xs-10 col-sm-10 col-md-8">
+    <%= f.password_field :password_confirmation, autocomplete: "off", class: "form-control" %>
+  </div><br />
 </div>
+
 <select multiple class="form-control" style="padding: 30px;">
   <option>利用規約</option>
   <option>本利用規約（以下「本規約」といいます。）には、株式会社Marianne（以下「当社」といいます。）の提供するサービスのご利用にあたり、 登録メンバーの皆様に遵守していただかなければならない事項及び当社と登録メンバーの皆様との間の権利義務関係が定められております。
@@ -28,10 +41,11 @@
   <option>5</option>
 </select></br>
 
-<div class="<col-sm-offset-5  btn-mar-left"><!--col-sm-7は試しに取った-->
-    <%= f.submit "規定に同意して登録する",class: "btn btn-primary"  %>
-
+  <div class="form-group">
+    <div class="col-sm-offset-4 col-sm-8  btn-mar-left">
+      <%= f.submit "規定に同意して登録する",class: "btn btn-primary"  %>
     </div>
+  </div>
 </div>
 
   

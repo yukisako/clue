@@ -12,66 +12,50 @@
 /*new 新規登録画面*/        
 #new_user{
     .new-touroku{
-       /* width:400px;*/
         margin-left:auto;
         margin-right:auto;
         padding-bottom:0 !important;
         label{
            margin:10px 0;
-            float:left;
-        }
-        .form-control{
-            width:60%;
-           float:right;
-           margin-bottom:10px;
-        }
-        
-        br{
-            clear:both;
-        }
-        p{
-           margin:10px 0;
            float:left;
         }
-    }
-    .btn-mar-left{/*ボタンを真ん中に*/
-        margin-left:216px;
-    }
+        .form-control{
+          float:right;
+          margin-bottom:10px;
+        }
+        p{
+         margin:10px 0;
+        }
+     }
+   
 }
 
 /*users/sign_in ログイン画面*/
 .new-rogin{
-    br{
-        clear:both;
-    }
-     .form-group{
-        clear:both;
-             label{
-                   margin:10px 0;
-             /* width:30%;
-             float:left;*/
-            }
-            .col-sm-10{
-                width:70%;
-            }
-            .form-control{
-               /* width:100%;*/
-                margin-bottom:10px;
-            }
+   label{
+       margin-top:8px;
+   }
+    .form-control{
+        margin-bottom:10px;
     }
 }
 
+
 /*register　登録画面*/
 .content600-1{
-    max-width: 600px;
-    margin: 20px auto;
+    width:100%;
+    max-width:600px;
+    margin:20px auto;
    
     }
-    ul.hyou1{
+    .hyou1{
        
         dl{
             dt{
-                padding:13px 0 0 75px;
+                padding:13px 0 0 10% !important;
+            }
+            dd{
+                padding-left:10% !important;
             }
         }
         li:nth-of-type(2){
@@ -104,7 +88,7 @@
 /*表のデザイン*/
     ul.hyou1{
         margin-top:20px;
-        width:600px;
+        max-width:600px;
         height:100%;
         padding:0;
         
@@ -134,17 +118,17 @@
                     border-right:solid 1px #000;
                     background-color:#5bc0de;
                     float:left;
-                    width:250px;
+                    min-width:250px;
                     min-height:50px;
                     height:100%;
  
                 }
                  
                 dd{
-                    width:347px;
+                    min-width:347px;
                     height:100%;
                     
-                    margin-left:250px;
+                 //   margin-left:250px;
                    padding:13px 0 0 70px;
                   
                 }
@@ -155,10 +139,75 @@
              height:30px;
          }
 }
-  
- 
-}
+    }  
+ //users/add_infoのページのデザイン
 
+.hyou1-1{
+    margin:10px;
+   
+    li{
+        border:1px solid #000;
+        height:50px;
+
+        .hyou-hidari{
+            border-right:1px solid #000;
+            border-bottom:1px solid #000;
+            background-color:#5bc0de;
+            height:100%;
+            height:50px;
+            padding:15px 0 0 8%;
+            
+        }
+        .hyou-migi{
+            border-bottom:1px solid #000;
+            background-color:#FFF;
+            height:100%;
+            height:50px;
+            padding:15px 0 0 8%;
+            
+            //フォームデザイン
+            input, select{
+                border-radius:5px;
+                border:solid 2px #5bc0de;
+                height:30px;
+                margin-top:-5px;
+            }
+        }
+    }
+     li:nth-of-type(2){
+         height:80px;
+         div{
+             height:80px;
+         }
+     }
+}
+@media screen and (max-width:767px) { 
+    /*　画面サイズが767px以下の場合読み込む　*/
+   .hyou1-1{
+       li{
+           height:100px;
+           .hyou-hidari{
+               border-right:0;
+               height:50px;
+           }
+           .hyou-migi{
+               height:50px;
+           }
+           .hyou-migili:nth-of-type(2){
+               height:50px;
+           }
+       }
+        li:nth-of-type(2){
+            height:130px;
+             div{
+             height:50px;
+                 }
+            .hyou-migi{
+                height:80px;
+            }
+        }
+   }
+}
 
  
   
@@ -241,6 +290,9 @@ table{
 
 /*プロフィールの登録　add_info*/
 .hyou3 {
+    td{
+        padding-left:20px;
+    }
      input,select{
         border-radius: 5px;
         border: 2px solid #5BC0DE;
@@ -261,9 +313,7 @@ table{
         margin:5px;
 
     }
-    #user_avatar{
-        margin-left:-20px;
-    }
+    
 /* 口座登録 */
 .user-account {
     width: 600px;
