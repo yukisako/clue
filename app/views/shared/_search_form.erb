@@ -1,0 +1,48 @@
+  <div class="form-group">
+    <div class="form-inline">
+      <label class="control-label">プロフィール：</label>
+      <input type="text" id="keyword" class="form-control" name="keyword" placeholder="キーワード">
+    </div>
+  </div>
+  <br />
+  <div class="form-group">
+    <div class="form-inline">
+      <label class="control-label">地域：</label>
+      <%= select_tag :area, options_for_select(@area), include_blank: true, class:"form-control" %>
+    </div>
+  </div>
+  <br />
+  <div class="form-group">
+    <div class="form-inline">
+      <label class="control-label">性別：</label>
+      <%= select_tag :sex, options_for_select(["男", "女", "他"]), include_blank: true, class:"form-control" %>
+    </div>
+  </div>
+  <br />
+  <div class="form-group">
+    <div class="form-inline">
+    <label class="control-label">年齢：</label>
+      <div class="input-group col-xs-4">
+        <%= number_field_tag :min_age, nil, class:"form-control", within: 1...100 %>
+      	<span class="input-group-addon" id="basic-addon2">歳</span>
+      </div>
+      <label>～</label>
+      <div class="input-group col-xs-4">
+        <%= number_field_tag :max_age, nil, class:"form-control", within: 1...100 %>
+      	<span class="input-group-addon" id="basic-addon2">歳</span>
+      </div>
+    </div>
+  </div>
+<% if absence_selector %>
+  <br />
+  <div class="form-group">
+    <div class="form-inline">
+      <label class="control-label">不登校になったキッカケ：</label>
+      <%= select_tag :absence_trigger, options_for_select(@trigger), include_blank: true, class:"form-control" %>
+    </div>
+  </div>
+<% end %>
+  <br />
+  <div class="form-group col-xs-offset-8">
+    <button type="submit" class="btn btn-primary">検索</button>
+  </div>
