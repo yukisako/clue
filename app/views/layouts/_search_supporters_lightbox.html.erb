@@ -1,46 +1,10 @@
 <div style="display:none;">
-  <div id="search_supporters" class="form-group">
-    <div class="col-xs-5">
-      <label class="ul">性別から検索</label>
-      <ul>
-        <li><%= link_to '男性', search_supporters_path(sex: "男"), method: :post %></li>
-        <li><%= link_to '女性', search_supporters_path(sex: "女"), method: :post %></li>
-        <li><%= link_to '指定なし', search_supporters_path(sex: ""), method: :post %></li>
-      </ul>
-      <label class="ul">エリアから検索</label>
-      <ul>
-        <li><%= link_to 'エリアからチケットを探す','#', method: :post %></li>
-      </ul>
-      <label class="ul">きっかけから検索</label>
-      <ul>
-        <li><%= link_to 'きっかけからチケットを探す','#', method: :post %></li>
-      </ul>
-    </div>
-    <div class="col-xs-2">
-      <label class="ul">性別から検索</label>
-      <ul>
-        <li><%= link_to '15〜20歳', search_supporters_path(min_age: 15, max_age: 20), method: :post %></li>
-        <li><%= link_to '21〜25歳', search_supporters_path(min_age: 21, max_age: 25), method: :post %></li>
-        <li><%= link_to '26〜30歳', search_supporters_path(min_age: 26, max_age: 30), method: :post %></li>
-        <li><%= link_to '31〜35歳', search_supporters_path(min_age: 31, max_age: 35), method: :post %></li>
-        <li><%= link_to '36〜40歳', search_supporters_path(min_age: 36, max_age: 40), method: :post %></li>
-        <li><%= link_to '41〜45歳', search_supporters_path(min_age: 41, max_age: 45), method: :post %></li>
-        <li><%= link_to '46〜50歳', search_supporters_path(min_age: 46, max_age: 50), method: :post %></li>
-        <li><%= link_to '51〜55歳', search_supporters_path(min_age: 51, max_age: 55), method: :post %></li>
-        <li><%= link_to '55〜60歳', search_supporters_path(min_age: 56, max_age: 60), method: :post %></li>
-        <li><%= link_to '61歳以上', search_supporters_path(min_age: 61), method: :post %></li>
-      </ul>
-    </div>
-    <div class="col-xs-5">
-      <label class="ul">時期から検索</label>
-      <ul>
-        <li><%= link_to '小学校低学年（小１～小３）', '#', method: :post %></li>
-        <li><%= link_to '小学校高学年（小４～小６）', '#', method: :post %></li>
-        <li><%= link_to '中学１年生', '#', method: :post %></li>
-        <li><%= link_to '中学２年生', '#', method: :post %></li>
-        <li><%= link_to '中学３年生', '#', method: :post %></li>
-        <li><%= link_to '高校生', '#', method: :post %></li>
-      </ul>
-    </div>
+  <div id="search_supporters">
+
+    <h1>サポーターを探す</h1>
+    <%= form_tag search_supporters_path, class:"form-inline" do %>
+      <%= render 'shared/search_form', absence_selector:true %>
+    <% end %>
+
   </div>
 </div>

@@ -1,5 +1,10 @@
 class TopController < ApplicationController
+
   def index
+    @area = area_params
+    @param_sex = sex_params
+    @trigger_params = trigger_params
+    
     if user_signed_in?
       if current_user.user_type != 3
         @supporters = User.where(user_type: 3)
