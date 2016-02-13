@@ -5,7 +5,7 @@ class Managers::UsersController < ApplicationController
     @parents = @users.where(user_type: 2)
     @supporters = @users.where(user_type: 3)
     @types = [@students, @parents, @supporters]
-    @caption = ['生徒情報', '保護者情報', 'サポーター情報']
+    @caption = ['生徒情報', '保護者情報', '先輩情報']
   end
 
   def show
@@ -17,8 +17,6 @@ class Managers::UsersController < ApplicationController
 
   def edit
     @user = User.find(params[:id])
-    @sex = sex_params
-    @area = area_params
     @grade = grade_params
     @job = job_params
   end

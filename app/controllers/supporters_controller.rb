@@ -1,15 +1,11 @@
 class SupportersController < ApplicationController
   def index
     @supporters = User.where(user_type: 3).includes(:ticket)
-    @area = area_params
-    @trigger = trigger_params
   end
   
   def search
     @supporters = User.where(user_type: 3).search_params("profile", params[:keyword]).search_params("area", params[:area]).search_params("sex", params[:sex]).search_trigger(params[:absence_trigger]).search_age(params[:min_age], params[:max_age])
-    @area = area_params
-    @trigger = trigger_params
-    @param_keyword = "プロフィールに「#{params[:keyword]}」を含むサポーター" if params[:keyword].present?
+    @param_keyword = "プロフィールに「#{params[:keyword]}」を含む先輩" if params[:keyword].present?
     @param_min_age = "#{params[:min_age]}歳以上" if params[:min_age].present?
     @param_max_age = "#{params[:max_age]}歳以下" if params[:max_age].present?
     @param_area = "#{params[:area]}在住" if params[:area].present?
@@ -25,7 +21,9 @@ class SupportersController < ApplicationController
     @reputation = reputation_params
     @trigger = @supporter.absence_trigger
     @triggers = true_triggers(@trigger) if @trigger.present?
-    @report = ReportedAccount.find_by(user_id: params[:id], reporter_id: current_user.id).present?
+    if user_signed_in?
+      @report = ReportedAccount.find_by(user_id: params[:id], reporter_id: current_user.id).present?
+    end
   end
 
   private

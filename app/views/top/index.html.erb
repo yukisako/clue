@@ -28,7 +28,7 @@
 <div class="top-index-search">
   <% if user_signed_in? %>
     <% if current_user.user_type == 1 || current_user.user_type == 2 %>
-      <%= link_to 'サポーター検索', supporters_path %>
+      <%= link_to '先輩検索', supporters_path %>
     <% elsif current_user.user_type == 3 %>
       <%= link_to '生徒検索', students_path %>
     <% end %>
@@ -36,7 +36,7 @@
   <% end %>
 </div>
 
-<%# TODO:あとで削除  ここから（「先輩を探す」メニューからのみサポーター検索を行うので） %>
+<%# TODO:あとで削除  ここから（「先輩を探す」メニューからのみ先輩検索を行うので） %>
 <p>先輩に会うメニュー</p>
 <ul>
     <li><%= link_to '男性', search_supporters_path(sex: "男"), method: :post %></li>

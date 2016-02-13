@@ -9,10 +9,10 @@ class OffersController < ApplicationController
       @offers_name = ['確定待ち', '調整中', '申込履歴']
       @status_message = [
         'あなたが申込を確定すれば購入が成立する状態です。',
-        'サポーターの承認待ちです。メッセージをやりとりして調整を進めましょう。',
+        '先輩の承認待ちです。メッセージをやりとりして調整を進めましょう。',
         '過去に販売したチケットです。']
     else
-      # サポーター
+      # 先輩
       @offers = current_user.ticket.offers
       @offers_name = ['確定待ち', '調整中', '販売履歴']
       @status_message = [

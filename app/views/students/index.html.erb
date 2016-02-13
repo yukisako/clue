@@ -2,13 +2,7 @@
     <%= link_to 'TOP', root_path %> > <%= link_to '生徒を探す', students_path %>
 </div>
 
-<div class="students-index">
-  <h1>生徒を探す</h1>
-  <%= form_tag search_students_path, class:"form-inline", method: :get do %>
-    <%= render 'shared/search_form', absence_selector:false %>
-  <% end %>
-  <%= render 'shared/search_condition' %>
-</div>
+<%#= render 'shared/search_condition' %>
 
 <div class="students-index-profiles">
   <% @students.each do |st| %>

@@ -38,7 +38,7 @@
   <div class="form-group">
     <div class="form-inline">
       <label class="control-label">不登校になったキッカケ：</label>
-      <%= select_tag :absence_trigger, options_for_select(@trigger), include_blank: true, class:"form-control" %>
+      <%= select_tag :absence_trigger, options_for_select(@absence_triggers), include_blank: true, class:"form-control" %>
     </div>
   </div>
 <% end %>

@@ -1,11 +1,8 @@
 <div class="nav">
-    <%= link_to 'TOP', root_path %> > <%= link_to 'サポーターを探す', supporters_path %>
+    <%= link_to 'TOP', root_path %> > <%= link_to '先輩を探す', supporters_path %>
 </div>
 
-<div class="supporters-index">
-  <h1>サポーターを探す</h1>
-  <%= render 'shared/search_condition' %>
-</div>
+<%#= render 'shared/search_condition' %>
 
 <div class="supporters-index-profiles">
   <% @supporters.each do |sp| %>
