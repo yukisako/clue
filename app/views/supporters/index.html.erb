@@ -4,18 +4,10 @@
 
 <div class="supporters-index">
   <h1>サポーターを探す</h1>
-  <%= form_tag search_supporters_path do %>
-    <input type="text" name="keyword" placeholder="プロフィール">
-    <%= select_tag :area, options_for_select(@area), include_blank: true %><br />
-    <%= select_tag :sex, options_for_select(["男", "女", "他"]), include_blank: true %>
-    <%= number_field_tag :min_age %>歳〜<%= number_field_tag :max_age %>歳<br />
-    <%= select_tag :absence_trigger, options_for_select(@trigger), include_blank: true %>
-    <button type="submit">検索</button>
+  <%= form_tag search_supporters_path, class:"form-inline" do %>
+    <%= render 'shared/search_form', absence_selector:true %>
   <% end %>
-  <% if @param_keyword.present? || @param_min_age.present? || @param_max_age.present? || @param_area.present? || @param_sex.present? %>
-    <h2>検索条件</h2>
-    <%= @param_area %> <%= @param_min_age %> <%= @param_max_age %> <%= @param_sex %> <%= @param_keyword %>
-  <% end %>
+  <%= render 'shared/search_condition' %>
 </div>
 
 <div class="supporters-index-profiles">

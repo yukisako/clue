@@ -1,0 +1,4 @@
+<% if @param_keyword.present? || @param_min_age.present? || @param_max_age.present? || @param_area.present? || @param_sex.present? %>
+<h2>検索条件</h2>
+<%= @param_area %> <%= @param_min_age %> <%= @param_max_age %> <%= @param_sex %> <%= @param_keyword %>
+<% end %>
