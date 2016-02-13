@@ -4,7 +4,6 @@ class TicketsController < ApplicationController
   def new
     @price = price_params
     @hour = hour_params
-    @area = area_params
     unless Ticket.find_by(user_id: current_user.id).present?
       @ticket = Ticket.new
       @ticket.area = current_user.area
@@ -20,7 +19,6 @@ class TicketsController < ApplicationController
   end
 
   def edit
-    @area = area_params
     @hour = hour_params
     @price = price_params
     if Ticket.find_by(user_id: current_user.id).present?

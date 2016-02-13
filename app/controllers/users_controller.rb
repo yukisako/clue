@@ -11,7 +11,6 @@ class UsersController < ApplicationController
   def edit
     @user = User.find(current_user.id)
     @user.absence_trigger = AbsenceTrigger.find_by(user_id: current_user.id)
-    @area = area_params
     @job = job_params
     @grade = grade_params
   end

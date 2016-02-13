@@ -28,7 +28,7 @@
         <td><%= @parents.where(permit_info_mail: 1).count %>名</td>
     </tr>
     <tr>
-        <th>サポーター</th>
+        <th>先輩</th>
         <td><%= @supporters.count %>名</td>
         <td><%= @supporters.where(sex: '男性').count %>名／<%= @supporters.where(sex: '女性').count %>名</td>
         <td><%= @supporters.where(area: '東京都').count %>名</td>

@@ -1,6 +1,7 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   before_action :configure_permitted_parameters, if: :devise_controller?
+  before_action :set_common_data
 
   private
   def configure_permitted_parameters
@@ -171,6 +172,15 @@ class ApplicationController < ActionController::Base
       root_path
     else
       register_users_path(current_user.id)
+    end
+  end
+  
+  def set_common_data
+    # ヘッダーメニューの検索で必要な情報をここでセットする
+    if request.get?
+      @area = area_params
+      @param_sex = sex_params
+      @absence_triggers = trigger_params
     end
   end
 end

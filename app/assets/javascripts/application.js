@@ -19,8 +19,8 @@
 
 $(document).ready(function() {
   $("a.fancybox").fancybox({
-    'width': 560,
-    'height': 340,
+    'width': 700,
+    'height': 400,
     'margin': 20,
     'padding': 10,
     'topRatio': 0.2,

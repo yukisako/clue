@@ -30,7 +30,7 @@
             <span class="offer-index-infobox">
                 <h3><%= link_to offer.ticket.title, offer_path(offer.id) %></h3>
             <% if current_user.user_type != 3 %>
-                <p>サポーター：<%= link_to offer.ticket.user.username, supporter_path(offer.ticket.user.id) %></p>
+                <p>先輩：<%= link_to offer.ticket.user.username, supporter_path(offer.ticket.user.id) %></p>
             <% else %>
                 <p>申込者：<%= link_to offer.user.username, student_path(offer.user.id) %></p>
             <% end %>
@@ -46,7 +46,7 @@
             <span class="offer-index-infobox">
                 <h3><%= link_to '退会済みユーザーのチケット', offer_path(offer.id) %></h3>
             <% if current_user.user_type != 3 %>
-                <p>サポーター：退会済み</p>
+                <p>先輩：退会済み</p>
             <% else %>
                 <p>申込者：退会済み</p>
             <% end %>

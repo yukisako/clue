@@ -1,0 +1,19 @@
+<div style="display:none;">
+  <div id="search_supporters">
+
+    <h1>先輩を探す</h1>
+    <%= form_tag search_supporters_path, method: :get, class:"form-inline" do %>
+      <%= render 'shared/search_form', absence_selector:true %>
+    <% end %>
+
+  </div>
+  
+  <div id="search_students">
+
+    <h1>生徒を探す</h1>
+    <%= form_tag search_students_path, method: :get, class:"form-inline" do %>
+      <%= render 'shared/search_form', absence_selector:true %>
+    <% end %>
+
+  </div>
+</div>
