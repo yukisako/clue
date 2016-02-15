@@ -177,10 +177,8 @@ class ApplicationController < ActionController::Base
   
   def set_common_data
     # ヘッダーメニューの検索で必要な情報をここでセットする
-    if request.get?
-      @area = area_params
-      @param_sex = sex_params
-      @absence_triggers = trigger_params
-    end
+    @area = area_params
+    @param_sex = sex_params
+    @absence_triggers = trigger_params
   end
 end
