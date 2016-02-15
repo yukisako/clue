@@ -11,7 +11,6 @@
       <ul>
         <li><%= link_to '申込管理', offers_path %></li>
         <% if current_user.user_type != 3 %>
-          <li><%= link_to '先輩を検索', supporters_path %></li>
         <% else %>
           <li><%= link_to '振込口座を登録', account_users_path %></li>
           <li><%= link_to 'チケットを編集', edit_ticket_path(current_user.ticket.id) %></li>
