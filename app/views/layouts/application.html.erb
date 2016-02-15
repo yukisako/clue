@@ -69,7 +69,12 @@
                   <% else %>
                     <li><%= link_to '|E|', events_path %></li>
                     <li><%= link_to '|M|', messages_path %></li>
-                    <li><%= link_to 'マイページ', user_path(current_user.id), class: "header-menu" %></li>
+                    <li>
+                      <%= link_to "#my_page_menu", class: "fancybox" do %>
+                        マイページ
+                        <span class="caret"></span>
+                      <% end %>
+                    </li>
                     <li><%= link_to 'ログアウト', destroy_user_session_path, method: :delete, class: "glyphicon glyphicon-log-out header-menu" %></li>
                   <% end %>
                 </ul>
@@ -79,6 +84,7 @@
         </nav>
       </header>
       <%= render partial: "layouts/search_lightbox" %>
+      <%= render partial: "layouts/my_page_lightbox" %>
       
       <div class="notice"><%= notice %></div>
       <div class="alert"><%= alert %></div>
