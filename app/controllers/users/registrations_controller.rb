@@ -4,7 +4,6 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # GET /resource/sign_up
   # def new
-  #   @area = area_params
   #   @job = job_params
   # end
 

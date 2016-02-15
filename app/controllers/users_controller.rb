@@ -33,7 +33,6 @@ class UsersController < ApplicationController
 
   def register
     @user = User.find(current_user.id)
-    @sex = sex_params
   end
 
   def confirm_register
@@ -44,7 +43,6 @@ class UsersController < ApplicationController
       @user = User.find(current_user.id)
       @user.username = params[:user][:username]
       @user.birth = params[:user][:birth]
-      @sex = sex_params
       render action: :register and return
     end
   end
@@ -55,14 +53,12 @@ class UsersController < ApplicationController
       @user = User.find(current_user.id)
       @user.username = params[:user][:username]
       @user.birth = params[:user][:birth]
-      @sex = sex_params
       render action: :register and return
     else
       # 正常な処理
       User.find(current_user.id).update(register_params)
       @user = current_user
       @user.absence_trigger = current_user.absence_trigger
-      @area = area_params
       @grade = grade_params
       @job = job_params
     end
@@ -80,7 +76,6 @@ class UsersController < ApplicationController
       @notice = '必須登録情報が入力されていません。'
 
       # セレクトボックス用パラメーター
-      @area = area_params
       @grade = grade_params
       @job = job_params
 

@@ -36,28 +36,6 @@
   <% end %>
 </div>
 
-<%# TODO:あとで削除  ここから（「先輩を探す」メニューからのみ先輩検索を行うので） %>
-<p>先輩に会うメニュー</p>
-<ul>
-    <li><%= link_to '男性', search_supporters_path(sex: "男"), method: :post %></li>
-    <li><%= link_to '女性', search_supporters_path(sex: "女"), method: :post %></li>
-    <li><%= link_to '15〜20歳', search_supporters_path(min_age: 15, max_age: 20), method: :post %></li>
-    <li><%= link_to '21〜25歳', search_supporters_path(min_age: 21, max_age: 25), method: :post %></li>
-    <li><%= link_to '26〜30歳', search_supporters_path(min_age: 26, max_age: 30), method: :post %></li>
-    <li><%= link_to '31〜35歳', search_supporters_path(min_age: 31, max_age: 35), method: :post %></li>
-    <li><%= link_to '36〜40歳', search_supporters_path(min_age: 36, max_age: 40), method: :post %></li>
-    <li><%= link_to '41〜45歳', search_supporters_path(min_age: 41, max_age: 45), method: :post %></li>
-    <li><%= link_to '46〜50歳', search_supporters_path(min_age: 46, max_age: 50), method: :post %></li>
-    <li><%= link_to '51〜55歳', search_supporters_path(min_age: 51, max_age: 55), method: :post %></li>
-    <li><%= link_to '55〜60歳', search_supporters_path(min_age: 56, max_age: 60), method: :post %></li>
-    <li><%= link_to '61歳以上', search_supporters_path(min_age: 61), method: :post %></li>
-</ul>
-<%= form_tag search_supporters_path do %>
-    <%= select_tag :absence_trigger, options_for_select({"学級崩壊" => "classroom", "いじめ" => "harm", "学校への苦手意識" => "antipathy", "先生との関係" => "teacher", "友人関係" => "friendship", "勉強" => "study", "転校・転勤" => "change_school", "育児放棄" => "neglect", "家庭内暴力" => "dv", "経済的理由" => "poverty", "離婚などの親同士の関係" => "parents", "なんとなく" => "no_reason"}), include_blank: true %>
-    <%= submit_tag('検索') %>
-<% end %>
-<%# TODO:あとで削除 ここまで %>
-
 <script>
 //背景色の変更
    $("body").css("background-color","#FFF");
