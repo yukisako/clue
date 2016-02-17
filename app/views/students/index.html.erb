@@ -4,23 +4,47 @@
 
 <%#= render 'shared/search_condition' %>
 
+<div style="text-align: center;">
+  <% #ページネーション開始 %>
+  <%= page_entries_info @students, :entry_name => '生徒の情報' %>
+</div>
 <div class="students-index-profiles">
-  <% @students.each do |st| %>
-  <div class="students-index-profile">
-    <div class="students-index-image">
-      <% if st.avatar.present? %>
-      <%= link_to image_tag(st.avatar(:thumb)), student_path(st.id) %>
-      <% else %>
-      <%= link_to image_tag('top/clue.png', class: "no-image"), student_path(st.id) %>
+  <% if @students.any? %>
+    <div class="container">
+      <% columns_num = 4 %>
+      <% grid_val = 12 / columns_num %>
+      <% @students.each_with_index do | st, i | %>
+        <% if i % columns_num == 0 %>
+          <div class="row">
+        <% end %>
+        <div class="col-md-<%= grid_val %> center-block">
+          <div class="students-index-profile">
+            <div class="students-index-image">
+              <% if st.avatar.present? %>
+                <%= link_to image_tag(st.avatar(:thumb)), student_path(st.id) %>
+              <% else %>
+                <%= link_to image_tag('top/clue.png', class: "no-image"), student_path(st.id) %>
+              <% end %>
+              <p class="area"><%= st.area %></p>
+            </div>
+            <div class="students-index-data">
+              <p><%= link_to st.username, student_path(st.id) %></p>
+              <p><%= st.grade %></p>
+              <p><%= link_to 'ダイアリー', search_diaries_path(user_id: st.id), method: :post %></p>
+            </div>
+          </div>
+        </div>
+        <% if i % columns_num == columns_num - 1 %>
+          </div>
+        <% end %>
+      <% end #@students.each_with_index %>
+      <% if @students.count % columns_num != 0 %>
+        </div>
       <% end %>
-      <p class="area"><%= st.area %></p>
     </div>
-    <div class="students-index-data">
-      <p><%= link_to st.username, student_path(st.id) %></p>
-      <p><%= st.grade %></p>
-      <p><%= link_to 'ダイアリー', search_diaries_path(user_id: st.id), method: :post %></p>
-    </div>
-  </div>
   <% end %>
-<div class="clear"></div>
+</div>
+<div style="text-align: center;">
+  <%= paginate @students %>
+  <% #ページネーション終了 %>
 </div>
