@@ -3,53 +3,53 @@ h1 {
   padding: 5px;
 }
 
-.supporters-index {
-  width: 600px;
-  margin: 20px auto;
-}
-
 .supporters-index-profiles {
-  width: 960px;
   margin: 20px auto;
+  width: 90%;
   text-align: center;
-  .supporters-index-profile {
-    width: 195px;
-    float: left;
-  }
-  .supporters-index-profile:not(:first-child) {
-    margin-left: 60px;
-  }
-  .supporters-index-image {
-    width: 175px;
-    padding: 10px;
-    background: #FF0;
-    position: relative;
-    border-radius:10px;
-    img {
-      width: 80px;
-      border-radius: 50%;
+  
+  .row {
+  
+    .supporters-index-profile {
+      margin-bottom: 20px;
+
+      .supporters-index-image {
+        width: 175px;
+        padding: 10px;
+        background: #FF0;
+        position: relative;
+        border-radius:10px;
+        margin-right: auto;
+        margin-left: auto;
+        img {
+          width: 80px;
+          border-radius: 50%;
+        }
+        .no-image {
+          height: 80px;
+          background: #FFF;
+        }
+        .area {
+          position: absolute;
+          top: 5px;
+          right: 5px;
+        }
+        .price {
+          position: absolute;
+          top: 5px;
+          left: 5px;
+        }
+      }
+      .supporters-index-data {
+        width: 175px;
+        height: 80px;
+        padding: 10px;
+        background: #FFD;
+        margin-right: auto;
+        margin-left: auto;
+        overflow: scroll;
+      }
     }
-    .no-image {
-      height: 80px;
-      background: #FFF;
-    }
-    .area {
-      position: absolute;
-      top: 5px;
-      right: 5px;
-    }
-    .price {
-      position: absolute;
-      top: 5px;
-      left: 5px;
-    }
-  }
-  .supporters-index-data {
-    width: 175px;
-    height: 80px;
-    padding: 10px;
-    background: #FFD;
-    overflow: scroll;
   }
 }
 .clear{

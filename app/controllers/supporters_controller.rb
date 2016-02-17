@@ -1,10 +1,18 @@
 class SupportersController < ApplicationController
   def index
-    @supporters = User.where(user_type: 3).includes(:ticket)
+    @supporters = User.where(user_type: 3)
+                    .includes(:ticket)
+                    .page(params[:page])
   end
   
   def search
-    @supporters = User.where(user_type: 3).search_params("profile", params[:keyword]).search_params("area", params[:area]).search_params("sex", params[:sex]).search_trigger(params[:absence_trigger]).search_age(params[:min_age], params[:max_age])
+    @supporters = User.where(user_type: 3)
+                    .search_params("profile", params[:keyword])
+                    .search_params("area", params[:area])
+                    .search_params("sex", params[:sex])
+                    .search_trigger(params[:absence_trigger])
+                    .search_age(params[:min_age], params[:max_age])
+                    .page(params[:page])
     @param_keyword = "プロフィールに「#{params[:keyword]}」を含む先輩" if params[:keyword].present?
     @param_min_age = "#{params[:min_age]}歳以上" if params[:min_age].present?
     @param_max_age = "#{params[:max_age]}歳以下" if params[:max_age].present?

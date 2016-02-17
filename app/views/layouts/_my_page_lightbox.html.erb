@@ -28,9 +28,11 @@
         </div>
         <div class="row">
           <% if current_user.user_type == 3 %>
-            <div class="col-md-4">
-              <%= link_to 'チケットを編集', edit_ticket_path(current_user.ticket.id) %>
-            </div>
+            <% if current_user.ticket.present? %>
+              <div class="col-md-4">
+                <%= link_to 'チケットを編集', edit_ticket_path(current_user.ticket.id) %>
+              </div>
+            <% end %>
             <div class="col-md-4">
               <%= link_to '振込口座を登録', account_users_path %>
             </div>

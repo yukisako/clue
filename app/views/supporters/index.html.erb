@@ -4,23 +4,47 @@
 
 <%#= render 'shared/search_condition' %>
 
+<div style="text-align: center;">
+  <% #ページネーション開始 %>
+  <%= page_entries_info @supporters, :entry_name => '先輩の情報' %>
+</div>
 <div class="supporters-index-profiles">
-  <% @supporters.each do |sp| %>
-  <div class="supporters-index-profile">
-    <div class="supporters-index-image">
-      <% if sp.avatar.present? %>
-      <%= link_to image_tag(sp.avatar(:thumb)), supporter_path(sp.id) %>
-      <% else %>
-      <%= link_to image_tag('top/clue.png', class: "no-image"), supporter_path(sp.id) %>
+  <% if @supporters.any? %>
+    <div class="container">
+      <% columns_num = 4 %>
+      <% grid_val = 12 / columns_num %>
+      <% @supporters.each_with_index do | sp, i | %>
+        <% if i % columns_num == 0 %>
+          <div class="row">
+        <% end %>
+        <div class="col-md-<%= grid_val %> center-block">
+          <div class="supporters-index-profile">
+            <div class="supporters-index-image">
+              <% if sp.avatar.present? %>
+                <%= link_to image_tag(sp.avatar(:thumb)), supporter_path(sp.id) %>
+              <% else %>
+                <%= link_to image_tag('top/clue.png', class: "no-image"), supporter_path(sp.id) %>
+              <% end %>
+              <p class="area"><%= sp.area %></p>
+            </div>
+            <div class="supporters-index-data">
+              <p><%= link_to sp.username, supporter_path(sp.id) %></p>
+              <p><%= sp.job %></p>
+              <p><%= link_to sp.ticket.title, supporter_path(sp.id) %></p>
+            </div>
+          </div>
+        </div>
+        <% if i % columns_num == columns_num - 1 %>
+          </div>
+        <% end %>
+      <% end #@supporters.each_with_index %>
+      <% if @supporters.count % columns_num != 0 %>
+        </div>
       <% end %>
-      <p class="area"><%= sp.area %></p>
     </div>
-    <div class="supporters-index-data">
-      <p><%= link_to sp.username, supporter_path(sp.id) %></p>
-      <p><%= sp.job %></p>
-      <p><%= link_to sp.ticket.title, supporter_path(sp.id) %></p>
-    </div>
-  </div>
   <% end %>
-<div class="clear"></div>
+</div>
+<div style="text-align: center;">
+  <%= paginate @supporters %>
+  <% #ページネーション終了 %>
 </div>
