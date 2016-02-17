@@ -28,57 +28,11 @@
                   <a class="navbar-brand" href="/"></a>
                 </div>
               </div>
-
-              <div class="collapse navbar-collapse" id="site-menu">
-                <ul class="nav navbar-nav navbar-right">
-                  <% if !user_signed_in? || current_user.user_type != 3 %>
-                    <li>
-                      <%= link_to "#search_supporters", class: "fancybox" do %>
-                        先輩を探す
-                        <span class="caret"></span>
-                      <% end %>
-                    </li>
-                    <li>
-                      <%= form_tag search_supporters_path, class: "navbar-form" do %>
-                        <div class="form-group">
-                          <input type="text" name="keyword" placeholder="先輩を検索" class="form-control">
-                          <button type="submit" class="btn btn-default">検索</button>
-                        </div>
-                      <% end %>
-                    </li>
-                  <% elsif current_user.user_type == 3 %>
-                    <li>
-                      <%= link_to "#search_students", class: "fancybox" do %>
-                        生徒を探す
-                        <span class="caret"></span>
-                      <% end %>
-                    </li>
-                    <li>
-                      <%= form_tag search_students_path, class: "navbar-form", method: :get do %>
-                        <div class="form-group">
-                          <input type="text" name="keyword" placeholder="生徒を検索" class="form-control">
-                          <button type="submit" class="btn btn-default">検索</button>
-                        </div>
-                      <% end %>
-                    </li>
-                  <% end %>
-  
-                  <% unless user_signed_in? %>
-                    <li style="color: #00a0e9 !important;"><%= link_to '>>ログイン', new_user_session_path, class: "header-menu" %></li>
-                    <li style="color: #00a0e9 !important;"><%= link_to '>>初めての方へ', new_user_registration_path, class: "header-menu" %></li>
-                  <% else %>
-                    <li><%= link_to '|E|', events_path %></li>
-                    <li><%= link_to '|M|', messages_path %></li>
-                    <li>
-                      <%= link_to "#my_page_menu", class: "fancybox" do %>
-                        マイページ
-                        <span class="caret"></span>
-                      <% end %>
-                    </li>
-                    <li><%= link_to 'ログアウト', destroy_user_session_path, method: :delete, class: "glyphicon glyphicon-log-out header-menu" %></li>
-                  <% end %>
-                </ul>
-              </div><!-- /.navbar-collapse -->
+      <% if user_signed_in? && current_user.user_type == 0 %>
+        <%= render partial: "layouts/admin_menu" %>
+      <% else %>
+        <%= render partial: "layouts/user_menu" %>
+      <% end %>
             </div><!-- /.container-fluid -->
           </div><!-- /style="background-image -->
         </nav>

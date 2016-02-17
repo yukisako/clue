@@ -1,0 +1,11 @@
+<div class="collapse navbar-collapse" id="site-menu">
+    <ul class="nav navbar-nav navbar-right">
+        <li><%= link_to '新着情報投稿', new_event_path %></li>
+        <li><%= link_to '新着情報管理', events_path %></li>
+        <li><%= link_to 'ユーザー管理', managers_users_path %></li>
+        <li><%= link_to 'メッセージ管理', managers_messages_path %></li>
+        <li><%= link_to '収支管理', managers_account_path %></li>
+        <li><%= link_to '通報アカウント管理', managers_report_path %></li>
+        <li><%= link_to 'ログアウト', destroy_user_session_path, method: :delete, class: "glyphicon glyphicon-log-out header-menu" %></li>
+    </ul>
+</div><!-- /.navbar-collapse -->
