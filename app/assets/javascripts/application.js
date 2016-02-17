@@ -23,7 +23,7 @@ $(document).ready(function() {
     'height': 400,
     'margin': 20,
     'padding': 10,
-    'topRatio': 0.2,
+    'topRatio': 0.1,
     'scrolling': 'auto',
     'autoSize': false
     });

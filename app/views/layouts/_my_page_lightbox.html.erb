@@ -2,35 +2,54 @@
 <div style="display:none;">
   <div id="my_page_menu">
     <h1>マイページ メニュー</h1>
-    <div class="user-show-edit-btn">
-      <ul>
-        <li><%= link_to 'メッセージボックス', messages_path %></li>
-        <li><%= link_to 'ダイアリーを書く', new_diary_path %></li>
-        <li><%= link_to 'ダイアリーを読む', diaries_path %></li>
-      </ul>
-      <ul>
-        <li><%= link_to '申込管理', offers_path %></li>
-        <% if current_user.user_type != 3 %>
-        <% else %>
-          <li><%= link_to '振込口座を登録', account_users_path %></li>
-          <li><%= link_to 'チケットを編集', edit_ticket_path(current_user.ticket.id) %></li>
+    <div class="my-page-menu-btn">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-4">
+            <%= link_to 'プロフィールを見る', user_path(current_user.id) %>
+          </div>
+          <div class="col-md-4">
+            <%= link_to 'プロフィールを編集', edit_user_path(current_user.id) %>
+          </div>
+          <div class="col-md-4">
+            <%= link_to 'アカウント情報を編集', edit_user_registration_path %>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-4">
+            <%= link_to 'ダイアリーを読む', diaries_path %>      
+          </div>
+          <div class="col-md-4">
+            <%= link_to 'ダイアリーを書く', new_diary_path %>
+          </div>
+          <div class="col-md-4">
+            <%= link_to 'メッセージボックス', messages_path %>
+          </div>
+        </div>
+        <div class="row">
+          <% if current_user.user_type == 3 %>
+            <div class="col-md-4">
+              <%= link_to 'チケットを編集', edit_ticket_path(current_user.ticket.id) %>
+            </div>
+            <div class="col-md-4">
+              <%= link_to '振込口座を登録', account_users_path %>
+            </div>
+          <% end %>
+          <div class="col-md-4">
+            <%= link_to '申込管理', offers_path %>     
+          </div>
+        </div>
+        <% if current_user.user_type == 3 %>
+          <div class="row">
+            <div class="col-md-4">
+              <%= link_to '売上を出金', new_payment_path %>
+            </div>
+            <div class="col-md-4">
+              <%= link_to '出金履歴', payments_path %>
+            </div>
+          </div>
         <% end %>
-      </ul>
-      <div class="clear"></div>
-      <ul>
-        <li><%= link_to 'アカウント情報を編集', edit_user_registration_path %></li>
-        <li><%= link_to 'プロフィールを編集', edit_user_path(current_user.id) %></li>
-      </ul>
-      <% if current_user.user_type == 3 %>
-        <ul>
-          <li><%= link_to '出金履歴', payments_path %></li>
-          <li><%= link_to '売上を出金', new_payment_path %></li>
-        </ul>
-      <% end %>
-      <div class="clear"></div>
-      <ul>
-        <li><%= link_to 'プロフィールを見る', user_path(current_user.id) %></li>
-      </ul>
+      </div>
     </div>
   </div>
 </div>
