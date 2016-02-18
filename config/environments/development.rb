@@ -15,17 +15,11 @@ Rails.application.configure do
 
   # Don't care if the mailer can't send.
   config.action_mailer.raise_delivery_errors = true
-  # config.action_mailer.default_url_options = { host: 'https://clue-midwhite-1.c9users.io'}
-  config.action_mailer.default_url_options = { host: ENV['APP_DOMAIN']}
-  config.action_mailer.smtp_settings = {
-    :enable_starttls_auto => true,
-    :address => "smtp.gmail.com",
-    :port => 587,
-    :domain => 'smtp.gmail.com',
-    :user_name => ENV['GMAIL_ADDR'], #gmailアドレス
-    :password => ENV['GMAIL_PASS'], #gmailパスワード
-    :authentication => 'login',
-  }
+  config.host = ENV["C9_HOSTNAME"]
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = { :address => "localhost", :port => 1025 }
+  config.action_mailer.default_options = {from: "no-reply@#{config.host}"}
+  config.action_mailer.default_url_options = { host: config.host }
 
   # Print deprecation notices to the Rails logger.
   config.active_support.deprecation = :log
