@@ -62,12 +62,13 @@ Rails.application.routes.draw do
     get :index
     resources :users, only: [:index, :show, :edit, :update, :destroy]
     resources :messages, only: [:index, :show]
+    resources :events, only: [:new, :index, :edit, :update, :destroy]
     get :report
     get :account
   end
 
   resources :offers
-  resources :events
+  resources :events, only: [:index,:show]
   resources :messages, except: [:edit, :update]
   resources :accounts, except: [:index, :show]
   resources :payments, only: [:index, :new, :create]
