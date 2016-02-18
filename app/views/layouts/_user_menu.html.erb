@@ -9,10 +9,8 @@
                     </li>
                     <li>
                       <%= form_tag search_supporters_path, class: "navbar-form" do %>
-                        <div class="form-group">
-                          <input type="text" name="keyword" placeholder="先輩を検索" class="form-control">
-                          <button type="submit" class="btn btn-default">検索</button>
-                        </div>
+                        <input type="text" name="keyword" placeholder="先輩を検索" class="form-control">
+                        <button type="submit" class="btn btn-default">検索</button>
                       <% end %>
                     </li>
                   <% elsif current_user.user_type == 3 %>
@@ -24,27 +22,25 @@
                     </li>
                     <li>
                       <%= form_tag search_students_path, class: "navbar-form", method: :get do %>
-                        <div class="form-group">
-                          <input type="text" name="keyword" placeholder="生徒を検索" class="form-control">
-                          <button type="submit" class="btn btn-default">検索</button>
-                        </div>
+                        <input type="text" name="keyword" placeholder="生徒を検索" class="form-control">
+                        <button type="submit" class="btn btn-default">検索</button>
                       <% end %>
                     </li>
                   <% end %>
   
                   <% unless user_signed_in? %>
-                    <li style="color: #00a0e9 !important;"><%= link_to '>>ログイン', new_user_session_path, class: "header-menu" %></li>
-                    <li style="color: #00a0e9 !important;"><%= link_to '>>初めての方へ', new_user_registration_path, class: "header-menu" %></li>
+                    <li><%= link_to '', new_user_session_path, class: "fa fa-sign-in fa-2x header-menu", data: {toggle: "tooltip", placement: "bottom" }, title: "ログイン" %></li>
+                    <li style="color: #00a0e9 !important;"><%= link_to '', new_user_registration_path, class: "fa fa-question-circle fa-2x header-menu", data: {toggle: "tooltip", placement: "bottom" }, title: "初めての方へ" %></li>
                   <% else %>
-                    <li><%= link_to '|E|', events_path %></li>
-                    <li><%= link_to '|M|', messages_path %></li>
+                    <li><%= link_to '', events_path, class:"fa fa-newspaper-o fa-2x", data: {toggle: "tooltip", placement: "bottom" }, title: "新着情報" %></li>
+                    <li><%= link_to '', messages_path, class:"fa fa-comments-o fa-2x", data: {toggle: "tooltip", placement: "bottom" }, title: "メッセージ" %></li>
                     <li>
                       <%= link_to "#my_page_menu", class: "fancybox" do %>
                         マイページ
                         <span class="caret"></span>
                       <% end %>
                     </li>
-                    <li><%= link_to 'ログアウト', destroy_user_session_path, method: :delete, class: "glyphicon glyphicon-log-out header-menu" %></li>
+                    <li><%= link_to '', destroy_user_session_path, method: :delete, class: "fa fa-sign-out fa-2x header-menu", data: {toggle: "tooltip", placement: "bottom" }, title: "ログアウト" %></li>
                   <% end %>
                 </ul>
               </div><!-- /.navbar-collapse -->
