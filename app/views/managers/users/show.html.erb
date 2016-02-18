@@ -1,95 +1,117 @@
 <div class="nav">
-    <%= link_to 'TOP', root_path %> > <%= link_to '管理者', managers_index_path %> > <%= link_to 'ユーザー管理', managers_users_path %> > ユーザー詳細
+    <%= link_to 'TOP', managers_index_path %> > <%= link_to 'ユーザー管理', managers_users_path %> > ユーザー詳細
 </div>
-<h1>ユーザー詳細</h1>
-<% if @user.avatar?%>
-    <p><%= image_tag(@user.avatar(:thumb)) %></p>
-<% end %>
-<table>
-    <tr>
-        <th>氏名</th>
-        <td><%= @user.name %></td>
-    </tr>
-    <tr>
-        <th>性別</th>
-        <td><%= @user.sex %></td>
-    </tr>
-    <tr>
-        <th>生年月日</th>
-        <td><%= @user.birth.strftime("%Y年%m月%d日") %>（<%= @user.age %>歳）</td>
-    </tr>
-    <tr>
-        <th>郵便番号</th>
-        <td><%= @user.post_number %></td>
-    </tr>
-    <tr>
-        <th>地域</th>
-        <td><%= @user.area %></td>
-    </tr>
-    <tr>
-        <th>住所</th>
-        <td><%= @user.address %></td>
-    </tr>
-    <tr>
-        <th>電話番号</th>
-        <td><%= @user.tel %></td>
-    </tr>
-    <tr>
-        <th>学校</th>
-        <td><%= @user.school %></td>
-    </tr>
-    <tr>
-        <th>学年</th>
-        <td><%= @user.grade %></td>
-    </tr>
-    <tr>
-        <th>職業</th>
-        <td><%= @user.job %></td>
-    </tr>
-    <tr>
-        <th>学校に行かなくなった時期</th>
-        <td><%= @user.absent_span %></td>
-    </tr>
-    <tr>
-        <th>プロフィール</th>
-        <td><%= simple_format(h(@user.profile)) %></td>
-    </tr>
-    <tr>
-        <th>LINE ID</th>
-        <td><%= @user.line_id %></td>
-    </tr>
-    <tr>
-        <th>メールアドレス</th>
-        <td><%= @user.email %></td>
-    </tr>
-    <tr>
-        <th>お知らせメール</th>
-        <% if @user.permit_info_mail == 1 %>
-        <td>受け取る</td>
-        <% else %>
-        <td>不要</td>
-        <% end %>
-    </tr>
-    <tr>
-        <th>通報回数</th>
-        <td><%= @user.reported %>回</td>
-    </tr>
+
+<div class="container">
+
+    <h1>ユーザー詳細</h1>
+
+    <div class="row">
+        <div class="col-sm-offset-1 col-sm-3">
+        <%= button_to '編集', edit_managers_user_path(@user.id), class:"btn btn-primary", method: :get %>
+        </div>
+        <div class="col-sm-3">
+        <%= button_to '削除', managers_user_path(@user.id), class:"btn btn-danger", method: :delete %>
+        </div>
+    </div>
+
+    <% if @user.avatar?%>
+        <p><%= image_tag(@user.avatar(:thumb)) %></p>
+    <% end %>
+
+    <table>
+        <tr>
+            <th>氏名</th>
+            <td><%= @user.name %></td>
+        </tr>
+        <tr>
+            <th>性別</th>
+            <td><%= @user.sex %></td>
+        </tr>
+        <tr>
+            <th>生年月日</th>
+            <td><%= @user.birth.strftime("%Y年%m月%d日") %>（<%= @user.age %>歳）</td>
+        </tr>
+        <tr>
+            <th>郵便番号</th>
+            <td><%= @user.post_number %></td>
+        </tr>
+        <tr>
+            <th>地域</th>
+            <td><%= @user.area %></td>
+        </tr>
+        <tr>
+            <th>住所</th>
+            <td><%= @user.address %></td>
+        </tr>
+        <tr>
+            <th>電話番号</th>
+            <td><%= @user.tel %></td>
+        </tr>
+        <tr>
+            <th>学校</th>
+            <td><%= @user.school %></td>
+        </tr>
+        <tr>
+            <th>学年</th>
+            <td><%= @user.grade %></td>
+        </tr>
+        <tr>
+            <th>職業</th>
+            <td><%= @user.job %></td>
+        </tr>
+        <tr>
+            <th>学校に行かなくなった時期</th>
+            <td><%= @user.absent_span %></td>
+        </tr>
+        <tr>
+            <th>プロフィール</th>
+            <td><%= simple_format(h(@user.profile)) %></td>
+        </tr>
+        <tr>
+            <th>LINE ID</th>
+            <td><%= @user.line_id %></td>
+        </tr>
+        <tr>
+            <th>メールアドレス</th>
+            <td><%= @user.email %></td>
+        </tr>
+        <tr>
+            <th>お知らせメール</th>
+            <% if @user.permit_info_mail == 1 %>
+            <td>受け取る</td>
+            <% else %>
+            <td>不要</td>
+            <% end %>
+        </tr>
+        <tr>
+            <th>通報回数</th>
+            <td><%= @user.reported %>回</td>
+        </tr>
     <% if @accounts.present? %>
-    <% @accounts.each.with_index(1) do |ac, i| %>
-    <tr>
-        <th>銀行（<%= i %>）</th>
-        <td><%= ac.bank_name %>銀行</td>
-    </tr>
-    <tr>
-        <th>支店名（<%= i %>）</th>
-        <td><%= ac.store_name %>支店</td>
-    </tr>
-    <tr>
-        <th>口座番号（<%= i %>）</th>
-        <td><%= ac.account_id %></td>
-    </tr>
+        <% @accounts.each.with_index(1) do |ac, i| %>
+        <tr>
+            <th>銀行（<%= i %>）</th>
+            <td><%= ac.bank_name %>銀行</td>
+        </tr>
+        <tr>
+            <th>支店名（<%= i %>）</th>
+            <td><%= ac.store_name %>支店</td>
+        </tr>
+        <tr>
+            <th>口座番号（<%= i %>）</th>
+            <td><%= ac.account_id %></td>
+        </tr>
+        <% end %>
     <% end %>
-    <% end %>
-</table>
-<p><%= link_to '編集', edit_managers_user_path(@user.id) %></p>
-<p><%= link_to '削除', managers_user_path(@user.id), method: :delete %></p>
+    </table>
+
+    <div class="row">
+        <div class="col-sm-offset-1 col-sm-3">
+        <%= button_to '編集', edit_managers_user_path(@user.id), class:"btn btn-primary", method: :get %>
+        </div>
+        <div class="col-sm-3">
+        <%= button_to '削除', managers_user_path(@user.id), class:"btn btn-danger", method: :delete %>
+        </div>
+    </div>
+</div>
