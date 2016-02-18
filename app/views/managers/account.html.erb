@@ -1,7 +1,24 @@
-<div class="manager-account">
-    <h1>収支情報</h1>
-    <h2>集計情報</h2>
-    <table>
+<div class="nav">
+  <%= link_to 'TOP', managers_index_path %> > 収支管理
+</div>
+
+<!--<div class="manager-account">-->
+<div class="container">
+
+  <h1>収支管理</h1>
+
+  <ul class="nav nav-tabs">
+    <li class="active"><a data-toggle="tab" href="#total-information">集計情報</a></li>
+    <li><a data-toggle="tab" href="#ticket-sales-information">チケット販売情報</a></li>
+    <li><a data-toggle="tab" href="#ticket-sales-history">チケット販売履歴</a></li>
+    <li><a data-toggle="tab" href="#payment-information">出金情報</a></li>
+    <li><a data-toggle="tab" href="#withdrawal-history">出金履歴</a></li>
+  </ul>
+  
+  <div class="tab-content">
+    <div id="total-information" class="tab-pane fade in active">
+        <!--<h2>集計情報</h2>-->
+        <table>
             <tr>
                 <th>仮払額残高</th>
                 <td><%= number_to_currency(@sales.sum(:price) - @offers.sum(:price)) %></td>
@@ -22,90 +39,102 @@
                 <th>出金手数料</th>
                 <td><%= number_to_currency(@payments.count * 500) %></td>
             </tr>
-        <tr>
-            <th>出金可能残高</th>
-            <td><%= number_to_currency(@offers.payed.sum(:price) * 0.7 - @payments.sum(:amount)) %></td>
-        </tr>
-    </table>
+            <tr>
+                <th>出金可能残高</th>
+                <td><%= number_to_currency(@offers.payed.sum(:price) * 0.7 - @payments.sum(:amount)) %></td>
+            </tr>
+        </table>
+    </div><!-- //end of #total-information -->
+    
+    <div id="ticket-sales-information" class="tab-pane fade">
+        <!--<h2>チケット販売情報</h2>-->
+        <table>
+            <tr>
+                <th>累計販売枚数</th>
+                <td><%= @sales.count %>枚</td>
+            </tr>
+            <tr>
+                <th>累計販売時間</th>
+                <td><%= @sales.sum(:length) %>時間</td>
+            </tr>
+            <tr>
+                <th>平均単価</th>
+                <td><%= number_to_currency(@sales.sum(:price) / @sales.count) if @sales.count > 0 %>／枚</td>
+            </tr>
+            <tr>
+                <th>平均単価</th>
+                <td><%= number_to_currency(@sales.sum(:price) / @sales.sum(:length)) if @sales.sum(:length) > 0 %>／時間</td>
+            </tr>
+        </table>
+    </div><!-- //end of #ticket-sales-information -->
+    
+    <div id="ticket-sales-history" class="tab-pane fade">
+        <!--<h2>チケット販売履歴</h2>-->
+        <table>
+            <thead>
+                <tr>
+                    <th>確定日</th>
+                    <th>申込日</th>
+                    <th>販売額</th>
+                    <th>地域</th>
+                    <th>販売者</th>
+                    <th>購入者</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% @offers.each do |offer| %>
+                <tr>
+                    <td><%= offer.meet_at.strftime("%Y年%m月%d日 %H時%M分") %></td>
+                    <td><%= offer.created_at.strftime("%Y年%m月%d日 %H時%M分") %></td>
+                    <td><%= offer.price %></td>
+                    <td><%= offer.area %></td>
+                    <td><%= link_to offer.ticket.user.username, managers_user_path(offer.ticket.user_id) %></td>
+                    <td><%= link_to offer.user.username, managers_user_path(offer.user_id) %></td>
+                </tr>
+                <% end %>
+            </tbody>
+        </table>
+    </div><!-- //end of #ticket-sales-history -->
+    
+    <div id="payment-information" class="tab-pane fade">
+        <!--<h2>出金情報</h2>-->
+        <table>
+            <tr>
+                <th>累計出金回数</th>
+                <td><%= @payments.count %>回</td>
+            </tr>
+            <tr>
+                <th>累計出金回数</th>
+                <td><%= @payments.count %>回</td>
+            </tr>
+            <tr>
+                <th>累計手数料</th>
+                <td><%= number_to_currency(@payments.count * 500) %></td>
+            </tr>
+        </table>
+    </div><!-- //end of #payment-information -->
 
-    <h2>チケット販売情報</h2>
-    <table>
-        <tr>
-            <th>累計販売枚数</th>
-            <td><%= @sales.count %>枚</td>
-        </tr>
-        <tr>
-            <th>累計販売時間</th>
-            <td><%= @sales.sum(:length) %>時間</td>
-        </tr>
-        <tr>
-            <th>平均単価</th>
-            <td><%= number_to_currency(@sales.sum(:price) / @sales.count) %>／枚</td>
-        </tr>
-        <tr>
-            <th>平均単価</th>
-            <td><%= number_to_currency(@sales.sum(:price) / @sales.sum(:length)) %>／時間</td>
-        </tr>
-    </table>
+    <div id="withdrawal-history" class="tab-pane fade">
+        <!--<h2>出金履歴</h2>-->
+        <table>
+            <thead>
+                <tr>
+                    <th>出金申請日</th>
+                    <th>出金者</th>
+                    <th>出金額</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% @payments.each do |pay| %>
+                <tr>
+                    <td><%= pay.created_at.strftime("%Y年%m月%d日 %H時%M分") %></td>
+                    <td><%= link_to pay.user.username, managers_user_path(pay.user_id) %></td>
+                    <td><%= pay.amount %></td>
+                </tr>
+                <% end %>
+            </tbody>
+        </table>
+    </div><!-- //end of #withdrawal-history -->
 
-    <h2>チケット販売履歴</h2>
-    <table>
-        <thead>
-            <tr>
-                <th>確定日</th>
-                <th>申込日</th>
-                <th>販売額</th>
-                <th>地域</th>
-                <th>販売者</th>
-                <th>購入者</th>
-            </tr>
-        </thead>
-        <tbody>
-            <% @offers.each do |offer| %>
-            <tr>
-                <td><%= offer.meet_at.strftime("%Y年%m月%d日 %H時%M分") %></td>
-                <td><%= offer.created_at.strftime("%Y年%m月%d日 %H時%M分") %></td>
-                <td><%= offer.price %></td>
-                <td><%= offer.area %></td>
-                <td><%= link_to offer.ticket.user.username, managers_user_path(offer.ticket.user_id) %></td>
-                <td><%= link_to offer.user.username, managers_user_path(offer.user_id) %></td>
-            </tr>
-            <% end %>
-        </tbody>
-    </table>
-
-    <h2>出金情報</h2>
-    <table>
-        <tr>
-            <th>累計出金回数</th>
-            <td><%= @payments.count %>回</td>
-        </tr>
-        <tr>
-            <th>累計出金回数</th>
-            <td><%= @payments.count %>回</td>
-        </tr>
-        <tr>
-            <th>累計手数料</th>
-            <td><%= number_to_currency(@payments.count * 500) %></td>
-        </tr>
-    </table>
-    <h2>出金履歴</h2>
-    <table>
-        <thead>
-            <tr>
-                <th>出金申請日</th>
-                <th>出金者</th>
-                <th>出金額</th>
-            </tr>
-        </thead>
-        <tbody>
-            <% @payments.each do |pay| %>
-            <tr>
-                <td><%= pay.created_at.strftime("%Y年%m月%d日 %H時%M分") %></td>
-                <td><%= link_to pay.user.username, managers_user_path(pay.user_id) %></td>
-                <td><%= pay.amount %></td>
-            </tr>
-            <% end %>
-        </tbody>
-    </table>
-</div>
+  </div><!-- //end of .tab-content -->
+</div><!-- //end of .container -->

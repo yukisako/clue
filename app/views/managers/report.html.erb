@@ -1,7 +1,10 @@
 <div class="nav">
-    <%= link_to 'TOP', root_path %> > <%= link_to '管理者', managers_index_path %> > 通報アカウント管理
+    <%= link_to 'TOP', managers_index_path %> > 通報アカウント管理
 </div>
-<div class="manager-report">
+
+<!--<div class="manager-report">-->
+<div class="container">
+    
     <h1>通報アカウント管理</h1>
     <table>
         <thead>
@@ -33,5 +36,4 @@
         <% end %>
         </tbody>
     </table>
-    <p><%= link_to '戻る', :back %></p>
 </div>
