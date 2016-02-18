@@ -6,6 +6,6 @@
         <li><%= link_to 'メッセージ管理', managers_messages_path %></li>
         <li><%= link_to '収支管理', managers_account_path %></li>
         <li><%= link_to '通報アカウント管理', managers_report_path %></li>
-        <li><%= link_to 'ログアウト', destroy_user_session_path, method: :delete, class: "glyphicon glyphicon-log-out header-menu" %></li>
+        <li><%= link_to '', destroy_user_session_path, method: :delete, class: "fa fa-sign-out fa-2x header-menu", data: {toggle: "tooltip", placement: "bottom" }, title: "ログアウト" %></li>
     </ul>
 </div><!-- /.navbar-collapse -->
