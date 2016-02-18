@@ -12,18 +12,20 @@
       <th class="col-xs-4">内容</th>
       <th class="col-xs-3">開催日時</th>
       <th class="col-xs-1">参加費</th>
+      <th class="col-xs-1">操作</th>
     </tr>
   </thead>
   <tbody>
 <% @events.each do |ev| %>
     <tr>
-      <td><%= link_to ev.title.truncate(24), event_path(ev.id) %></td>
+      <td><%= ev.title.truncate(24) %></td>
       <td><%= ev.content.truncate(24) %></td>
       <td><%= ev.held_at.strftime("%Y年%m月%d日 %H時%M分") %></td>
       <td><%= number_to_currency( ev.price, :format => "%u%n", :unit =>"￥") %></td>
+      <td><%= link_to '編集', edit_managers_event_path(ev.id) %></td>
     </tr>
 <% end %>
   </tbody>
 </table>
-
+  
 </div>
