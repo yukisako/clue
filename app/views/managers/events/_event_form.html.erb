@@ -1,0 +1,50 @@
+<%= render 'shared/validate_error', object: @event %>
+
+<%= form_for [:managers,@event], :html => {:class => "form-horizontal"} do |f| %>
+
+  <div class="form-group">
+    <label class="col-sm-1 control-label">タイトル</label>
+    <div class="col-sm-8">
+      <%= f.text_field :title, size: 80, class:"form-control", placeholder:"タイトル" %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label class="col-sm-1 control-label">内容</label>
+    <div class="col-sm-8">
+      <%= f.text_area :content, size: '80x10', class:"form-control", placeholder:"内容" %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :held_at, '開催日時', class:"col-sm-1 control-label" %>
+    <div class="col-sm-4">
+      <%= f.datetime_select :held_at, minute_step: 15, class:"form-control" %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :image, '画像', class:"col-sm-1 control-label" %>
+    <div class="col-sm-4">
+      <div class="input-group">
+        <%= f.file_field :image, class:"form-control" %>
+      </div>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label class="col-sm-1 control-label">参加費</label>
+    <div class="col-sm-2">
+      <div class="input-group">
+        <%= f.number_field :price, class:"form-control", placeholder:"" %>
+        <div class="input-group-addon">円</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <div class="col-sm-2 col-sm-offset-1">
+      <%= f.submit '投稿', class:"form-control" %>
+    </div>
+  </div>
+<% end %>

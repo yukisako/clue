@@ -2,57 +2,6 @@
   <%= link_to 'TOP', managers_index_path %> > 新着情報投稿
 </div>
 
-<div class="container">
-  
 <h1>新着情報投稿</h1>
 
-<%= form_for [:managers,@event], :html => {:class => "form-horizontal"} do |f| %>
-
-  <div class="form-group">
-    <%= f.label :title, 'タイトル', class:"col-sm-1 control-label" %>
-    <div class="col-sm-8">
-      <%= f.text_field :title, size: 80, class:"form-control", placeholder:"タイトル" %>
-    </div>
-  </div>
-
-  <div class="form-group">
-    <%= f.label :content, '内容', class:"col-sm-1 control-label" %>
-    <div class="col-sm-8">
-      <%= f.text_area :content, size: '80x10', class:"form-control", placeholder:"内容" %>
-    </div>
-  </div>
-
-  <div class="form-group">
-    <%= f.label :held_at, '開催日時', class:"col-sm-1 control-label" %>
-    <div class="col-sm-4">
-      <%= f.datetime_select :held_at, minute_step: 15, class:"form-control" %>
-    </div>
-  </div>
-
-  <div class="form-group">
-    <%= f.label :image, '画像', class:"col-sm-1 control-label" %>
-    <div class="col-sm-4">
-      <div class="input-group">
-        <%= f.file_field :image, class:"form-control" %>
-      </div>
-    </div>
-  </div>
-
-  <div class="form-group">
-    <%= f.label :price, '参加費', class:"col-sm-1 control-label" %>
-    <div class="col-sm-2">
-      <div class="input-group">
-          <%= f.number_field :price, class:"form-control", placeholder:"0" %>
-          <div class="input-group-addon">円</div>
-      </div>
-    </div>
-  </div>
-
-  <div class="form-group">
-    <div class="col-sm-2 col-sm-offset-1">
-      <%= f.submit '投稿', class:"form-control" %>
-    </div>
-  </div>
-<% end %>
-
-</div>
+<%= render 'event_form' %>
