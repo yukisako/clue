@@ -30,7 +30,7 @@
             <div class="supporters-index-data">
               <p><%= link_to sp.username, supporter_path(sp.id) %></p>
               <p><%= sp.job %></p>
-              <p><%= link_to sp.ticket.title, supporter_path(sp.id) %></p>
+              <p><%= link_to sp.ticket.title, supporter_path(sp.id) if sp.ticket.present? %></p>
             </div>
           </div>
         </div>

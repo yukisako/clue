@@ -25,7 +25,10 @@ class SupportersController < ApplicationController
     @supporter = User.find(params[:id])
     @ticket = @supporter.ticket
     @review = Review.new
-    @reviews = Review.where(ticket_id: @ticket.id).order(created_at: :desc).includes(:user)
+    @reviews = Array.new;
+    if @ticket.present?
+      @reviews = Review.where(ticket_id: @ticket.id).order(created_at: :desc).includes(:user)
+    end
     @reputation = reputation_params
     @trigger = @supporter.absence_trigger
     @triggers = true_triggers(@trigger) if @trigger.present?
