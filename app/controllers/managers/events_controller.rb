@@ -21,8 +21,13 @@ class Managers::EventsController < ApplicationController
   end
 
   def create
-    Event.create(submit_params)
-    redirect_to action: :index
+    @event = Event.create(submit_params)
+    if @event.save
+      redirect_to managers_events_url, notice: 'イベントを作成しました'
+    else
+      flash.now[:alert] = "必須情報の入力が必要です"
+      render 'new'
+    end
   end
 
   def edit
@@ -30,8 +35,13 @@ class Managers::EventsController < ApplicationController
   end
 
   def update
-    Event.find(params[:id]).update(submit_params)
-    redirect_to action: :index
+    @event = Event.find(params[:id])
+    if @event.update_attributes(submit_params)
+      redirect_to managers_events_url, notice: 'イベントを更新しました'
+    else
+      flash.now[:alert] = "必須情報の入力が必要です"
+      render 'edit'
+    end
   end
 
   def destroy

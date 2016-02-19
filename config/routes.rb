@@ -62,7 +62,7 @@ Rails.application.routes.draw do
     get :index
     resources :users, only: [:index, :show, :edit, :update, :destroy]
     resources :messages, only: [:index, :show]
-    resources :events, only: [:new, :index, :edit, :update, :destroy]
+    resources :events, only: [:new, :create, :index, :edit, :update, :destroy]
     get :report
     get :account
   end

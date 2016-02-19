@@ -29,3 +29,9 @@ $(document).ready(function() {
     'autoSize': false
     });
 });
+
+$(function(){
+  window.setTimeout(function(){
+    $('.alert-info').slideUp(500);
+  }, 3000);
+});

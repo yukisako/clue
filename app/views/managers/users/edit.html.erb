@@ -2,95 +2,94 @@
     <%= link_to 'TOP', managers_index_path %> > <%= link_to 'ユーザー管理', managers_users_path %> > <%= link_to 'ユーザー詳細', managers_user_path(@user.id) %> > ユーザー編集
 </div>
 
-<div class="container">
+<h1>ユーザー情報の編集</h1>
+
+<%= render 'shared/validate_error', object: @user %>
 
 <%= form_for @user, url: managers_user_path(params[:id]), method: :put do |f| %>
     
-    <h1>ユーザー情報の編集</h1>
-
-    <div class="row">
-        <div class="col-sm-offset-1">
-        <%= f.submit '更新', class:"btn btn-primary" %>
-        </div>
+<div class="row">
+    <div class="col-sm-offset-1">
+    <%= f.submit '更新', class:"btn btn-primary" %>
     </div>
-
-    <table>
-        <tr>
-            <th>画像</th>
-            <td><%= f.file_field :name %></td>
-        </tr>
-        <tr>
-            <th>氏名</th>
-            <td><%= f.text_field :family_name, size: 10 %> <%= f.text_field :first_name, size: 10 %></td>
-        </tr>
-        <tr>
-            <th>ヨミガナ</th>
-            <td><%= f.text_field :family_name_kana, size: 10 %> <%= f.text_field :first_name_kana, size: 10 %></td>
-        </tr>
-        <tr>
-            <th>性別</th>
-            <td><%= f.select :sex, @param_sex %></td>
-        </tr>
-        <tr>
-            <th>生年月日</th>
-            <td><%= f.date_field :birth %></td>
-        </tr>
-        <tr>
-            <th>郵便番号</th>
-            <td><%= f.text_field :post_number %></td>
-        </tr>
-        <tr>
-            <th>地域</th>
-            <td><%= f.select :area, @area %></td>
-        </tr>
-        <tr>
-            <th>住所</th>
-            <td><%= f.text_field :address %></td>
-        </tr>
-        <tr>
-            <th>電話番号</th>
-            <td><%= f.text_field :tel %></td>
-        </tr>
-        <tr>
-            <th>学校</th>
-            <td><%= f.text_field :school %></td>
-        </tr>
-        <tr>
-            <th>学年</th>
-            <td><%= f.select :grade, @grade %></td>
-        </tr>
-        <tr>
-            <th>職業</th>
-            <td><%= f.select :job, @job %></td>
-        </tr>
-        <tr>
-            <th>学校に行かなくなった時期</th>
-            <td><%= f.select :absent_span, @grade %></td>
-        </tr>
-        <tr>
-            <th>プロフィール</th>
-            <td><%= f.text_area :profile %></td>
-        </tr>
-        <tr>
-            <th>LINE ID</th>
-            <td><%= f.text_field :line_id %></td>
-        </tr>
-        <tr>
-            <th>メールアドレス</th>
-            <td><%= f.text_field :email %></td>
-        </tr>
-        <tr>
-            <th>お知らせメール</th>
-            <td><%= f.select :permit_info_mail, [['Clueの情報をメールで受け取る', 1], ['お知らせメールを受けとらない', 0]] %></td>
-        </tr>
-    </table>
-
-    <div class="row">
-        <div class="col-sm-offset-1">
-        <%= f.submit '更新', class:"btn btn-primary" %>
-        </div>
-    </div>
-
-    <% end %>
-
 </div>
+
+<table>
+    <tr>
+        <th>画像</th>
+        <td><%= f.file_field :name %></td>
+    </tr>
+    <tr>
+        <th>氏名</th>
+        <td><%= f.text_field :family_name, size: 10 %> <%= f.text_field :first_name, size: 10 %></td>
+    </tr>
+    <tr>
+        <th>ヨミガナ</th>
+        <td><%= f.text_field :family_name_kana, size: 10 %> <%= f.text_field :first_name_kana, size: 10 %></td>
+    </tr>
+    <tr>
+        <th>性別</th>
+        <td><%= f.select :sex, @param_sex %></td>
+    </tr>
+    <tr>
+        <th>生年月日</th>
+        <td><%= f.date_field :birth %></td>
+    </tr>
+    <tr>
+        <th>郵便番号</th>
+        <td><%= f.text_field :post_number %></td>
+    </tr>
+    <tr>
+        <th>地域</th>
+        <td><%= f.select :area, @area %></td>
+    </tr>
+    <tr>
+        <th>住所</th>
+        <td><%= f.text_field :address %></td>
+    </tr>
+    <tr>
+        <th>電話番号</th>
+        <td><%= f.text_field :tel %></td>
+    </tr>
+    <tr>
+        <th>学校</th>
+        <td><%= f.text_field :school %></td>
+    </tr>
+    <tr>
+        <th>学年</th>
+        <td><%= f.select :grade, @grade %></td>
+    </tr>
+    <tr>
+        <th>職業</th>
+        <td><%= f.select :job, @job %></td>
+    </tr>
+    <tr>
+        <th>学校に行かなくなった時期</th>
+        <td><%= f.select :absent_span, @grade %></td>
+    </tr>
+    <tr>
+        <th>プロフィール</th>
+        <td><%= f.text_area :profile %></td>
+    </tr>
+    <tr>
+        <th>LINE ID</th>
+        <td><%= f.text_field :line_id %></td>
+    </tr>
+    <tr>
+        <th>メールアドレス</th>
+        <td><%= f.text_field :email %></td>
+    </tr>
+    <tr>
+        <th>お知らせメール</th>
+        <td><%= f.select :permit_info_mail, [['Clueの情報をメールで受け取る', 1], ['お知らせメールを受けとらない', 0]] %></td>
+    </tr>
+</table>
+
+<div class="row">
+    <div class="col-sm-offset-1">
+    <%= f.submit '更新', class:"btn btn-primary" %>
+    </div>
+</div>
+
+<% end %>
+
