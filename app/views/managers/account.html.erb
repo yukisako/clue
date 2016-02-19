@@ -86,10 +86,18 @@
                 <tr>
                     <td><%= offer.meet_at.strftime("%Y年%m月%d日 %H時%M分") %></td>
                     <td><%= offer.created_at.strftime("%Y年%m月%d日 %H時%M分") %></td>
-                    <td><%= offer.price %></td>
+                    <td><%= number_to_currency(offer.price) %></td>
                     <td><%= offer.area %></td>
-                    <td><%= link_to offer.ticket.user.username, managers_user_path(offer.ticket.user_id) %></td>
-                    <td><%= link_to offer.user.username, managers_user_path(offer.user_id) %></td>
+                    <td>
+                        <% if offer.ticket %>
+                        <%= link_to offer.ticket.user.username, managers_user_path(offer.ticket.user_id) %>
+                        <% end %>
+                    </td>
+                    <td>
+                        <% if offer.user %>
+                        <%= link_to offer.user.username, managers_user_path(offer.user_id) %>
+                        <% end %>
+                    </td>
                 </tr>
                 <% end %>
             </tbody>
@@ -129,7 +137,7 @@
                 <tr>
                     <td><%= pay.created_at.strftime("%Y年%m月%d日 %H時%M分") %></td>
                     <td><%= link_to pay.user.username, managers_user_path(pay.user_id) %></td>
-                    <td><%= pay.amount %></td>
+                    <td><%= number_to_currency(pay.amount) %></td>
                 </tr>
                 <% end %>
             </tbody>
