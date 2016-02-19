@@ -28,11 +28,7 @@
                   <a class="navbar-brand" href="/"></a>
                 </div>
               </div>
-      <% if user_signed_in? && current_user.user_type == 0 %>
-        <%= render partial: "layouts/admin_menu" %>
-      <% else %>
-        <%= render partial: "layouts/user_menu" %>
-      <% end %>
+              <%= render partial: "layouts/user_menu" %>
             </div><!-- /.container-fluid -->
           </div><!-- /style="background-image -->
         </nav>
