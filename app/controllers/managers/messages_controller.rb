@@ -1,5 +1,7 @@
 class Managers::MessagesController < ApplicationController
+  layout 'admin'
   before_action :authenticate_user!
+
   def index
     @messages = Message.order(updated_at: :desc)
     @count = @messages.count

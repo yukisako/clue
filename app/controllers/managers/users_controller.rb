@@ -1,5 +1,7 @@
 class Managers::UsersController < ApplicationController
+  layout 'admin'
   before_action :authenticate_user!
+
   def index
     @users = User.all
     @students = @users.where(user_type: 1)
