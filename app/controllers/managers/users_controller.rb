@@ -2,7 +2,10 @@ class Managers::UsersController < ApplicationController
   layout 'admin'
   before_action :authenticate_user!
 
+  add_breadcrumb '管理トップ', :managers_index_path
+
   def index
+    add_breadcrumb 'ユーザー管理'
     @users = User.all
     @students = @users.where(user_type: 1)
     @parents = @users.where(user_type: 2)
@@ -16,12 +19,17 @@ class Managers::UsersController < ApplicationController
     if @user.accounts.present?
       @accounts = @user.accounts
     end
+    add_breadcrumb 'ユーザー管理', managers_users_path
+    add_breadcrumb 'ユーザー詳細', managers_user_path(@user.id)
   end
 
   def edit
     @user = User.find(params[:id])
     @grade = grade_params
     @job = job_params
+    add_breadcrumb 'ユーザー管理', managers_users_path
+    add_breadcrumb 'ユーザー詳細', managers_user_path(@user.id)
+    add_breadcrumb 'ユーザー編集'
   end
 
   def update

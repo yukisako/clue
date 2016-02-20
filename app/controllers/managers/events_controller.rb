@@ -2,7 +2,10 @@ class Managers::EventsController < ApplicationController
   layout 'admin'
   before_action :authenticate_user!
 
+  add_breadcrumb '管理トップ', :managers_index_path
+
   def index
+    add_breadcrumb '新着情報管理'
     @events = Event.all
   end
 
@@ -17,6 +20,7 @@ class Managers::EventsController < ApplicationController
   end
 
   def new
+    add_breadcrumb '新着情報投稿'
     @event = Event.new
   end
 
@@ -32,6 +36,8 @@ class Managers::EventsController < ApplicationController
 
   def edit
     @event = Event.find(params[:id])
+    add_breadcrumb '新着情報管理', managers_events_path
+    add_breadcrumb '新着情報編集'
   end
 
   def update
