@@ -22,6 +22,9 @@
     </ul>
     <% if current_user.user_type == 3 %>
     <h2>チケット情報</h2>
+    <% unless @ticket.present? %>
+        登録されているチケットはありません。
+    <% else %>
     <ul>
       <li>更新日：<%= @ticket.updated_at.strftime("%Y年%m月%d日 %H時%M分") %></li>
       <li>チケット名：<%= @ticket.title %></li>
@@ -31,6 +34,7 @@
       <li>時間：<%= @ticket.length %>時間</li>
       <li>評価：☆<%= @reputation %></li>
     </ul>
+    <% end %>
     <% @accounts.each.with_index(1) do |account, i| %>
     <h2>口座情報（<%= i %>）</h2>
     <p><%= link_to '削除', account_path(account.id), method: :delete %></p>
