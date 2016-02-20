@@ -39,15 +39,26 @@
                     <% end %>
                     </li>
                   <% else %>
-                    <li><%= link_to '', events_path, class:"fa fa-newspaper-o fa-2x", data: {toggle: "tooltip", placement: "bottom" }, title: "新着情報" %></li>
-                    <li><%= link_to '', messages_path, class:"fa fa-comments-o fa-2x", data: {toggle: "tooltip", placement: "bottom" }, title: "メッセージ" %></li>
+                    <li>
+                      <%= link_to events_path, data: {toggle: "tooltip", placement: "bottom" }, title: "新着情報", :method => :get do %>
+                        <i class="fa fa-newspaper-o"></i> 新着情報
+                      <% end %>
+                    </li>
+                    <li>
+                      <%= link_to messages_path, data: {toggle: "tooltip", placement: "bottom" }, title: "メッセージ", :method => :get do %>
+                        <i class="fa fa-comments-o"></i> メッセージ
+                      <% end %>
                     <li>
                       <%= link_to "#my_page_menu", class: "fancybox" do %>
                         マイページ
                         <span class="caret"></span>
                       <% end %>
                     </li>
-                    <li><%= link_to '', destroy_user_session_path, method: :delete, class: "fa fa-sign-out fa-2x header-menu", data: {toggle: "tooltip", placement: "bottom" }, title: "ログアウト" %></li>
+                    <li>
+                      <%= link_to destroy_user_session_path, class:"header-menu", data: {toggle: "tooltip", placement: "bottom" }, title: "ログアウト", :method => :delete do %>
+                        <i class="fa fa-sign-out"></i> ログアウト
+                      <% end %>
+                    </li>
                   <% end %>
                 </ul>
               </div><!-- /.navbar-collapse -->
