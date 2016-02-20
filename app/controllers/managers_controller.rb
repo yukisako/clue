@@ -2,10 +2,14 @@ class ManagersController < ApplicationController
   layout 'admin'
   before_action :authenticate_user!
 
+  add_breadcrumb '管理トップ', :managers_index_path
+
   def index
   end
 
   def account
+    add_breadcrumb '収支管理'
+
     @offers = Offer.where(status: 3).order(meet_at: :desc)
     @payments = Payment.all
     @sales = @offers.payed
@@ -13,6 +17,8 @@ class ManagersController < ApplicationController
   end
 
   def report
+    add_breadcrumb '通報アカウント管理'
+
     @reports = ReportedAccount
     @users = User.where('reported >= ?', 1).order(reported: :desc)
   end

@@ -37,3 +37,4 @@ gem 'bootstrap-sass'
 gem 'font-awesome-rails', '~> 4.2'
 
 gem 'activerecord-import'
+gem 'breadcrumbs_on_rails'
