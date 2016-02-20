@@ -32,6 +32,6 @@ $(document).ready(function() {
 
 $(function(){
   window.setTimeout(function(){
-    $('.alert-info').slideUp(500);
+    $('.alert-info').fadeOut(500);
   }, 3000);
 });

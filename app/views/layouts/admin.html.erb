@@ -10,51 +10,31 @@
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
     <%= csrf_meta_tags %>
-<style>
-  .field_with_errors {
-    width: 100%;
-    display: inline-block;
-    border: 1.5px solid #f00;
-    border-radius: 4px;
-    -webkit-border-radius: 4px;
-    -moz-border-radius: 10px;
-  }
-  .alert-info {
-    max-width: 500px;
-    position: fixed;
-    margin: 0 auto;
-    top: 43px;
-    left: 0;
-    right: 0;
-    z-index: 2000000000;
-    -webkit-box-shadow: 0px 0px 4px rgba(51,51,51,0.2);
-    box-shadow: 0px 0px 4px rgba(51,51,51,0.2);
-  }
-</style>
-      </head>
+  </head>
   <body>
     <div id="wrap">
-      <header>
-        <nav class="navbar navbar-default">
-          <div style="background-image: url(<%= asset_path 'top/clueline.png' %>); background-repeat:repeat-x; cover; background-position: top; !important;">
-            <div class="container-fluid">
-              <div class="navbar-header">
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" datatarget="#site-menu">
-                  <span class="sr-only">Toggle navigation</span>
-                  <span class="icon-bar"></span>
-                  <span class="icon-bar"></span>
-                  <span class="icon-bar"></span>
-                </button>
-                <div class="clue-logo">
-                  <a class="navbar-brand" href="/"></a>
+      <header class="navbar navbar-static-top" role="banner">
+          <div class="container-fluid">
+            <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+              <div class="container-fluid">
+                <div class="navbar-header">
+                  <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#site-menu">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                  </button>
+                  <a class="navbar-brand" href="/">
+                    <div style="background-image: url(<%= asset_path 'top/clueline.png' %>); background-repeat:repeat-x; cover; background-position: top; !important;">
+                    </div>
+                  </a>
                 </div>
-              </div>
-      <% if user_signed_in? && current_user.user_type == 0 %>
-        <%= render partial: "layouts/admin_menu" %>
-      <% end %>
-            </div><!-- /.container-fluid -->
-          </div><!-- /style="background-image -->
-        </nav>
+                <% if user_signed_in? && current_user.user_type == 0 %>
+                <%= render partial: "layouts/admin_menu" %>
+                <% end %>
+              </div><!-- //end of inner .container -->
+            </nav>
+          </div><!-- //end of outer .container -->
       </header>
 
       <div class="container">
