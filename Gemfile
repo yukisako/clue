@@ -35,3 +35,5 @@ gem 'fancybox2-rails', '0.2.8'
 
 gem 'bootstrap-sass'
 gem 'font-awesome-rails', '~> 4.2'
+
+gem 'activerecord-import'
