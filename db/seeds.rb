@@ -7,7 +7,7 @@ BankDatum.delete_all
 # 500レコードを一括で入れる
 banks = []
 CSV.foreach('db/bankdata.csv') do |row|
-  if row[1].to_i == 0
+  if row[4].to_i == 1
     banks << Bank.new(bank_id: "#{row[0]}", store_id: row[1], name: row[3] ,name_kana: row[2])
   end
   
@@ -25,7 +25,7 @@ bank_names = Bank.all
 
 bank_data = []
 CSV.foreach('db/bankdata.csv') do |row|
-  unless row[1].to_i == 0
+  if row[4].to_i == 2
     bank_data << BankDatum.new(bank_id: "#{row[0]}", store_id: row[1], bank_name: bank_names.find_by(bank_id: row[0]).name ,bank_name_kana: bank_names.find_by(bank_id: row[0]).name_kana, store_name: row[3], store_name_kana: row[2])
   end
     
