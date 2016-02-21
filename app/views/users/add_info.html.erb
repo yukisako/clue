@@ -23,9 +23,9 @@
     <tr><th><%= label :user, :tel, '電話番号' %></th><td> <%= text_field :user, :tel %></td></tr>
     <tr><th><%= label :user, :line_id, 'LINE ID' %></th><td> <%= text_field :user, :line_id %></td></tr>
     <tr><th><%= label :user, :permit_info_mail, 'お知らせメール*' %></th><td><%= select :user, :permit_info_mail, [['Clueの情報をメールで受け取る', 1], ['お知らせメールを受けとらない', 0]] %></td></tr>
-    <% if current_user.user_type == 1 %>
+    <% if @user.user_type == 1 %>
     <tr><th><%= label :user, :grade, '学年*' %></th><td><%= select :user, :grade, @grade, include_blank: true %></td></tr>
-    <% elsif current_user.user_type == 3 %>
+    <% elsif @user.user_type == 3 %>
     <tr><th><%= label :user, :job, '職業*' %></th><td> <%= select :user, :job, @job %></td></tr>
     <% end %>
     <tr><th><%= label :user, :absent_span, '学校に行かなくなった時期*' %></th><td><%= select :user, :absent_span, @grade, include_blank: true %></td></tr>
