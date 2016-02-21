@@ -56,8 +56,8 @@ class UsersController < ApplicationController
       render action: :register and return
     else
       # 正常な処理
-      User.find(current_user.id).update(register_params)
-      @user = current_user
+      @user = User.find(current_user.id)
+      @user.update(register_params)
       @user.absence_trigger = current_user.absence_trigger
       @grade = grade_params
       @job = job_params
