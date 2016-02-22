@@ -1,9 +1,4 @@
-<div class="nav">
-    <%= link_to 'TOP', root_path %> > <%= link_to 'マイページ', user_path(current_user.id) %> > <%= link_to 'メッセージボックス' , messages_path %> > <%= link_to @message.title, message_path(@message.id) %>
-</div>
-
 <div class="message-show">
-  <h1>メッセージ</h1>
   <p class="message-show-btn"><%= link_to '戻る', messages_path %></p>
   <% if @message.sender_id != current_user.id %>
   <p class="message-show-btn"><%= link_to '返信', new_message_path(receiver_id: @message.sender_id) %></p>

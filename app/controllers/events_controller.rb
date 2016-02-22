@@ -1,6 +1,10 @@
 class EventsController < ApplicationController
+
+  add_breadcrumb 'TOP', :root_path
+
   def index
     @events = Event.all
+    add_breadcrumb '新着情報'
   end
 
   def show
@@ -11,6 +15,9 @@ class EventsController < ApplicationController
     else
       @participant = @participants.find_by(user_id: current_user.id, event_id: params[:id])
     end
+
+    add_breadcrumb '新着情報', events_path
+    add_breadcrumb @event.title
   end
 
   def new

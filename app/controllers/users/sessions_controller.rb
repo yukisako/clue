@@ -1,10 +1,13 @@
 class Users::SessionsController < Devise::SessionsController
 # before_filter :configure_sign_in_params, only: [:create]
 
+  add_breadcrumb 'ホーム', :root_path
+
   # GET /resource/sign_in
-  # def new
-  #   super
-  # end
+  def new
+    add_breadcrumb 'ログイン', :new_user_session_path
+    super
+  end
 
   # POST /resource/sign_in
   def create
@@ -13,6 +16,7 @@ class Users::SessionsController < Devise::SessionsController
     else
       super
     end
+    add_breadcrumb 'ログイン', :user_session_path
   end
 
   # DELETE /resource/sign_out

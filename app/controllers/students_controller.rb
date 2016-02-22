@@ -1,6 +1,9 @@
 class StudentsController < ApplicationController
   before_action :redirect_to_index, only: [:show]
 
+  add_breadcrumb 'TOP', :root_path
+  add_breadcrumb '生徒を探す', :search_students_path
+
   def index
     @students = User.where(user_type: 1, search_permit: 1)
                   .page(params[:page])
@@ -18,11 +21,13 @@ class StudentsController < ApplicationController
     @param_max_age = "#{params[:max_age]}歳以下" if params[:max_age].present?
     @param_area = "#{params[:area]}在住" if params[:area].present?
     @param_sex = param_sex
+
     render action: :index
   end
 
   def show
     @student = User.find(params[:id])
+    add_breadcrumb '生徒情報'
   end
 
   private
