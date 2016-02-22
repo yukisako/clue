@@ -1,9 +1,3 @@
-<div class="nav">
-  <%= link_to 'TOP', root_path %> > <%= link_to '新着情報一覧', events_path %> > <%= @event.title %>
-</div>
-
-<div class="container">
-
 <h1><%= @event.title %></h1>
 <% if @event.image.present? %>
   <p><%= image_tag(@event.image(:medium)) %></p>
@@ -42,5 +36,3 @@
   <% end %>
   <%= f.submit('不参加') %>
 <% end %>
-  
-</div>

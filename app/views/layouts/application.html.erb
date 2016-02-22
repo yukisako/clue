@@ -47,9 +47,7 @@
         <% end %>
   
         <% unless current_page?(root_path) %>
-        <ol class="breadcrumb">
-          <%= render_breadcrumbs :tag => :li, :separator => "" %>
-        </ol>
+          <%= render_breadcrumbs :builder => ::BootstrapBreadcrumbsBuilder, :separator => " > "  %>
         <% end %>
   
         <%= yield %>

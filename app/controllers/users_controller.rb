@@ -1,6 +1,9 @@
 class UsersController < ApplicationController
   before_action :authenticate_user!
 
+  add_breadcrumb 'TOP', :root_path
+  add_breadcrumb 'マイページ'
+
   def show
     @user = User.find(current_user.id)
     @ticket = @user.ticket
