@@ -6,8 +6,7 @@ class Managers::MessagesController < ApplicationController
 
   def index
     add_breadcrumb 'メッセージ管理'
-    @messages = Message.order(updated_at: :desc)
-    @count = @messages.count
+    @messages = Message.order(updated_at: :desc).page(params[:page]).per(20)
   end
 
   def show

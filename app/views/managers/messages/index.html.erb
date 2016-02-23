@@ -1,10 +1,15 @@
 <div class="managers-message-index">
     
-    <h1>メッセージ管理（<%= @count %>件）</h1>
+    <h1>メッセージ管理</h1>
+
+    <div class="text-center">
+       <%= page_entries_info @messages, :entry_name => 'メッセージ' %>
+    </div>
+ 
     <table>
         <thead>
             <tr>
-                <th>No</th>
+                <th>ID</th>
                 <th>From</th>
                 <th>To</th>
                 <th>Title</th>
@@ -14,7 +19,7 @@
         <tbody>
             <% @messages.each.with_index do |msg, i| %>
             <tr>
-                <td><%= @count - i %></td>
+                <td><%= msg.id %></td>
                 <% if msg.sender.avatar? %>
                 <td><%= link_to image_tag(msg.sender.avatar(:thumb)), managers_user_path(msg.sender.id) %></td>
                 <% else %>
@@ -32,5 +37,9 @@
             <% end %>
     </tbody>
     </table>
+
+    <div class="text-center">
+      <%= paginate @messages %>
+    </div>
     
 </div>

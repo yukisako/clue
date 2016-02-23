@@ -18,9 +18,8 @@ class ManagersController < ApplicationController
 
   def report
     add_breadcrumb '通報アカウント管理'
-
     @reports = ReportedAccount
-    @users = User.where('reported >= ?', 1).order(reported: :desc)
+    @users = User.where('reported >= ?', 1).order(reported: :desc).page(params[:page]).per(20)
   end
 
   private

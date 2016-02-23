@@ -5,8 +5,8 @@ class Managers::EventsController < ApplicationController
   add_breadcrumb '管理トップ', :managers_index_path
 
   def index
+    @events = Event.order(updated_at: :desc).page(params[:page]).per(20)
     add_breadcrumb '新着情報管理'
-    @events = Event.all
   end
 
   def show

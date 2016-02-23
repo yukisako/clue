@@ -1,5 +1,9 @@
 <h1>新着情報一覧</h1>
 
+<div class="text-center">
+   <%= page_entries_info @events, :entry_name => 'イベント' %>
+</div>
+
 <table class="table">
   <thead>
     <tr>
@@ -25,3 +29,7 @@
 <% end %>
   </tbody>
 </table>
+
+<div class="text-center">
+  <%= paginate @events %>
+</div>

@@ -1,6 +1,11 @@
 <div class="manager-report">
 
     <h1>通報アカウント管理</h1>
+
+    <div class="text-center">
+       <%= page_entries_info @users, :entry_name => 'ユーザー' %>
+    </div>
+
     <table>
         <thead>
             <tr>
@@ -31,5 +36,9 @@
         <% end %>
         </tbody>
     </table>
+
+    <div class="text-center">
+      <%= paginate @users %>
+    </div>
     
 </div><!-- //end of .manager-report -->
