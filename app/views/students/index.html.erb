@@ -6,7 +6,7 @@
 </div>
 <div class="students-index-profiles">
   <% if @students.any? %>
-    <div class="container">
+    <div class="container-fluid">
       <% columns_num = 4 %>
       <% grid_val = 12 / columns_num %>
       <% @students.each_with_index do | st, i | %>

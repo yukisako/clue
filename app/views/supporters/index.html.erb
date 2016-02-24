@@ -6,7 +6,7 @@
 </div>
 <div class="supporters-index-profiles">
   <% if @supporters.any? %>
-    <div class="container">
+    <div class="container-fluid">
       <% columns_num = 4 %>
       <% grid_val = 12 / columns_num %>
       <% @supporters.each_with_index do | sp, i | %>

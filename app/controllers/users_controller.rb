@@ -24,7 +24,7 @@ class UsersController < ApplicationController
     end
     @user = User.find(current_user.id).update(submit_params)
     @trigger = AbsenceTrigger.find_by(user_id: current_user.id)
-    if params[:user][:absence_trigger].present?
+    if params[:user][:absence_trigger_attributes].present?
       if @trigger.present?
         @trigger.update(permitted_trigger_params)
       else
@@ -213,7 +213,14 @@ class UsersController < ApplicationController
   end
 
   def permitted_trigger_params
-    params.require(:user).require(:absence_triggers).permit(:classroom, :harm, :antipathy, :teacher, :friendship, :study, :change_school, :neglect, :dv, :poverty, :parents, :no_reason).merge(user_id: current_user.id)
+    default_triggers = {classroom: false, harm: false, antipathy: false, teacher: false,
+                        friendship: false, study: false, change_school: false, neglect: false,
+                        dv: false, poverty: false, parents: false, no_reason: false}
+    editted_triggers = params.require(:user).require(:absence_trigger_attributes)
+                        .permit(:classroom, :harm, :antipathy, :teacher, :friendship, :study, :change_school, :neglect, :dv, :poverty, :parents, :no_reason)
+                        .merge(user_id: current_user.id)
+    # f.checkbox の未選択時の値を false にすると 未選択時に情報が送信されないため.
+    default_triggers.merge(editted_triggers)
   end
 
   def report_params
