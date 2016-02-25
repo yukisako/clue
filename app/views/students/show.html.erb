@@ -1,23 +1,58 @@
 <div class="user-show-profile">
-    <h1>生徒情報</h1>
-    <ul>
-        <% if @student.avatar? %>
-        <li><%= image_tag(@student.avatar(:thumb)) %></li>
-        <% end %>
-        <li>student ID: <%= @student.id %></li>
-        <li>氏名: <%= @student.username %></li>
-        <li>地域: <%= @student.area %></li>
-        <li>学年：<%= @student.grade %></li>
-        <li>性別: <%= @student.sex %></li>
-        <li>年齢: <%= @student.age %>歳</li>
-        <li>プロフィール: <p><%= simple_format(h(@student.profile)) %></p></li>
-    </ul>
-</div>
-<div class="user-show-edit-btn">
-    <ul>
-        <li><%= link_to 'メッセージを送る', new_message_path(receiver_id: @student.id) %></li>
-        <li><%= link_to 'メッセージボックス', messages_path %></li>
-        <li><%= link_to 'ダイアリーを読む', search_diaries_path(user_id: params[:id]), method: :post %></li>
-    </ul>
-</div>
+
+    <div class="container">
+
+        <div class="col-sm-2">
+            <h1>生徒情報</h1>
+        </div><!--col-sm-2-->
+
+         <div class="col-sm-10">
+            <center>
+            <ul>
+            <% if @student.avatar? %>
+                <li><%= image_tag(@student.avatar(:thumb)) %></li>
+            <% end %>
+            </ul>
+            </center>
+        </div><!--col-sm-10-->
+        
+         <div class="row">
+            <table class="table table-bordered">
+              <thead>
+                <tr>
+                    <th>氏名</th>
+                    <td><%= @student.username %></td>
+                </tr>
+                <th>地域</th>
+                <td><%= @student.area %></td>
+                <tr>
+                <th>学年</th>
+                <td><%= @student.grade %></td>
+                </tr>
+                <tr>
+                <th>性別</th>
+                <td><%= @student.sex %></td>
+                </tr>
+                <tr>
+                <th>年齢</th>
+                <td><%= @student.age %>歳</td>
+                </tr>
+                <tr>
+                <th>プロフィール</th>
+                <td><p><%= simple_format(h(@student.profile)) %></p></td>
+                </tr>
+            </table>
+        </div><!-- row -->
+
+        <div class="user-show-edit-btn">
+            <ul>
+                <li><%= link_to 'メッセージを送る', new_message_path(receiver_id: @student.id) %></li>
+                <li><%= link_to 'メッセージボックス', messages_path %></li>
+                <li><%= link_to 'ダイアリーを読む', search_diaries_path(user_id: params[:id]), method: :post %></li>
+            </ul>
+        </div>
+        
+     </div><!-- end of container -->
+</div><!-- end of user-show-profile -->
+
 <div class="clear"></div>
