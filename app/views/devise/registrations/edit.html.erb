@@ -5,7 +5,7 @@
 
   <div class="field">
     <%= f.label :user_type, '種別' %><br />
-    <%= f.select :user_type, [['生徒', 1], ['保護者', 2], ['経験者', 3]], autofocus: true %>
+    <%= f.select :user_type, @user_type_params, autofocus: true %>
   </div>
 
   <div class="field">
