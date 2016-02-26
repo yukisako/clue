@@ -79,8 +79,8 @@
     /*写真を丸くする*/
   .user-show-profile{
     img {
-        width: 100px;
-        height: 100px;
+        width: 250px;
+        height: 250px;
         border-radius: 50%;
         background: #FFF;
     }
@@ -261,6 +261,23 @@
        width:90%;
    }
 }
+
+
+/*プロフィールの登録　add_info*/
+.hyou3 {
+    td{
+        padding-left:20px;
+    }
+     input,select{
+        border-radius: 5px;
+        border: 2px solid #5BC0DE;
+        height: 30px;
+        
+    }
+}
+
+
+
 table{
     margin-top:20px;
     width:600px;
@@ -285,19 +302,7 @@ table{
             vertical-align:middle;
             padding-left:10%;
         }
-    }
-}
-
-/*プロフィールの登録　add_info*/
-.hyou3 {
-    td{
-        padding-left:20px;
-    }
-     input,select{
-        border-radius: 5px;
-        border: 2px solid #5BC0DE;
-        height: 30px;
-        
+        border-radius: 20px;
     }
 }
     /*送信ボタンの位置を右に寄せる*/

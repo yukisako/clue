@@ -1,48 +1,144 @@
-<div class="user-show-profile">
-    <h1>現在の登録情報</h1>
-    <ul>
-        <li>User ID: <%= current_user.id %></li>
-        <li>氏名: <%= current_user.name %></li>
-        <li>ユーザー名: <%= current_user.username %></li>
-        <li>性別: <%= current_user.sex %></li>
-        <li>年齢: <%= current_user.age %>歳</li>
-    <% if current_user.user_type == 1 %>
-        <li>学年: <%= current_user.grade %></li>
-    <% else %>
-        <li>職業: <%= current_user.job %></li>
-    <% end %>
-        <li>地域: <%= current_user.area %></li>
-        <li>住所: <%= current_user.address %></li>
-        <li>電話番号: <%= current_user.tel %></li>
-        <li>LINE ID: <%= current_user.line_id %></li>
-        <li>プロフィール: <p><%= simple_format(current_user.profile) %></p></li>
-    </ul>
-    <% if current_user.user_type == 3 %>
-    <h2>チケット情報</h2>
-    <% unless @ticket.present? %>
-        登録されているチケットはありません。
-    <% else %>
-    <ul>
-      <li>更新日：<%= @ticket.updated_at.strftime("%Y年%m月%d日 %H時%M分") %></li>
-      <li>チケット名：<%= @ticket.title %></li>
-      <li>都道府県：<%= @ticket.area %></li>
-      <li>場所：<%= @ticket.place %></li>
-      <li>価格：<%= number_to_currency(@ticket.price) %></li>
-      <li>時間：<%= @ticket.length %>時間</li>
-      <li>評価：☆<%= @reputation %></li>
-    </ul>
-    <% end %>
-    <% @accounts.each.with_index(1) do |account, i| %>
-    <h2>口座情報（<%= i %>）</h2>
-    <p><%= link_to '削除', account_path(account.id), method: :delete %></p>
-    <ul>
-        <li>金融機関名：<%= account.bank_name %>銀行</li>
-        <li>支店名：<%= account.store_name %>支店</li>
-        <li>口座番号：<%= account.account_id %></li>
-        <li>口座名義：<%= account.user_name %></li>
-    </ul>
-    <% end %>
-    <% end %>
-</div>
+<div class="table-responsive">
+
+ <div class="user-show-profile">
+  <center><h1>現在の登録情報</h1></center>
+ </div>
+
+ <table class="table table-bordered">
+  <tbody>
+    <tr>
+     <th>氏名</th>
+     <td><%= current_user.name %></td>
+    </tr>
+    <tr>
+     <th>ユーザー名</th>
+     <td><%= current_user.username %></td>
+    </tr>
+    <tr>
+     <th>性別</th>
+     <td><%= current_user.sex %></td>
+    </tr>
+    <tr>
+     <th>年齢</th>
+     <td><%= current_user.age %>歳</td>
+    </tr>
+ <% if current_user.user_type == 1 %>
+    <tr>
+     <th>学年</th>
+     <td><%= current_user.grade %></td>
+    </tr>
+ <% else %>
+    <tr>
+     <th>職業</th>
+     <td><%= current_user.job %></td>
+    </tr>
+ <% end %>
+    <tr>
+     <th>地域</th>
+     <td><%= current_user.area %></td>
+    </tr>
+    <tr>
+     <th>住所</th>
+     <td><%= current_user.address %></td>
+    </tr>
+    <tr>
+     <th>電話番号</th>
+     <td><%= current_user.tel %></td>
+    </tr>
+    <tr>
+     <th>LINE ID</th>
+     <td><%= current_user.line_id %></td>
+    </tr>
+    <tr>
+     <th>プロフィール</th>
+     <td><p><%= simple_format(current_user.profile) %></p></td>
+    </tr>
+  </tbody>
+ </table>
+</div><!-- end of table-responsive -->
+
+<div class="table-responsive">
+
+ <center><h2>チケット情報</h2></center>
+
+<% unless @ticket.present? %>
+ <div class="bg-warning">
+  登録されているチケットはありません。
+ </div>
+<% else %>
+ <table class="table table-bordered">
+  <tbody>
+   <tr>
+    <th>更新</th>
+    <td><%= @ticket.updated_at.strftime("%Y年%m月%d日 %H時%M分") %></td>
+   </tr>
+   <tr> 
+    <th>チケット名</th>
+    <td><%= @ticket.title %></td>
+   </tr>
+   <tr> 
+    <th>都道府県</th>
+    <td><%= @ticket.area %></td>
+   </tr>
+   <tr> 
+    <th>場所</th>
+    <td><%= @ticket.place %></td>
+   </tr> 
+   <tr> 
+    <th>価格</th>
+    <td><%= number_to_currency(@ticket.price) %></td>
+   </tr>
+   <tr> 
+    <th>時間</th>
+    <td><%= @ticket.length %>時間</td>
+   </tr>
+   <tr> 
+    <th>評価</th>
+    <td>☆<%= @reputation %></td>
+   </tr>
+  </tbody>
+ </table>
+<% end %>
+</div><!-- end of table-responsive -->
+
+<div class="table-responsive">
+
+ <center><h2>口座情報</h2></center>
+
+<% unless @accounts.present? %>
+ <div class="bg-warning">
+   登録されている口座情報はありません。
+ </div>
+<% else %>
+
+ <% @accounts.each.with_index(1) do |account, i| %>
+
+ <table class="table table-bordere">
+  <tbody>
+   <tr>
+    <th>金融機関名</th>
+    <td><%= account.bank_name %>銀行</td>
+   </tr>
+   <tr>
+    <th>支店名</th>
+    <td><%= account.store_name %>支店</td>
+   </tr>
+   <tr>
+    <th>口座番号</th>
+    <td><%= account.account_id %></td>
+   </tr>
+   <tr>
+    <th>口座名義</th>
+    <td><%= account.user_name %></td>
+   </tr>
+  </tbody>
+ </table>
+ <p><%= link_to '削除', account_path(account.id), method: :delete,
+    :class => "btn btn-danger", :data => {:confirm => "削除してもよろしいですか？"} -%></p>
+ <% end %>
+
+<% end %>
+
+</div><!-- end of table-responsive -->
 
 <div class="clear" style="padding-bottom: 20px"></div>
