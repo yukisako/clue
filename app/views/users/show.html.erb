@@ -21,18 +21,18 @@
     <tr>
      <th>年齢</th>
      <td><%= current_user.age %>歳</td>
- <% if current_user.user_type == 1 %>
     </tr>
+ <% if current_user.user_type == 1 %>
     <tr>
      <th>学年</th>
      <td><%= current_user.grade %></td>
- <% else %>
     </tr>
+ <% else %>
     <tr>
      <th>職業</th>
      <td><%= current_user.job %></td>
- <% end %>
     </tr>
+ <% end %>
     <tr>
      <th>地域</th>
      <td><%= current_user.area %></td>
@@ -54,7 +54,7 @@
      <td><p><%= simple_format(current_user.profile) %></p></td>
     </tr>
   </tbody>
- </tabele>
+ </table>
 </div><!-- end of table-responsive -->
 
 <div class="table-responsive">
@@ -62,7 +62,9 @@
  <center><h2>チケット情報</h2></center>
 
 <% unless @ticket.present? %>
+ <div class="bg-warning">
   登録されているチケットはありません。
+ </div>
 <% else %>
  <table class="table table-bordered">
   <tbody>
@@ -101,9 +103,15 @@
 
 <div class="table-responsive">
 
-<% @accounts.each.with_index(1) do |account, i| %>
+ <center><h2>口座情報</h2></center>
 
- <center><h2>口座情報（<%= i %>）</h2></center>
+<% unless @accounts.present? %>
+ <div class="bg-warning">
+   登録されている口座情報はありません。
+ </div>
+<% else %>
+
+ <% @accounts.each.with_index(1) do |account, i| %>
 
  <table class="table table-bordere">
   <tbody>
@@ -127,7 +135,10 @@
  </table>
  <p><%= link_to '削除', account_path(account.id), method: :delete,
     :class => "btn btn-danger", :data => {:confirm => "削除してもよろしいですか？"} -%></p>
+ <% end %>
+
 <% end %>
+
 </div><!-- end of table-responsive -->
 
 <div class="clear" style="padding-bottom: 20px"></div>
