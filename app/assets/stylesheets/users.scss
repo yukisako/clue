@@ -280,22 +280,19 @@
 
 table{
     margin-top:20px;
-    width:600px;
+    border:solid 1px #000;
     tr{
         height:50px;
     
         th{
             border:solid 1px #000;
             background-color:#5bc0de;
-            width:250px;
             min-height:50px;
-       
             vertical-align:middle;
             padding-left:10%;
         }
         td{
             border:solid 1px #000;
-             width:347px;
              min-height:50px;
              background-color:#FFF;
              margin-left:250px;

@@ -1,8 +1,14 @@
+<div class=container>
+  <div class="row">
 <h1>メッセージ一覧</h1>
 <p>やりとりしたメッセージです。</p>
-
-<table class="mailbox">
-  <caption>受信箱（<%= @inbox.count %>件）</caption>
+  <ul class="tab">
+    <li class="select">受信箱（<%= @inbox.count %>件）</li>
+    <li>送信箱（<%= @outbox.count %>件）</li>
+  </ul>
+  <ul class="content">
+  <li>
+  <table class="table table-bordere">
   <thead>
     <tr>
       <th class="mailbox-no">No</th>
@@ -23,17 +29,17 @@
 
         <td><%= link_to msg.sender.username, supporter_path(msg.sender_id) %></td>
         <% if msg.opened.present? %>
-        <td>|W|</td>
+        <td><%= image_tag'top/icon_6m_48.png' %></td>
         <% else %>
-        <td>|M|</td>
+        <td><%= image_tag'top/icon_1r_48.png' %></td>
         <% end %>
       </tr>
     <% end %>
   </tbody>
 </table>
-
-<table class="mailbox">
-  <caption>送信箱（<%= @outbox.count %>件）</caption>
+</li>
+<li class="hide">
+<table class="table table-bordere">
   <thead>
     <tr>
       <th class="mailbox-no">No</th>
@@ -49,11 +55,15 @@
         <td><%= link_to msg.title, message_path(msg.id), class: 'title' %></td>
         <td><%= link_to msg.receiver.username, supporter_path(msg.receiver_id) %></td>
         <% if msg.opened.present? %>
-        <td>|W|</td>
+        <td><%= image_tag'top/icon_6m_48.png' %></td>
         <% else %>
-        <td>|M|</td>
+        <td><%= image_tag'top/icon_1r_48.png' %></td>
         <% end %>
       </tr>
     <% end %>
-  </tbody>
-</table>
+    </tbody>
+   </table>
+  </li>
+ </ul>
+</div>
+</div>

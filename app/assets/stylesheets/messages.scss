@@ -3,6 +3,7 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 /* Mailbox */
+
 .mailbox {
   width: 600px;
   margin: 20px auto;
@@ -23,6 +24,7 @@
 .mailbox-opened {
   width: 50px;
 }
+
 
 .mailbox th,
 .mailbox td {
@@ -117,9 +119,20 @@
       vertical-align:top;
   }
 }
+
+.hide{display:none;}
+.tab{overflow:hidden;}
+.tab li{background:#ccc; padding:5px 25px; float:left; margin-right:1px;}
+.tab li.select{background:#eee;}
+.content li{background:#eee; padding:20px;}
+
+
+
+
 @media screen and (max-width:767px) { 
     /*　画面サイズが767px以下の場合読み込む　*/
    .past-message {
        width:90%;
    }
 }
+
