@@ -18,3 +18,5 @@
 
 /.env
 /spring/*.pid
+
+public/system
