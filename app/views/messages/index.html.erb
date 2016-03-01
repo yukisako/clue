@@ -20,11 +20,11 @@
   <tbody>
     <% @inbox.each.with_index do |msg, i| %>
       <tr>
-        <td><%= link_to @inbox.count-i, message_path(msg.id) %></td>
+        <td><%= link_to @inbox.count-i, new_message_path(receiver_id: msg.sender_id) %></td>
         <% if msg.title.present? %>
-        <td><%= link_to msg.title, message_path(msg.id), class: 'title' %></td>
+        <td><%= link_to msg.title, new_message_path(receiver_id: msg.sender_id), class: 'title' %></td>
         <% else %>
-        <td><%= link_to '無題', message_path(msg.id), class: 'title' %></td>
+        <td><%= link_to '無題', new_message_path(receiver_id: msg.sender_id), class: 'title' %></td>
         <% end %>
 
         <td><%= link_to msg.sender.username, supporter_path(msg.sender_id) %></td>
@@ -38,7 +38,7 @@
   </tbody>
 </table>
 </li>
-<li class="hide">
+<li>
 <table class="table table-bordere">
   <thead>
     <tr>
@@ -51,8 +51,8 @@
   <tbody>
     <% @outbox.each.with_index do |msg, i| %>
       <tr>
-        <td><%= link_to @outbox.count-i, message_path(msg.id) %></td>
-        <td><%= link_to msg.title, message_path(msg.id), class: 'title' %></td>
+        <td><%= link_to @outbox.count-i, new_message_path(receiver_id: msg.receiver_id) %></td>
+        <td><%= link_to msg.title, new_message_path(receiver_id: msg.receiver_id), class: 'title' %></td>
         <td><%= link_to msg.receiver.username, supporter_path(msg.receiver_id) %></td>
         <% if msg.opened.present? %>
         <td><%= image_tag'top/icon_6m_48.png' %></td>

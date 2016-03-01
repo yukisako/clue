@@ -40,7 +40,7 @@ class MessagesController < ApplicationController
 
   def create
     @message = Message.create(submit_params)
-    redirect_to action: :index
+    redirect_to action: :new
   end
 
   def destroy
