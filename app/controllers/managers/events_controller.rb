@@ -3,12 +3,18 @@ class Managers::EventsController < ApplicationController
   before_action :authenticate_user!
 
   add_breadcrumb '管理トップ', :managers_index_path
+  add_breadcrumb '新着情報管理', nil, :only => [:index, :search, :show]
 
   def index
-    add_breadcrumb '新着情報管理'
-    @events = Event.all
+    @q = Event.search
   end
 
+  def search
+    @q = Event.search(search_params)
+    @events = @q.result
+    render 'index'
+  end
+  
   def show
     @event = Event.find(params[:id])
     @participants = Participant.where(event_id: params[:id])
@@ -54,8 +60,14 @@ class Managers::EventsController < ApplicationController
     @event = Event.find(params[:id]).destroy
     redirect_to action: :index
   end
-
+  
   private
+
+  def search_params
+    search_conditions = %w(title_or_content_cont price_gteq price_lteq s)
+    params.require(:q).permit(search_conditions)
+  end
+
   def submit_params
     params.require(:event).permit(:title, :content, :held_at, :price, :image)
   end

@@ -24,7 +24,10 @@
     </tr>
     <tr>
         <th>生年月日</th>
-        <td><%= @user.birth.strftime("%Y年%m月%d日") %>（<%= @user.age %>歳）</td>
+        <td><% unless @user.birth.nil? %>
+            <%= @user.birth.strftime("%Y年%m月%d日") %>（<%= @user.age %>歳）
+            <% end %>
+        </td>
     </tr>
     <tr>
         <th>郵便番号</th>

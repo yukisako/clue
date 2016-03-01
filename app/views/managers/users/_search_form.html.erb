@@ -1,0 +1,16 @@
+<%= search_form_for(@q, url: search_managers_users_path, html: { method: :get, class: 'form-horizontal', role: 'form' }, remote: true) do |f| %>
+
+  <div class="form-group">
+    <div class="form-inline">
+      <%= f.label :user_type_eq, "ユーザータイプ", class:"control-label" %>
+      <div class="input-group col-xs-4">
+        <%= f.select :user_type_eq, @user_type_params, class: 'form-control' %>
+      </div>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= f.submit "検索" %>
+  </div>
+
+<% end %>

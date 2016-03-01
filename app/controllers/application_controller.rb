@@ -54,6 +54,11 @@ class ApplicationController < ActionController::Base
   def price_params
     price_params = [2000, 3000, 4000, 5000, 6000, 7000, 8000, 9000, 10000]
   end
+  
+  def user_type_params
+    user_type_params = [['生徒', 1], ['保護者', 2], ['経験者', 3]]    
+  end
+
 
   def true_triggers(absence_trigger)
     true_triggers = []
@@ -181,4 +186,9 @@ class ApplicationController < ActionController::Base
     @param_sex = sex_params
     @absence_triggers = trigger_params
   end
+
+  def set_user_type_params
+    @user_type_params = user_type_params
+  end
+
 end

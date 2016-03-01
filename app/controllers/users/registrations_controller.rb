@@ -1,4 +1,5 @@
 class Users::RegistrationsController < Devise::RegistrationsController
+  before_action :set_user_type_params, only: [:edit]
 # before_filter :configure_sign_up_params, only: [:create]
 # before_filter :configure_account_update_params, only: [:update]
 

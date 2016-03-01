@@ -60,34 +60,11 @@
     
         <div id="registrant-information" class="tab-pane fade">
             <!--<h2>登録者情報</h2>-->
-            <% @types.each.with_index do |type, j| %>
-                <table>
-                    <caption><%= @caption[j] %>（<%= type.count %>件）</caption>
-                    <thead>
-                        <tr>
-                            <th>No</th>
-                            <th>ユーザー名</th>
-                            <th>氏名</th>
-                            <th>地域</th>
-                            <th>年齢</th>
-                            <th>登録日時</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                    <% type.each.with_index(1) do |user, i| %>
-                            <tr>
-                                <td><%= i %></td>
-                                <td><%= link_to user.username, managers_user_path(user.id) %></td>
-                                <td><%= user.name %></td>
-                                <td><%= user.area %></td>
-                                <td><%= user.age %></td>
-                                <td><%= user.created_at.strftime("%Y年%m月%d日 %H時%M分") %></td>
-                            </tr>
-                    <% end %>
-                    </tbody>
-                </table>
-            <% end %>
-    
+
+            <%= render partial:'search_form' %>
+            
+            <div id="search-result"></div>
+
         </div><!-- //end of #registrant-information -->
         
     </div><!-- //end of .tab-content -->

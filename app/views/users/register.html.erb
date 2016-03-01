@@ -8,7 +8,7 @@
                     <li><div class="col-md-4 col-sm-4 col-xs-12 hyou-hidari"><%= label :user, :username, 'ニックネーム' %> </div><div class="col-md-8 col-sm-8 col-xs-12 hyou-migi"><%= text_field :user, :username, autofocus: true %><p>※名前を公開したくない方はニックネームを入力して下さい</p></div></li>
                     <li><div class="col-md-4 col-sm-4 col-xs-12 hyou-hidari"><%= label :user, :sex, '性別' %></div><div class="col-md-8 col-sm-8 col-xs-12 hyou-migi"> <%= select :user, :sex, @param_sex %></div></li>
                     <li><div class="col-md-4 col-sm-4 col-xs-12 hyou-hidari"><%= label :user, :birth, '生年月日' %></div><div class="col-md-8 col-sm-8 col-xs-12 hyou-migi"> <%= date_field :user, :birth, min: "1900-01-01", max: Date.today %></div></li>
-                    <li><div class="col-md-4 col-sm-4 col-xs-12 hyou-hidari"><%= label :user, :user_type, '登録形態' %></div><div class="col-md-8 col-sm-8 col-xs-12 hyou-migi"> <%= select :user, :user_type, [['生徒', 1], ['保護者', 2], ['不登校経験者', 3]] %></div></li>
+                    <li><div class="col-md-4 col-sm-4 col-xs-12 hyou-hidari"><%= label :user, :user_type, '登録形態' %></div><div class="col-md-8 col-sm-8 col-xs-12 hyou-migi"> <%= select :user, :user_type, @user_type_params %></div></li>
                     <div class=" col-sm-offset-5 col-xs-offset-4">
                         <%= submit_tag('確認') %>
                     </div>

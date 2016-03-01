@@ -1,36 +1,9 @@
 <div class="managers-message-index">
     
-    <h1>メッセージ管理（<%= @count %>件）</h1>
-    <table>
-        <thead>
-            <tr>
-                <th>No</th>
-                <th>From</th>
-                <th>To</th>
-                <th>Title</th>
-                <th>Datetime</th>
-            </tr>
-        </thead>
-        <tbody>
-            <% @messages.each.with_index do |msg, i| %>
-            <tr>
-                <td><%= @count - i %></td>
-                <% if msg.sender.avatar? %>
-                <td><%= link_to image_tag(msg.sender.avatar(:thumb)), managers_user_path(msg.sender.id) %></td>
-                <% else %>
-                <td><%= link_to image_tag('top/clue.png'), managers_user_path(msg.sender.id) %></td>
-                <% end %>
+    <h1>メッセージ管理</h1>
+
+    <%= render partial:'search_form' %>
     
-                <% if msg.receiver.avatar? %>
-                <td><%= link_to image_tag(msg.receiver.avatar(:thumb)), managers_user_path(msg.receiver.id) %></td>
-                <% else %>
-                <td><%= link_to image_tag('top/clue.png'), managers_user_path(msg.receiver.id) %></td>
-                <% end %>
-                <td><%= link_to msg.title, managers_message_path(msg.id) %></td>
-                <td><%= msg.updated_at.strftime("%Y年%m月%d日 %H時%M分") %></td>
-            </tr>
-            <% end %>
-    </tbody>
-    </table>
-    
+    <div id="search-result"></div>
+
 </div>
