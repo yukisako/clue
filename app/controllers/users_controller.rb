@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   before_action :authenticate_user!
+  before_action :set_user_type_params, only: [:register]
 
   add_breadcrumb 'TOP', :root_path
   add_breadcrumb 'マイページ'

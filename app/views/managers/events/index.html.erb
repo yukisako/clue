@@ -1,4 +1,8 @@
-<h1>新着情報一覧</h1>
+<h1>新着情報管理</h1>
+
+<%= render partial:'search_form' %>
+
+<% unless @events.nil? %>
 
 <table class="table">
   <thead>
@@ -6,12 +10,12 @@
       <th class="col-xs-3">タイトル</th>
       <th class="col-xs-4">内容</th>
       <th class="col-xs-3">開催日時</th>
-      <th class="col-xs-1">参加費</th>
+      <th class="col-xs-1"><%= sort_link(@q, :price, default_order: :desc) %></th>
       <th class="col-xs-1">操作</th>
     </tr>
   </thead>
   <tbody>
-<% @events.each do |ev| %>
+  <% @events.each do |ev| %>
     <tr>
       <td><%= ev.title.truncate(24) %></td>
       <td><%= ev.content.truncate(24) %></td>
@@ -19,9 +23,11 @@
       <td><%= number_to_currency( ev.price, :format => "%u%n", :unit =>"￥") %></td>
       <td>
         <%= link_to '編集', edit_managers_event_path(ev.id) %>
-        <%= link_to '削除', managers_event_path(ev.id), method: :delete %>
+        <%= link_to '削除', managers_event_path(ev.id), method: :delete, data: { confirm: 'Are you sure?' } %>
       </td>
     </tr>
-<% end %>
+  <% end %>
   </tbody>
 </table>
+
+<% end %>

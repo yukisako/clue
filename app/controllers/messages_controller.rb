@@ -32,7 +32,7 @@ class MessagesController < ApplicationController
   def new
     @message = Message.new
     @receiver = User.find(params[:receiver_id])
-    @messages = new_past_messages
+    @messages = new_past_messages(params[:receiver_id])
     
     add_breadcrumb 'メッセージボックス', messages_path
     add_breadcrumb '新規作成'
@@ -40,7 +40,7 @@ class MessagesController < ApplicationController
 
   def create
     @message = Message.create(submit_params)
-    redirect_to action: :new
+    @messages = new_past_messages(@message.receiver_id)
   end
 
   def destroy
@@ -53,8 +53,8 @@ class MessagesController < ApplicationController
     params.require('message').permit(:sender_id, :receiver_id, :title, :message, :sent, :offer_id)
   end
 
-  def new_past_messages
-    Message.where("receiver_id = ? or sender_id = ?", current_user.id, current_user.id).where("receiver_id = ? or sender_id = ?", params[:receiver_id], params[:receiver_id]).order(id: :desc)
+  def new_past_messages(other_user_id)
+    Message.where("receiver_id = ? or sender_id = ?", current_user.id, current_user.id).where("receiver_id = ? or sender_id = ?", other_user_id, other_user_id).order(id: :desc)
   end
 
   def show_past_messages

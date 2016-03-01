@@ -1,0 +1,2 @@
+$("<%= escape_javascript("#messages_list_view") %>")
+  .html("<%= escape_javascript(render partial: 'messages_list', locals: { messages: @messages }) %>");

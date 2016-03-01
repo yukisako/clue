@@ -60,10 +60,26 @@ Rails.application.routes.draw do
 
   namespace :managers do
     get :index
-    resources :users, only: [:index, :show, :edit, :update, :destroy]
-    resources :messages, only: [:index, :show]
-    resources :events, only: [:new, :create, :index, :edit, :update, :destroy]
-    get :report
+    resources :users do
+      collection do
+        get 'search'
+      end
+    end
+    resources :messages do
+      collection do
+        get 'search'
+      end
+    end
+    resources :events do
+      collection do
+        get 'search'
+      end
+    end
+    resources :reports do
+      collection do
+        get 'search'
+      end
+    end
     get :account
   end
 
