@@ -1,0 +1,32 @@
+<% if messages.present? %>
+  <% messages.each do |msg| %>
+    <div class="past-message">
+      <% msg_sender = User.find_by(id: msg.sender_id) %>
+      <% msg_receiver = User.find_by(id: msg.receiver_id) %>
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-md-2">
+            <% if msg_sender.present? && msg_sender.avatar? %>
+              <%= image_tag(msg_sender.avatar(:thumb), class: "img-responsive") %>
+            <% else %>
+              <%= image_tag('top/clue.png', class: "img-responsive") %>
+            <% end %>
+          </div>
+          <div class="col-md-10">
+            <% if msg_sender.present? && msg_receiver.present? %>
+              <p>From <%= msg_sender.username %> To <%= msg_receiver.username %></p>
+            <% end %>
+            <p>
+            <% if msg_sender != current_user %>
+              受信
+            <% else %>
+              送信
+            <% end %>
+            日時： <%= msg.created_at.strftime("%Y年%m月%d日 %H時%M分") %></p>
+            <p><%= simple_format(msg.message) %></p>
+          </div>
+        </div>
+      </div>
+     </div>
+  <% end %>
+<% end %>
