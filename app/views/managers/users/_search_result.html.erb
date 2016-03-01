@@ -1,0 +1,32 @@
+<% unless @user_list.nil? %>
+
+<table>
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>ユーザー名</th>
+            <th>氏名</th>
+            <th>地域</th>
+            <th>年齢</th>
+            <th>登録日時</th>
+        </tr>
+    </thead>
+    <tbody>
+    <% @user_list.each do |user| %>
+            <tr>
+                <td><%= link_to user.id, managers_user_path(user.id) %></td>
+                <td><%= link_to user.username, managers_user_path(user.id) %></td>
+                <td><%= user.name %></td>
+                <td><%= user.area %></td>
+                <td><%= user.age %></td>
+                <td><%= user.created_at.strftime("%Y年%m月%d日 %H時%M分") %></td>
+            </tr>
+    <% end %>
+    </tbody>
+</table>
+
+<% else %>
+
+<% render partial:'shared/search_no_result' %>
+
+<% end %>

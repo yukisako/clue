@@ -5,7 +5,7 @@
         <li><%= link_to 'ユーザー管理', managers_users_path %></li>
         <li><%= link_to 'メッセージ管理', managers_messages_path %></li>
         <li><%= link_to '収支管理', managers_account_path %></li>
-        <li><%= link_to '通報アカウント管理', managers_report_path %></li>
+        <li><%= link_to '通報アカウント管理', managers_reports_path %></li>
         <li>
           <%= link_to destroy_user_session_path, class:"header-menu", data: {toggle: "tooltip", placement: "bottom" }, title: "ログアウト", :method => :delete do %>
             <i class="fa fa-sign-out"></i> ログアウト

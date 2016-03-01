@@ -1,9 +1,7 @@
-<div class="manager-report">
-
-    <h1>通報アカウント管理</h1>
+<% unless @users.nil? %>
 
     <div class="text-center">
-       <%= page_entries_info @users, :entry_name => 'ユーザー' %>
+       <%#= page_entries_info @users, :entry_name => 'ユーザー' %>
     </div>
 
     <table>
@@ -38,7 +36,11 @@
     </table>
 
     <div class="text-center">
-      <%= paginate @users %>
+      <%#= paginate @users %>
     </div>
-    
-</div><!-- //end of .manager-report -->
+
+<% else %>
+
+<%= render partial:'shared/search_no_result' %>
+
+<% end %>
