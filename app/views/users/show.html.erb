@@ -66,7 +66,22 @@
     </tr>
     <tr>
      <th>キッカケ</th>
-     <td><%= @user.absence_triggers %></td>
+     <td>
+      <% if @user.absence_trigger.present? %>
+       <%= @user.absence_trigger.classroom == true ? "学級崩壊" : "" %>
+       <%= @user.absence_trigger.harm == true ? "いじめ" : "" %>
+       <%= @user.absence_trigger.antipathy == true ? "学校への苦手意識" : "" %>
+       <%= @user.absence_trigger.teacher == true ? "先生との関係" : "" %>
+       <%= @user.absence_trigger.friendship == true ? "友人関係" : "" %>
+       <%= @user.absence_trigger.study == true ? "勉強" : "" %>
+       <%= @user.absence_trigger.change_school == true ? "転校・転勤" : "" %>
+       <%= @user.absence_trigger.neglect == true ? "育児放棄" : "" %>
+       <%= @user.absence_trigger.dv == true ? "家庭内暴力" : "" %>
+       <%= @user.absence_trigger.poverty == true ? "経済的理由" : "" %>
+       <%= @user.absence_trigger.parents == true ? "離婚などの親同士の関係" : "" %>
+       <%= @user.absence_trigger.no_reason == true ? "なんとなく" : "" %>
+      <% end %>
+     </td>
     </tr>
     <tr>
      <th>プロフィール</th>
