@@ -3,7 +3,7 @@
         <p style="color: red; font-weight: bold;"><%= @notice %></p>
     <% end %>
 
-    <h1>振込口座を登録</h1>
+    <h1>振込口座登録</h1>
     <div class="kana-field">
         <%= render 'users/forms/kana_field' %>
     </div>
@@ -11,7 +11,7 @@
     <p><%= button_to 'やり直し', reset_account_users_path, remote: true, method: :get %></p>
 
     <%= form_for(@account, url: confirm_account_users_path) do |f| %>
-    <table class="user-account-display-field">
+    <table class="table table-bordered">
         <tr>
             <th>金融機関コード</th>
             <td id="display-bank-id"><%= @bank_id %></td>

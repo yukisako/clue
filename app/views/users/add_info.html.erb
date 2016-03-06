@@ -11,7 +11,7 @@
 <%= params[:user][:grade] %>
 </p>
 
-<table class="hyou3">
+<table class="table table-bordere">
     <%= form_tag update_add_info_users_path, multipart: true do %>
     <tr><th><%= label :user, :family_name, '姓*' %></th><td><%= text_field :user, :family_name, autofocus: true, placeholder: "姓" %></td></tr>
     <tr><th><%= label :user, :first_name, '名*' %></th><td><%= text_field :user, :first_name, placeholder: "名" %></td></tr>
@@ -45,8 +45,8 @@
     <%= check_box :absence_trigger, :parents, {}, true, false %> <%= label :absence_trigger, :parents, '離婚などの親同士の関係' %>
     <%= check_box :absence_trigger, :no_reason, {}, true, false %> <%= label :absence_trigger, :no_reason, 'なんとなく' %>
     </td></tr>
-    <tr><th><%= label :user, :profile, 'コメント' %></th><td> <%= text_area :user, :profile %></td></tr>
-    <tr><th><%= label :user, :avatar, 'プロフィール画像' %></th><td><%= file_field :user, :avatar %></td></tr>
+    <tr><th><%= label :user, :profile, '自己紹介' %></th><td> <%= text_area :user, :profile %></td></tr>
+    <tr><th><%= label :user, :avatar, 'プロフィール画像' %></th><td><%= file_field :user, :avatar, size:'100x20' %></td></tr>
     
 </table>
 <div class="btn-touroku">

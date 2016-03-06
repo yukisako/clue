@@ -1,4 +1,5 @@
 class PaymentsController < ApplicationController
+   add_breadcrumb 'TOP', :root_path
   def index
     @payments = Payment.where(user_id: current_user.id)
     @payed = @payments.sum(:amount) + 500 * (@payments.count)

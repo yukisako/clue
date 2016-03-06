@@ -13,20 +13,21 @@ h1 {
       margin-bottom: 20px;
       
       .students-index-image {
-        width: 175px;
-        padding: 10px;
-        background: #FF0;
+        width: 200px;
+        height: 130px;
+        padding: 20px;
+        background: #0099FF;
         position: relative;
-        border-radius:10px;
+        border-radius: 10px 10px 0px 0px;
         margin-right: auto;
         margin-left: auto;
 
         img {
-          width: 80px;
+          width: 90px;
           border-radius: 50%;
         }
         .no-image {
-          height: 80px;
+          height: 90px;
           background: #FFF;
         }
         .area {
@@ -41,10 +42,11 @@ h1 {
         }
       }
       .students-index-data {
-        width: 175px;
-        height: 110px;
+        width: 200px;
+        height: 100px;
         padding: 10px;
-        background: #FFD;
+        background: #f0f8ff;
+        border-radius: 0px 0px 10px 10px;
         margin-right: auto;
         margin-left: auto;
         overflow: scroll;

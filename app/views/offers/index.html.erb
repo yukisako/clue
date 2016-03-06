@@ -1,16 +1,5 @@
-<div class="nav">
-    <%= link_to 'TOP', root_path %> > <%= link_to 'マイページ', user_path(current_user.id) %> > <%= link_to '申込管理', offers_path %>
-</div>
-
 <div class="offer-index">
 <h1>申込管理</h1>
-
-<ul class="offer-index-tab">
-    <% @offers_list.each.with_index do |list, i| %>
-    <li class="tab<%= i %>"><%= @offers_name[i] %>（<%= list.count %>件）</li>
-    <% end %>
-</ul>
-
 <p class="clear"></p>
 
 <% @offers_list.each.with_index do |list, i| %>

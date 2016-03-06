@@ -13,6 +13,7 @@ class MessagesController < ApplicationController
   end
 
   def show
+    add_breadcrumb 'ダイアリーを読む', diaries_path
     @message = Message.find(params[:id])
     @sender = @message.sender
     @receiver = @message.receiver

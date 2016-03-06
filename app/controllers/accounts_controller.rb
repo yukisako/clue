@@ -9,7 +9,7 @@ class AccountsController < ApplicationController
     Account.create(bank_id: @store.bank_id, bank_name: @store.bank_name, store_id: @store.store_id, store_name: @store.store_name, account_id: params[:account_id], user_name: params[:user_name], user_id: current_user.id)
     redirect_to user_path(current_user.id)
   end
-
+　 add_breadcrumb '新着情報', events_path
   def edit
   end
 

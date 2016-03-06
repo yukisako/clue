@@ -1,10 +1,7 @@
-<div class="nav">
-    <%= link_to 'TOP', root_path %> > <%= link_to 'マイページ', user_path(current_user.id) %>
-</div>
 <div class="payment-index">
     <h1>出金履歴</h1>
     <% if @payments.present? %>
-    <table>
+   <table class="table table-bordere">
         <thead>
             <tr>
                 <th>申請日時</th>

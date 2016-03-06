@@ -1,5 +1,5 @@
 h1 {
-  font-size: 32px;
+  font-size: 30px;
   padding: 5px;
 }
 
@@ -9,24 +9,24 @@ h1 {
   text-align: center;
   
   .row {
-  
     .supporters-index-profile {
       margin-bottom: 20px;
 
       .supporters-index-image {
-        width: 175px;
-        padding: 10px;
+        width: 200px;
+        height: 130px;
+        padding: 20px;
         background: #FF0;
         position: relative;
-        border-radius:10px;
+        border-radius: 10px 10px 0px 0px;
         margin-right: auto;
         margin-left: auto;
         img {
-          width: 80px;
+          width: 90px;
           border-radius: 50%;
         }
         .no-image {
-          height: 80px;
+          height: 90px;
           background: #FFF;
         }
         .area {
@@ -41,10 +41,11 @@ h1 {
         }
       }
       .supporters-index-data {
-        width: 175px;
-        height: 80px;
+        width: 200px;
+        height: 100px;
         padding: 10px;
         background: #FFD;
+        border-radius: 0px 0px 10px 10px;
         margin-right: auto;
         margin-left: auto;
         overflow: scroll;
@@ -72,22 +73,18 @@ h1 {
   background-color:#FFF;
   padding:20px;
   margin-bottom:10px;
-  
+  p{
+    font-size:20px;
+  }
 }
-    p{
-     text-align: center;
-    }
+   
     .img-box{
       background-color:#FF0;
       width:100%;
-      
       img{
         margin:0 auto;
         margin:20px;
       }
-    }
-    ul{
-
     }
     h2{
       font-weight:bold;
@@ -95,10 +92,10 @@ h1 {
     }
     .supporter-kikkake{
       li{
-        width:auto;
-        background-color:#5BC0DE;
+        width: 200px;
+        background-color:#7fffd4;
         disply: inline-block;
-        padding:5px;
+        padding:10px;
         margin-bottom:10px;
          }
     }

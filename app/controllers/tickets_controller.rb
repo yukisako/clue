@@ -1,5 +1,8 @@
 class TicketsController < ApplicationController
   before_action :authenticate_user!, :full_profile
+  
+ add_breadcrumb 'TOP', :root_path
+ add_breadcrumb 'マイページ', :user_path
 
   def new
     @price = price_params
@@ -17,7 +20,7 @@ class TicketsController < ApplicationController
     Ticket.create(submit_params)
     redirect_to root_path
   end
-
+  
   def edit
     @hour = hour_params
     @price = price_params
@@ -36,11 +39,17 @@ class TicketsController < ApplicationController
 
   def purchase
   end
+  
+   def show
+    @ticket = Ticket.find(params[:id])
+    add_breadcrumb 'チケット情報', :ticket_path
+   end
 
   private
   def submit_params
     params.require(:ticket).permit(:user_id, :title, :price, :length, :rate, :area, :place, :message)
   end
+  
 
   def reputation_params
     reputation = 0
@@ -53,4 +62,8 @@ class TicketsController < ApplicationController
       return 0
     end
   end
+  add_breadcrumb '編集', :edit_ticket_path
 end
+
+ 
+  

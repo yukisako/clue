@@ -6,12 +6,15 @@
 
  <table class="table table-bordered">
   <tbody>
-    <tr>
+     <tr>
+     <th>プロフィール画像</th>
+     <td><%= @user.avatar %></td>
+    </tr>
      <th>氏名</th>
      <td><%= current_user.name %></td>
     </tr>
     <tr>
-     <th>ユーザー名</th>
+     <th>ニックネーム</th>
      <td><%= current_user.username %></td>
     </tr>
     <tr>
@@ -21,6 +24,10 @@
     <tr>
      <th>年齢</th>
      <td><%= current_user.age %>歳</td>
+    </tr>
+    <tr>
+     <th>学校</th>
+     <td><%= @user.school %></td>
     </tr>
  <% if current_user.user_type == 1 %>
     <tr>
@@ -33,8 +40,12 @@
      <td><%= current_user.job %></td>
     </tr>
  <% end %>
+ 　  <tr>
+      <th>学校に行かなかった時期</th>
+      <td><%= @user.grade %></td>
+    </tr> 
     <tr>
-     <th>地域</th>
+     <th>都道府県</th>
      <td><%= current_user.area %></td>
     </tr>
     <tr>
@@ -48,6 +59,14 @@
     <tr>
      <th>LINE ID</th>
      <td><%= current_user.line_id %></td>
+    </tr>
+    <tr>
+     <th>お知らせ</th>
+     <td><%= @user.permit_info_mail %></td>
+    </tr>
+    <tr>
+     <th>キッカケ</th>
+     <td><%= @user.absence_triggers %></td>
     </tr>
     <tr>
      <th>プロフィール</th>

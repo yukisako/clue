@@ -1,130 +1,111 @@
-<div class="user-show-profile">
+<div class="user-show-profile1">
   <h1>登録情報の編集</h1>
-  <% label_class = 'col-md-offset-3 col-md-2' %>
-  <% input_class = 'col-md-4' %>
-  <%= form_for @user, html: {class: 'form-horizontal'} do |f| %>
-    <div class="form-group">
-      <%= f.label :avatar, 'プロフィール画像', class: label_class %>
-      <div class="<%= input_class %>">
-        <%= f.file_field :avatar, class: "form-control" %>
-      </div>
-    </div>
-    <div class="form-group">
-      <%= f.label :username, 'ニックネーム', class: label_class %>
-      <div class="<%= input_class %>">
-        <%= f.text_field :username, class: "form-control" %>
-      </div>
-    </div>
-    <div class="form-group">
-      <%= f.label :profile, 'プロフィール', class: label_class %>
-      <div class="<%= input_class %>">
-        <%= f.text_area :profile, size: "80x10", class: "form-control" %>
-      </div>
-    </div>
-    <div class="form-group">
-      <%= f.label :school, '学校', class: label_class %>
-      <div class="<%= input_class %>">
-        <%= f.text_field :school, class: "form-control" %>
-      </div>
-    </div>
-    <div class="form-group">
-      <% if current_user.user_type == 1 %>
-        <%= f.label :grade, '学年', class: label_class %>
-        <div class="<%= input_class %>">
-          <%= f.select :grade, @grade, {}, { class: "form-control"} %>
-        </div>
+  <table class="table table-bordere">
+      <%= form_for @user do |f| %>
+    <tr>
+     <th><%= f.label :avatar, 'プロフィール画像' %></th>
+     <td><%= f.file_field :avatar %></td>
+    </tr>
+     <tr>
+     <th><%= f.label :name, '氏名' %></th>
+     <td><%= f.text_field  :name %></td>
+    </tr>
+    <tr>  
+     <th><%= f.label :username, 'ニックネーム' %></th>
+     <td><%= f.text_field :username %></td>
+    </tr>
+    <tr>
+     <th><%= f.label :sex, '性別' %></th>
+     <td><%= f.select :sex, @sex %></td>
+    </tr>
+    <tr>
+     <th><%= f.label :age, '年齢' %></th>
+     <td><%= f.text_field :age %></td>
+    </tr>
+    <tr>
+      <th><%= f.label :school, '学校' %></th>
+      <td><%= f.text_field :school %></td>
+    </tr>
+    <tr>
+      <th><% if current_user.user_type == 1 %>
+      <%= f.label :grade, '学年'%></th>
+      <td><%= f.select :grade, @grade%></td>
       <% else %>
-        <%= f.label :job, '職業', class: label_class %>
-        <div class="<%= input_class %>">
-          <%= f.select :job, @job, {}, { class: "form-control" } %>
-        </div>
+      <th><%= f.label :job, '職業' %></th>
+      <td><%= f.select :job, @job%></td>
       <% end %>
-    </div>
-    <div class="form-group">
-      <%= f.label :absent_span, '学校に行かなかった時期', class: label_class %>
-      <div class="<%= input_class %>">
-        <%= f.select :absent_span, @grade, {}, { class: "form-control"} %>
-      </div>
-    </div>
-    <div class="form-group">
-      <%= f.label :email, 'メールアドレス', class: label_class %>
-      <div class="<%= input_class %>">
-        <%= f.text_field :email, class: "form-control" %>
-      </div>
-    </div>
-    <div class="form-group">
-      <%= f.label :post_number, '郵便番号', class: label_class %>
-      <div class="<%= input_class %>">
-        <%= f.text_field :post_number, class: "form-control" %>
-      </div>
-    </div>
-    <div class="form-group">
-      <%= f.label :area, '都道府県', class: label_class %>
-      <div class="<%= input_class %>">
-        <%= f.select :area, @area, {}, { class: "form-control"} %>
-      </div>
-    </div>
-    <div class="form-group">
-      <%= f.label :address, '住所', class: label_class %>
-      <div class="<%= input_class %>">
-        <%= f.text_field :address, class: "form-control" %>
-      </div>
-    </div>
-    <div class="form-group">
-      <%= f.label :tel, '電話番号', class: label_class %>
-      <div class="<%= input_class %>">
-        <%= f.text_field :tel, class: "form-control" %>
-      </div>
-    </div>
-    <div class="form-group">
-      <%= f.label :line_id, 'LINE ID', class: label_class %>
-      <div class="<%= input_class %>">
-        <%= f.text_field :line_id, class: "form-control" %>
-      </div>
-    </div>
-    <div class="form-group">
-      <%= f.label :permit_info_mail, 'お知らせ', class: label_class %>
-      <div class="<%= input_class %>">
-        <%= f.select :permit_info_mail, [['Clueの情報をメールで受け取る', 1], ['お知らせメールを受けとらない', 0]], {}, { class: "form-control"} %>
-      </div>
-    </div>
+      </tr>
+    <tr>
+      <th><%= f.label :absent_span, '学校に行かなかった時期' %></th>
+      <td><%= f.select :absent_span, @grade %></td>
+    </tr> 
+    <tr>
+      <th><%= f.label :email, 'メールアドレス'%></th>
+      <td><%= f.text_field :email %></td>
+    </tr> 
+    <tr>
+      <th><%= f.label :post_number, '郵便番号' %></th>
+      <td><%= f.text_field :post_number %></td>
+    </tr> 
+    <tr>  
+     <th><%= f.label :area, '都道府県' %></th>
+     <td><%= f.select :area, @area %></td>
+    </tr> 
+    <tr>
+     <th><%= f.label :address, '住所' %></th>
+     <td><%= f.text_field :address %></td>
+    </tr> 
+    <tr>
+     <th><%= f.label :tel, '電話番号' %></th>
+     <td><%= f.text_field :tel  %></td>
+    </tr> 
+    <tr>  
+     <th><%= f.label :line_id, 'LINE ID' %></th>
+     <td><%= f.text_field :line_id %></td>
+    </tr> 
+    <tr>  
+     <th><%= f.label :permit_info_mail, 'お知らせ'%></th>
+     <td><%= f.select :permit_info_mail, [['Clueの情報をメールで受け取る', 1], ['お知らせメールを受けとらない', 0]], {}, { class: "form-control"} %></td>
+    </tr> 
+    <tr>
+      <div class="form-group">
+      <th><%= f.label :absence_triggers, 'キッカケ' %></th>
 
-    <div class="form-group">
-      <%= f.label :absence_trigger, '不登校になったキッカケ', class: label_class %>
-      <div class="<%= input_class %>">
-        <ul>
-        <%= f.fields_for :absence_trigger do |tri| %>
-          <li><%= tri.check_box :classroom, {}, true, false %> <%= tri.label :classroom, '学級崩壊' %></li>
-          <li><%= tri.check_box :harm, {}, true, false %> <%= tri.label :harm, 'いじめ' %></li>
-          <li><%= tri.check_box :antipathy, {}, true, false %> <%= tri.label :antipathy, '学校への苦手意識' %></li>
-          <li><%= tri.check_box :teacher, {}, true, false %> <%= tri.label :teacher, '先生との関係' %></li>
-          <li><%= tri.check_box :friendship, {}, true, false %> <%= tri.label :friendship, '友人関係' %></li>
-          <li><%= tri.check_box :study, {}, true, false %> <%= tri.label :study, '勉強' %></li>
-          <li><%= tri.check_box :change_school, {}, true, false %> <%= tri.label :change_school, '転校・転勤' %></li>
-          <li><%= tri.check_box :neglect, {}, true, false %> <%= tri.label :neglect, '育児放棄' %></li>
-          <li><%= tri.check_box :dv, {}, true, false %> <%= tri.label :dv, '家庭内暴力' %></li>
-          <li><%= tri.check_box :poverty, {}, true, false %> <%= tri.label :poverty, '経済的理由' %></li>
-          <li><%= tri.check_box :parents, {}, true, false %> <%= tri.label :parents, '離婚などの親同士の関係' %></li>
-          <li><%= tri.check_box :no_reason, {}, true, false %> <%= tri.label :no_reason, 'なんとなく' %></li>
+    <td>
+
+　　　<%= f.fields_for :absence_triggers do |tri| %>
+     
+      <label>
+          <%= tri.check_box :classroom, {}, true, false %> <%= tri.label :classroom, '学級崩壊' %>
+          <%= tri.check_box :harm, {},true, false %> <%= tri.label :harm, 'いじめ' %>
+          <%= tri.check_box :antipathy, {}, true, false %> <%= tri.label :antipathy, '学校への苦手意識' %>
+          <%= tri.check_box :teacher, {}, true, false %> <%= tri.label :teacher, '先生との関係' %>
+          <%= tri.check_box :friendship, {}, true, false %> <%= tri.label :friendship, '友人関係' %>
+          <%= tri.check_box :study, {}, true, false %> <%= tri.label :study, '勉強' %>
+          <br>
+          <%= tri.check_box :change_school, {}, true, false %> <%= tri.label :change_school, '転校・転勤' %>
+          <%= tri.check_box :neglect, {}, true, false %> <%= tri.label :neglect, '育児放棄' %>
+          <%= tri.check_box :dv, {}, true, false %> <%= tri.label :dv, '家庭内暴力' %>
+          <%= tri.check_box :poverty, {}, true, false %> <%= tri.label :poverty, '経済的理由' %>
+          <%= tri.check_box :parents, {}, true, false %> <%= tri.label :parents, '離婚などの親同士の関係' %>
+          <%= tri.check_box :no_reason, {}, true, false %> <%= tri.label :no_reason, 'なんとなく' %>
         <% end %>
-        </ul>
-      </div>
-    </div>
+      </label>
+    </td>
+    </tr>
+    <tr>
+      <th><%= f.label :profile, 'プロフィール' %></th>
+      <td><%= f.text_area :profile %></td>
+    </tr>
+   <tr>
   <% if current_user.user_type != 3 %>
-    <div class="form-group">
-      <%= f.label :search_permit, '検索表示許可', class: label_class %>
-      <div class="<%= input_class %>">
-        <%= f.select :search_permit, [['許可する', 1],['許可しない', 0]], {}, { class: "form-control"} %>
-      </div>
-    </div>
+  <th><%= f.label :search_permit, '検索表示許可', class: "label_class" %></th>
+  <td><%= f.select :search_permit, [['許可する', 1],['許可しない', 0]] %></td>
+     </tr>
+    </table>
   <% end %>
-  <div class="form-group">
-    <div class="col-md-offset-3 col-md-2">
-      <%= f.submit('編集') %>
-    </div>
-    <div class="col-md-2">
-      <%= f.submit('キャンセル') %>
-    </div>
-  </div>
+    <%= f.submit('編集') %>
+     <%= f.submit('キャンセル') %>
+   
 <% end %>
 </div>

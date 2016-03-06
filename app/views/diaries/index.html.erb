@@ -1,6 +1,3 @@
-<div class="nav">
-    <%= link_to 'TOP', root_path %> > <%= link_to 'ダイアリーを読む', diaries_path %>
-</div>
 <div class="diary-index">
     <div class="diary-search-panel">
         <%= form_tag search_diaries_path do %>
@@ -8,8 +5,8 @@
         <%= submit_tag('検索') %>
         <% end %>
     </div>
-    <h1>不登校生活ダイアリー</h1>
-    <p>不登校児や不登校経験者のダイアリーです。</p>
+    <h1>Diary</h1>
+    <p>日常生活で思うことやストレスを吐き出す場として使って下さい</p>
     <% @diaries.each do |diary| %>
     <hr />
     <div class="diary-index-item">

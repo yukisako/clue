@@ -1,6 +1,6 @@
 <div class="content600">
 <h1>登録情報の確認</h1>
-<table>
+<table class="table table-bordere">
     <tr>
         <th>メールアドレス</th>
         <td><%= current_user.email %></td>
@@ -29,7 +29,7 @@
         <%= hidden_field :user, :birth, value: params[:user][:birth] %>
         <%= hidden_field :user, :user_type, value: params[:user][:user_type] %>
        <div class="btn-touroku">
-           <%= submit_tag('確認') %> <%= submit_tag('戻る') %>
+           <%=submit_tag('確認') %> <%= submit_tag('戻る') %>
         </div>
     <% end %>
 </div>

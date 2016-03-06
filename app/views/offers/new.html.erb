@@ -1,11 +1,12 @@
 <p>「<%= @ticket.title %>」を購入しますか？</p>
+<div class="senpai">
 <% if @user.avatar? %>
 <p><%= link_to image_tag(@user.avatar(:thumb)), supporter_path(@user.id) %></p>
 <% else %>
 <p><%= link_to image_tag('top/clue.png'), supporter_path(@user.id) %></p>
 <% end %>
 <p>by <%= link_to @user.username, supporter_path(@user.id) %></p>
-
+</div>
 <%= form_for(@offer) do |f| %>
     <%= f.label :meet_at, '日時' %> <%= f.datetime_select :meet_at, start_year: Date.today.year, minute_step: 15 %><br />
     <%= @ticket.length %>時間 <%= number_to_currency(@ticket.price) %><br />

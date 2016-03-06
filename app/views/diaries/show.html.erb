@@ -1,27 +1,12 @@
-<div class="nav">
-    <%= link_to 'TOP', root_path %> > <%= link_to 'ダイアリーを読む', diaries_path %> > <%= @diary.title %>
-</div>
-
 <div class="diary-show">
     <h1><%= @diary.title %></h1>
     <p><%= @diary.post_date %> <%= @diary.category %></p>
     <p><%= @author.username %></p>
     <p><%= simple_format(h(@diary.content)) %></p>
-    <div class="user-show-edit-btn">
-        <ul>
-        <% if @diary.id == current_user.id %>
-            <li><%= link_to '削除する', diary_path, method: :delete %></li>
-            <li><%= link_to '編集する', edit_diary_path %></li>
-        <% else %>
-            <li><%= link_to '著者にメッセージを送る', new_message_path(receiver_id: @diary.user_id) %></li>
-        <% end %>
-            <li><%= link_to '一覧に戻る', diaries_path %></li>
-        </ul>
-    </div>
     <div class="clear"></div>
 
     <div class="diary-show-comments">
-        <h2>Comments (<%= @comments.count %>件)</h2>
+        <h3>Comments (<%= @comments.count %>件)</h3>
         <% @comments.each do |com| %>
         <hr />
         <div class="diary-show-comment-image">
@@ -35,7 +20,7 @@
             <p><%= com.post_date %> by <%= com.user.username %></p>
             <%= simple_format(h(com.comment)) %>
             <% if com.user_id == current_user.id %>
-            <p class="delete-btn"><%= link_to "[×]", comment_path(com.id), method: :delete %></p>
+           <p class="delete-btn"><%= link_to "[×]", comment_path(com.id), method: :delete %></p>
             <% end %>
         </div>
         <% end %>
@@ -50,5 +35,17 @@
         <%= f.hidden_field :user_id, value: current_user.id %>
         <%= f.submit('投稿') %>
         <% end %>
+    </div>
+    
+    <div class="user-show-edit-btn">
+        <ul>
+        <% if @diary.user_id == current_user.id %>
+        <li><%= link_to '削除する', diary_path, method: :delete %></li>
+        <li><%= link_to '編集する', edit_diary_path %></li>
+        <% else %>
+        <li><%= link_to 'メッセージを送る', new_message_path(receiver_id: @diary.user_id) %></li>
+        <% end %>
+        <li><%= link_to '一覧に戻る', diaries_path %></li>
+        </ul>
     </div>
 </div>

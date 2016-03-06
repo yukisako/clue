@@ -1,4 +1,5 @@
 class DiariesController < ApplicationController
+  add_breadcrumb 'TOP', :root_path
   before_action :authenticate_user!, :full_profile
 
   def index
@@ -15,13 +16,17 @@ class DiariesController < ApplicationController
   end
 
   def show
+    add_breadcrumb 'ダイヤリー', diaries_path
     @diary = Diary.find(params[:id])
     @author = User.find(@diary.user_id)
     @comments = Comment.where(diary_id: params[:id]).includes(:user)
     @comment = Comment.new
+    add_breadcrumb @diary.title
   end
 
   def new
+    add_breadcrumb 'ダイヤリー', diaries_path
+    add_breadcrumb '書く'
     @diary = Diary.new
     @categories = category_params
   end

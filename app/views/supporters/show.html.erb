@@ -2,32 +2,38 @@
   <p class="reported-user-flag">通報済み</p>
 <% end %>
 <section class="container">
- 
   <div class="row">
     <div class="user-show-profile content900">
-
       <h1>先輩情報</h1>
-    
       <div class="col-md-6 col-sm-12">
-        
         <div class="img-box">
-          <% if @supporter.avatar? %>
-            <p><%= image_tag(@supporter.avatar(:thumb)) %></p>
+         <center><% if @supporter.avatar? %>
+           <%= image_tag(@supporter.avatar(:thumb)) %></center>
           <% else %>
             <p><%= image_tag('top/clue.png') %></p>
           <% end %>
         </div> 
         <div class="supporter-box">
-          <ul>
-            <li>Supporter ID: <%= @supporter.id %></li>
-            <li>ニックネーム: <%= @supporter.username %></li>
-            <li>地域: <%= @supporter.area %></li>
-            <li>性別: <%= @supporter.sex %></li>
-            <li>年齢: <%= @supporter.age %>歳</li>
-            <li>プロフィール: <p><%= simple_format(@supporter.profile) %></p></li>
-          </ul>
-          <br /><br /><br />
-          <h2>不登校になったキッカケ</h2>
+          <table class="table table-bordere">
+            <h2>プロフィール<%= simple_format(@supporter.profile) %></h2>
+            <tr>
+            <th>ニックネーム</th>
+            <td><%= @supporter.username %></td>
+            </tr>
+            <tr>
+            <th>地域</th>
+            <td><%= @supporter.area %></td>
+            </tr>
+            <tr>
+            <th>性別</th>
+            <td><%= @supporter.sex %></td>
+            </tr>
+            <tr>
+            <th>年齢</th>
+            <td><%= @supporter.age %>歳</td>
+            </tr>
+          </table>
+          <h3>きっかけ</h3>
           <ul class="supporter-kikkake">
             <% if @triggers.present? %>
               <% @triggers.each do |trigger|%>
@@ -42,34 +48,57 @@
         
       <div class="col-md-6 col-sm-12">
         <div class="supporter-box">
+        <table class="table table-bordere">
           <h2>チケット情報</h2>
           <% unless @ticket.present? %>
           登録されているチケットはありません。
           <% else %>
-          <ul>
-            <li>発行日：<%= @ticket.created_at.strftime("%Y年%m月%d日 %H時%M分") %></li>
-            <li>チケット名：<%= @ticket.title %></li>
-            <li>都道府県：<%= @ticket.area %></li>
-            <li>場所：<%= @ticket.place %></li>
-            <li>価格：<%= number_to_currency(@ticket.price) %></li>
-            <li>時間：<%= @ticket.length %>時間</li>
-            <li>評価：☆<%= @reputation %></li>
-            <li>メッセージ：<br /><%= simple_format(h(@ticket.message)) %></li>
-          </ul>
+          <tr>
+            <th>発行日</th>
+            <td><%= @ticket.created_at.strftime("%Y年%m月%d日 %H時%M分") %></td>
+          </tr>
+          <tr>
+            <th>チケット名</th>
+            <td><%= @ticket.title %></td>
+          </tr>
+          <tr>
+            <th>都道府県</th>
+            <td><%= @ticket.area %></td>
+          </tr>
+          <tr>
+            <th>場所</th>
+            <td><%= @ticket.place %></td>
+          </tr>
+          <tr>
+            <th>価格</th>
+            <td><%= number_to_currency(@ticket.price) %></td>
+          </tr>
+          <tr>
+            <th>時間</th>
+            <td><%= @ticket.length %>時間</td>
+          </tr>
+          <tr>
+            <th>評価</th>
+            <td style="color:#ffd700;">★<%= @reputation %></td>
+          </tr>
+          <tr>
+            <th>メッセージ</th>
+            <td><%= simple_format(h(@ticket.message)) %></td>
+          </tr>
+          </table>
           <% end %>
         </div><!--supporter-box-->
       </div>
-    
       <div class="col-md-6 col-sm-12">
         <% if user_signed_in? %>
           <div class="supporter-box">
             <% if current_user.user_type == 1 || current_user.user_type == 2 %>
               <div class="review-new">
               <%= form_for @review do |f| %>
-                <%= f.label :review, 'レビュー' %><br />
-                <%= f.label :reputation, '満足度' %> <%= f.select :reputation, [['☆5',5],['☆4',4],['☆3',3],['☆2',2],['☆1',1]] %>
+               <p><%= f.label :review, 'レビュー' %></p>
+               <p><%= f.label :reputation, '満足度' %> <%= f.select :reputation, [['★5',5],['★4',4],['★3',3],['★2',2],['★1',1]],class:"hoshi" %></p>
                 <br />
-                <%= f.text_area :review, size: '45x6' %>
+                <%= f.text_area :review, size: '45x5' %>
                 <%= f.hidden_field :user_id, value: current_user.id %>
                 <%= f.hidden_field :ticket_id, value: params[:id] %>
                 <br />

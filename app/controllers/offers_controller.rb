@@ -1,8 +1,9 @@
 require 'spike_pay'
 class OffersController < ApplicationController
+  add_breadcrumb 'TOP', :root_path
   before_action :authenticate_user!, :full_profile
-
   def index
+    add_breadcrumb '申込管理'
     if current_user.user_type != 3
       # 生徒もしくは保護者
       @offers = Offer.where(user_id: current_user.id).order(updated_at: :desc)
@@ -27,6 +28,8 @@ class OffersController < ApplicationController
   end
 
   def show
+    add_breadcrumb '申込管理', offers_path
+    add_breadcrumb '詳細'
     @offer = Offer.find(params[:id])
     @ticket = @offer.ticket
     @hour = hour_params

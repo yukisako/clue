@@ -60,16 +60,31 @@
 }
 
 /* Ticket Edit */
-.ticket-edit {
+.ticket-edit{
     width: 600px;
     margin: 20px auto;
     .field {
         padding: 5px;
     }
     div:nth-child(2n) {
-        background: #C8E6C9;
+        background: #AFEEEE;
     }
     div:nth-child(2n-1) {
-        background: #E8F5E9;
+        background: #F0F8FF;
+    }
+}
+
+/*Ticket Show*/ 
+.ticket-show{
+    width: 600px;
+    margin: 20px auto;
+    .field {
+        padding: 5px;
+    }
+    div:nth-child(2n) {
+        background: #AFEEEE;
+    }
+    div:nth-child(2n-1) {
+        background: #F0F8FF;
     }
 }

@@ -1,19 +1,31 @@
 <div class="user-show-profile">
-    <div class="container content600-1">
-        <div class="row">
-            <h1>登録情報の編集</h1>
-            <ul class="hyou1-1">
-                <%= form_tag confirm_register_users_path do %>
-                    <li><div class="col-md-4 col-sm-4 col-xs-12 hyou-hidari"><label>メールアドレス</label></div><div class="col-md-8 col-sm-8  col-xs-12 hyou-migi"> <%= current_user.email %></div></li>
-                    <li><div class="col-md-4 col-sm-4 col-xs-12 hyou-hidari"><%= label :user, :username, 'ニックネーム' %> </div><div class="col-md-8 col-sm-8 col-xs-12 hyou-migi"><%= text_field :user, :username, autofocus: true %><p>※名前を公開したくない方はニックネームを入力して下さい</p></div></li>
-                    <li><div class="col-md-4 col-sm-4 col-xs-12 hyou-hidari"><%= label :user, :sex, '性別' %></div><div class="col-md-8 col-sm-8 col-xs-12 hyou-migi"> <%= select :user, :sex, @param_sex %></div></li>
-                    <li><div class="col-md-4 col-sm-4 col-xs-12 hyou-hidari"><%= label :user, :birth, '生年月日' %></div><div class="col-md-8 col-sm-8 col-xs-12 hyou-migi"> <%= date_field :user, :birth, min: "1900-01-01", max: Date.today %></div></li>
-                    <li><div class="col-md-4 col-sm-4 col-xs-12 hyou-hidari"><%= label :user, :user_type, '登録形態' %></div><div class="col-md-8 col-sm-8 col-xs-12 hyou-migi"> <%= select :user, :user_type, @user_type_params %></div></li>
-                    <div class=" col-sm-offset-5 col-xs-offset-4">
+  <h1>新規登録</h1>
+    <table class="table table-bordere">
+     <%= form_tag confirm_register_users_path do %>
+       <tr>
+        <th>メールアドレス</th>
+        <td><%= current_user.email %></td>
+       </tr>
+       <tr>
+        <th><%= label :user, :username, 'ニックネーム' %></th>
+        <td><%= text_field :user, :username, autofocus: true %>
+        <p>※名前を公開したくない方はニックネームを入力して下さい</p></td>
+      </tr>
+      <tr>
+        <th><%= label :user, :sex, '性別' %></th>
+        <td><%= select :user, :sex, @param_sex %></td>
+      </tr>
+      <tr>
+        <th><%= label :user, :birth, '生年月日' %></th>
+        <td><%= date_field :user, :birth, min: "1900-01-01", max: Date.today %></td>
+      </tr>
+      <tr>
+        <th><%= label :user, :user_type, '登録形態' %></th>
+        <td><%= select :user, :user_type, @user_type_params %></td>
+     </tr>
+     </table>
+    
                         <%= submit_tag('確認') %>
-                    </div>
+                    
                 <% end %>
-            </ul>
-        </div>
-     </div>
 </div>

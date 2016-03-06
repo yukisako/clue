@@ -84,6 +84,12 @@
         border-radius: 50%;
         background: #FFF;
     }
+    th{
+        width:200px;
+    }
+    td{
+        width:400px;
+    }
   }
 /*表のデザイン*/
     ul.hyou1{
@@ -226,15 +232,16 @@
         width: 190px;
         float: right;
         text-align: center;
+         
         a {
             width: 186px;
-            border: 2px solid #4CAF50;
+            border: 3px solid #48D1CC;
             padding: 10px 0px;
-            background: #E8F5E9;
+            background: #E0FFFF;
             color: #000;
         }
         a:hover {
-            background: #4CAF50;
+            background: #87CEFA;
             color: #FFF;
         }
         margin-bottom: 20px;
@@ -279,20 +286,17 @@
 
 
 table{
+    border:solid 1px #c0c0c0;
     margin-top:20px;
-    border:solid 1px #000;
     tr{
-        height:50px;
-    
+       height: 40px;
         th{
-            border:solid 1px #000;
             background-color:#5bc0de;
             min-height:50px;
             vertical-align:middle;
             padding-left:10%;
         }
         td{
-            border:solid 1px #000;
              min-height:50px;
              background-color:#FFF;
              margin-left:250px;
@@ -344,4 +348,8 @@ table{
             }
         }
     }
+}
+
+.user-show-profile1{
+     text-align: left;
 }

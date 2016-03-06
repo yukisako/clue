@@ -1,13 +1,10 @@
-<div class="nav">
-    <%= link_to 'TOP', root_path %> > <%= link_to 'マイページ', user_path(current_user.id) %> > 出金履歴
-</div>
 <div class="payment-new">
     <% if @notice.present? %>
         <p style="color: red; font-weight: bold;"><%= @notice %></p>
     <% end %>
     <h1>売上を出金</h1>
-    <p>現在、あなたの総売上額は<%= number_to_currency(@sales) %>です。</p>
-    <p>現在、あなたの出金可能額は<%= number_to_currency(@balance) %>です。</p>
+    <p>現在、あなたの総売上額は<h3><%= number_to_currency(@sales) %>です。</h3></p>
+    <p>現在、あなたの出金可能額は<h3><%= number_to_currency(@balance) %>です。</h3></p>
     
     <%= form_for(@payment) do |f| %>
         <% if @balance >= 3000 %>
@@ -24,7 +21,7 @@
             <%= f.submit('出金申請') %>
         <% else %>
             <p style="color: red; font-weight: bold;">残高が3,000円以上ないと出金できません。</p>
-            <p style="color: red; font-weight: bold;">現在の残高：<%= number_to_currency(@balance) %></p>
+            <p style="color: red; font-size:25px; font-weight: bold;">現在の残高:<%= number_to_currency(@balance) %></p>
         <% end %>
     <% end %>
     <p>※一度に出金できる金額は2,500円以上からです。</p>

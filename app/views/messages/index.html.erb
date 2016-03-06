@@ -1,44 +1,45 @@
 <div class=container>
-  <div class="row">
-<h1>メッセージ一覧</h1>
-<p>やりとりしたメッセージです。</p>
-  <ul class="tab">
-    <li class="select">受信箱（<%= @inbox.count %>件）</li>
-    <li>送信箱（<%= @outbox.count %>件）</li>
-  </ul>
-  <ul class="content">
-  <li>
-  <table class="table table-bordere">
-  <thead>
-    <tr>
-      <th class="mailbox-no">No</th>
-      <th class="mailbox-title">件名</th>
-      <th class="mailbox-user">送信者</th>
-      <th class="mailbox-opened">既読</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @inbox.each.with_index do |msg, i| %>
-      <tr>
+  
+ <h1>メッセージ一覧</h1>
+  <p>やりとりしたメッセージです。</p>
+  
+   <ul class="nav nav-tabs">
+        <li class="active"><a data-toggle="tab" href="#jyushin">受信箱（<%= @inbox.count %>件）</a></li>
+        <li><a data-toggle="tab" href="#soushin">送信箱（<%= @outbox.count %>件）</a></li>
+    </ul>
+    
+     <div class="tab-content">
+ 
+     <div id="jyushin" class="tab-pane fade in active">
+       <table class="table table-bordere">
+           <tr>
+            <th class="mailbox-no">No</th>
+            <th class="mailbox-title">件名</th>
+            <th class="mailbox-user">送信者</th>
+            <th class="mailbox-opened">既読</th>
+           </tr>
+      <tbody>
+       <% @inbox.each.with_index do |msg, i| %>
+        <tr>
         <td><%= link_to @inbox.count-i, new_message_path(receiver_id: msg.sender_id) %></td>
         <% if msg.title.present? %>
         <td><%= link_to msg.title, new_message_path(receiver_id: msg.sender_id), class: 'title' %></td>
         <% else %>
         <td><%= link_to '無題', new_message_path(receiver_id: msg.sender_id), class: 'title' %></td>
         <% end %>
-
         <td><%= link_to msg.sender.username, supporter_path(msg.sender_id) %></td>
         <% if msg.opened.present? %>
         <td><%= image_tag'top/icon_6m_48.png' %></td>
         <% else %>
         <td><%= image_tag'top/icon_1r_48.png' %></td>
         <% end %>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-</li>
-<li>
+        </tr>
+        <% end %>
+      </tbody>
+     </table>
+   </div><!-- //end of jyushin -->
+
+<div id="soushin" class="tab-pane fade">
 <table class="table table-bordere">
   <thead>
     <tr>
@@ -63,7 +64,7 @@
     <% end %>
     </tbody>
    </table>
-  </li>
- </ul>
-</div>
-</div>
+   </div><!-- //end of soushin -->
+  </div><!-- //end of .tab-content -->
+</div><!-- //end of containern -->
+
