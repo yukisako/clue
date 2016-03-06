@@ -1,24 +1,13 @@
+##Clue開発までの流れ
 
-     ,-----.,--.                  ,--. ,---.   ,--.,------.  ,------.
-    '  .--./|  | ,---. ,--.,--. ,-|  || o   \  |  ||  .-.  \ |  .---'
-    |  |    |  || .-. ||  ||  |' .-. |`..'  |  |  ||  |  \  :|  `--, 
-    '  '--'\|  |' '-' ''  ''  '\ `-' | .'  /   |  ||  '--'  /|  `---.
-     `-----'`--' `---'  `----'  `---'  `--'    `--'`-------' `------'
-    ----------------------------------------------------------------- 
+本家(https://github.com/midwhite/clue)をgithub上でforkします．
 
+Cloneしてきます．
 
-Welcome to your Rails project on Cloud9 IDE!
+`rake db:migrate`を行い，マイグレーションしたいのですが，mysqlサーバが起動した状態でないとマイグレーションが行えません．
 
-To get started, just do the following:
+Macなら`brew install mysql`でmysqlを入れた後，`mysql.server start`コマンドでmysqlを起動させます．
 
-1. Run the project with the "Run Project" button in the menu bar on top of the IDE.
-2. Preview your new app by clicking on the URL that appears in the Run panel below (https://clue-midwhite.c9users.io/).
+`rake db:create`コマンドでデータベースファイルを作成し，`rake db:migrate`でマイグレーションを実行します．
 
-Happy coding!
-The Cloud9 IDE team
-
-
-## Support & Documentation
-
-Visit http://docs.c9.io for support, or to learn more about using Cloud9 IDE. 
-To watch some training videos, visit http://www.youtube.com/user/c9ide
+あとは`rails s`でWebサーバを立てて，`localhost:3000`にアクセスすればOK．
